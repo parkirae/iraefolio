@@ -1,0 +1,28 @@
+/* COMMON */
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("./fonts/SF-Pro-Display-Regular.woff") format("woff");
+}
+
+body {
+    font-family: "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+img {
+    display: block;
+    pointer-events : none;
+}
+
+a {
+    text-decoration: none;
+    color: #454545;
+}
+
+.inner {
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}

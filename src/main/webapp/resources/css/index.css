@@ -1,0 +1,273 @@
+/* INDEX */
+
+/* main */
+.main {
+  margin-top: 40px;
+  height: 692px;
+  background-color: #000;
+  background-position: center;
+  position: relative;
+}
+
+.main .inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.main .inner img {
+  position: absolute;
+  top: 25%
+}
+
+.main .inner .text-box {
+  position: absolute;
+  top: 70px;
+  color: #fff;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.main .inner .text-box .main-text {
+  font-size: 70px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.main .inner .text-box .sub-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.main .inner .text-box a {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2997FF;
+}
+
+/* sub */
+.sub {
+  margin-top: 10px;
+  height: 692px;
+  background-color: #f9f9fc;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sub .inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.sub .inner img {
+  display: block;
+  position: absolute;
+  top: 25%;
+  transform: rotate(-35deg);
+}
+
+.sub .inner .text-box {
+  position: absolute;
+  top: 70px;
+  color: #000;
+  line-height: 1.2;
+}
+
+.sub .inner .text-box .main-text {
+  font-size: 70px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.sub .inner .text-box .sub-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.sub .inner .text-box a {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2997FF;
+}
+
+/* third */
+.third {
+  margin-top: 10px;
+  height: 692px;
+  background-color: #000;
+  background-position: center;
+  position: relative;
+}
+
+.third .inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.third .inner img {
+  position: absolute;
+  top: 0%
+}
+
+.third .inner .text-box {
+  position: absolute;
+  top: 70px;
+  color: #fff;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.third .inner .text-box .main-text {
+  font-size: 70px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.third .inner .text-box .sub-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.third .inner .text-box a {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2997FF;
+}
+
+/* fourth */
+.fourth {
+  background-color: #fff;
+  position: relative;
+  margin-top: 10px;
+  height: 692px;
+  background-position: center;
+}
+
+.fourth .left {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 50%;
+  height: 100%;
+  background-color: #f9f9fc;
+  border-radius: 7px;
+}
+
+.fourth .inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fourth .inner img {
+  position: absolute;
+  top: 220px;
+}
+
+.fourth .left .inner .text-box {
+  position: absolute;
+  top: 70px;
+  color: #000;
+  line-height: 1.2;
+}
+
+.fourth .left .inner .text-box .main-text {
+  font-size: 70px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.fourth .left .inner .text-box .sub-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.fourth .left .inner .text-box a {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2997FF;
+}
+
+.fourth .right {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 50%;
+  height: 100%;
+  background-color: #f9f9fc;
+  border-radius: 7px;
+}
+
+.fourth .right .inner img {
+  position: absolute;
+}
+
+.fourth .right .inner .text-box {
+  position: absolute;
+  top: 70px;
+  color: #000;
+  line-height: 1.2;
+}
+
+.fourth .right .inner .text-box .main-text {
+  font-size: 70px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.fourth .right .inner .text-box .sub-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.fourth .right .inner .text-box a {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #2997FF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
