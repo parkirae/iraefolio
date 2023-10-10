@@ -14,14 +14,4 @@ public class IndexController {
     public String index() throws Exception {
         return "index";
     }
-
-    @GetMapping("/notice")
-    public String notice() throws Exception {
-        return "notice";
-    }
-
-    @GetMapping("/review")
-    public String review() throws Exception {
-        return "review";
-    }
 }

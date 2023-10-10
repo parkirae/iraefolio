@@ -9,6 +9,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.4;
+    letter-spacing : 0.03em;
 }
 
 img {
@@ -18,7 +19,7 @@ img {
 
 a {
     text-decoration: none;
-    color: #454545;
+    color: #999;
 }
 
 .inner {

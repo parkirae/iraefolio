@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../resources/css/review.css">
 
     <!-- JS -->
-<%--    <script type="text/javascript" src="../../resources/js/index.js"></script>--%>
+    <script type="text/javascript" src="../../resources/js/review.js"></script>
 
 </head>
 <body>
@@ -27,10 +27,15 @@
     <div class="inner">
         <div class="text-box">
             <span>review 😀😂</span>
-            <a href="javascript:void(0)" class="text">새로운 글 작성하기</a>
+            <div class="text">팁: review는 회원가입해야 작성할 수 있어요!<br />
+                <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
+            </div>
         </div>
     </div>
 
+    <div class="gridWrapper">
+        <div id="grid"></div>
+    </div>
 </section>
 
 

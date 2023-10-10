@@ -3,7 +3,6 @@
 /* main */
 .main {
   margin-top: 40px;
-  height: 1000px;
   background-color: #fff;
   position: relative;
 }
@@ -12,14 +11,12 @@
   position: relative;
   top: 10px;
   display: flex;
-  height: 100%;
 }
 
 .main .inner .text-box {
   height: 80px;
   width: 100%;
   position: relative;
-
 }
 
 .main .inner span {
@@ -31,13 +28,29 @@
 
 .main .inner .text {
   position: absolute;
-  border: 1px solid #454545;
+  border: 1px solid #ccccd1;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10px 20px;
   left: 60px;
   top: 100px;
+  width: 100%;
+  background-color: #fafafd;
+  color: #000;
+  font-weight: 700;
 }
 
+.main .inner .text-box .plain {
+  margin-top: 10px;
+  font-weight: 400;
+}
 
+.main .inner .text-box .plain a{
+  color: #0066CC;
+}
 
-
+.main .gridWrapper {
+  left: 470px;
+  top: -200px;
+  position: relative;
+  width: 1100px;
+}
