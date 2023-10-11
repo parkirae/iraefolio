@@ -12,39 +12,33 @@ let review = {
     this.grid = new Grid({
       el: document.getElementById('grid'),
       scrollX: false,
-      scrollY: true,
-      bodyHeight: 300,
-      data: [],
+      scrollY: false,
+      bodyHeight: 450,
       columns: [
         {
           header: "게시글 번호",
           name: "seq",
           align: "center",
-          resizable: true,
         },
         {
           header: "글쓴이",
           name: "writer",
           align: "center",
-          resizable: true,
         },
         {
           header: "내용",
           name: "content",
           align: "center",
-          resizable: true,
         },
         {
           header: "작성일자",
           name: "create_dt",
           align: "center",
-          resizable: true,
         },
         {
           header: "수정일자",
           name: "update_dt",
           align: "center",
-          resizable: true,
         },
       ],
     });
@@ -54,6 +48,13 @@ let review = {
     if (list) {
       this.grid.resetData(list);
     }
+
+    var pagination = new tui.Pagination(document.getElementById('pagination'), {
+      totalItems: 30,
+      itemsPerPage: 14,
+      visiblePages: 5,
+      centerAlign: true
+    });
   },
 
   read: function() {

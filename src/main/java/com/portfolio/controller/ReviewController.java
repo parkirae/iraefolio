@@ -38,6 +38,7 @@ public class ReviewController {
     public void create(@RequestBody ReviewEntity entity) throws Exception {
         service.create(entity);
     }
+
     // UPDATE
     @PatchMapping
     public void update(@RequestBody ReviewEntity entity) throws Exception {

@@ -35,6 +35,7 @@
 
     <div class="gridWrapper">
         <div id="grid"></div>
+        <div id="pagination" class="tui-pagination"></div>
     </div>
 </section>
 
