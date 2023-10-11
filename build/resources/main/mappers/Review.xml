@@ -7,4 +7,21 @@
     <select id="read" resultType="com.portfolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
     </select>
+
+    <insert id="create">
+        INSERT INTO TB_REVIEW(WRITER, CONTENT, CREATE_DT)
+        VALUES (#{WRITER}, #{CONTENT}, current_timestamp)
+    </insert>
+
+    <update id="update">
+        UPDATE TB_REVIEW SET
+            CONTENT = #{CONTENT},
+            UPDATE_DT = current_timestamp
+        WHERE SEQ = #{SEQ}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM TB_REVIEW
+        WHERE SEQ = #{SEQ}
+    </delete>
 </mapper>

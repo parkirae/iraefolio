@@ -6,22 +6,47 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/review")
-@Controller
+@RestController
 public class ReviewController {
 
     private final ReviewService service;
 
+    // PAGING
     @GetMapping
-    public String review() {
-        return "review";
+    public ModelAndView review() {
+        ModelAndView mav = new ModelAndView("review");
+        return mav;
+    }
+
+    // READ
+    @PostMapping
+    public List<ReviewEntity> read() throws Exception {
+        List<ReviewEntity> list = service.list();
+        return list;
+    }
+
+    // CREATE
+    @PutMapping
+    public void create(@RequestBody ReviewEntity entity) throws Exception {
+        service.create(entity);
+    }
+    // UPDATE
+    @PatchMapping
+    public void update(@RequestBody ReviewEntity entity) throws Exception {
+        service.update(entity);
+    }
+
+    // DELETE
+    @DeleteMapping
+    public void delete(@RequestBody ReviewEntity entity) throws Exception {
+        service.delete(entity);
     }
 }
