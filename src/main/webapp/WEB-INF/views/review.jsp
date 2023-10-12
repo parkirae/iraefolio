@@ -31,6 +31,15 @@
                 <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
             </div>
         </div>
+        <div class="btn-box">
+            <div class="btn-create">등록</div>
+            <div class="btn-update">수정</div>
+            <div class="btn-delete">삭제</div>
+            <div class="search">
+                <input type="text" />
+                <img src="../../resources/images/review/searchIcon.png">
+            </div>
+        </div>
     </div>
 
     <div class="gridWrapper">

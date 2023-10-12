@@ -2,7 +2,7 @@
 footer {
   margin-top: 10px;
   background-color: #f9f9fc;
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 9;

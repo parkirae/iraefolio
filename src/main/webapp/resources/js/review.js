@@ -6,7 +6,7 @@ let review = {
 
   pagination : null,
   cnt : null,
-  limit : 10,
+  limit : 11,
   currentPage: 1,
 
   init: function () {
@@ -77,6 +77,23 @@ let review = {
         _this.grid.resetData(list);
         _this.pagination.setTotalItems(_this.cnt);
       }
+    });
+
+    const searchEl = $(".search");
+    const searchInputEl = searchEl.find("input");
+
+    searchEl.on("click", function() {
+      searchInputEl.focus();
+    });
+
+    searchInputEl.on("focus", function() {
+      searchEl.addClass("focused");
+      searchInputEl.attr("placeholder", "검색할 내용을 입력하세요!");
+    });
+
+    searchInputEl.on("blur", function() {
+      searchEl.removeClass("focused");
+      searchInputEl.attr("placeholder", "");
     });
   },
 
