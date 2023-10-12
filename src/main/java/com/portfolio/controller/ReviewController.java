@@ -35,8 +35,8 @@ public class ReviewController {
 
     /* CNT */
     @PostMapping("/cnt")
-     public Integer readCnt() throws Exception {
-        Integer cnt = service.readCnt();
+     public Integer readCnt(@RequestBody ReviewEntity entity) throws Exception {
+        Integer cnt = service.readCnt(entity);
         return cnt;
     }
 

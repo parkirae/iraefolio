@@ -6,12 +6,18 @@
 
     <select id="read" resultType="com.portfolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
+        <if test="CONTENT != null and !CONTENT.equals('')">
+            WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
+        </if>
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="readCnt" resultType="Integer">
         SELECT COUNT(*)
         FROM TB_REVIEW
+        <if test="CONTENT != null and !CONTENT.equals('')">
+            WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
+        </if>
     </select>
 
     <insert id="create">

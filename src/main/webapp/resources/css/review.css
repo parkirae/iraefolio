@@ -161,8 +161,8 @@
 }
 
 .main .gridWrapper {
-  left: 440px;
-  top: -220px;
+  left: 415px;
+  top: 270px;
   position: absolute;
   width: 1000px;
   height: 790px;
@@ -173,4 +173,8 @@
   left: 440px;
   top: 1150px;
   position: relative;
+}
+
+.main .gridWrapper .tui-grid-lside-area {
+  position: absolute;
 }

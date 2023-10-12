@@ -11,8 +11,8 @@ public interface ReviewMapper {
     /* READ */
     List<ReviewEntity> read(ReviewEntity entity);
 
-    /* READCNT */
-    Integer readCnt();
+    /* ReadCNT */
+    Integer readCnt(ReviewEntity entity);
 
     /* CREATE */
     boolean create(ReviewEntity entity);

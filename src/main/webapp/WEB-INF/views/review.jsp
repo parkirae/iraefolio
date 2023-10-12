@@ -36,7 +36,7 @@
             <div class="btn-update">수정</div>
             <div class="btn-delete">삭제</div>
             <div class="search">
-                <input type="text" />
+                <input type="text" class="search_input"/>
                 <img src="../../resources/images/review/searchIcon.png">
             </div>
         </div>
