@@ -4,7 +4,13 @@ $(function() {
 
 let review = {
 
+  pagination : null,
+  cnt : null,
+  limit : 10,
+  currentPage: 1,
+
   init: function () {
+    let _this = this;
 
     let Grid = tui.Grid;
     Grid.applyTheme('clean');
@@ -43,28 +49,49 @@ let review = {
       ],
     });
 
+    /* 데이터 총 개수 세는 함수 */
+    this.cnt = this.readCnt();
+
+    /* 페이지네이션 초기화하는 함수 */
+    this.pagination = new tui.Pagination(document.getElementById('pagination'),    {
+      visiblePages: 5, // 한 번에 보여줄 1,2,3,4 목차 개수
+      totalItems : this.cnt, // 전체 아이템 개수가 몇 개인지
+      itemsPerPage: this.limit, // 한 페이지에 몇 개씩 보여줄 것인지
+      centerAlign: true // 현재 선택된 페이지 중앙 정렬
+    });
+
+    /* 초기 데이터 읽어오는 함수 */
     let list = this.read();
 
+    /* 읽어온 데이터 그리드에 그리는 함수 */
     if (list) {
       this.grid.resetData(list);
+      this.pagination.setTotalItems(this.cnt);
     }
 
-    var pagination = new tui.Pagination(document.getElementById('pagination'), {
-      totalItems: 30,
-      itemsPerPage: 14,
-      visiblePages: 5,
-      centerAlign: true
+    /* 페이지 이동 시 실행되는 함수 */
+    this.pagination.on('afterMove', function (ev) {
+      _this.currentPage = ev.page;
+      let list = _this.read();
+      if (list) {
+        _this.grid.resetData(list);
+        _this.pagination.setTotalItems(_this.cnt);
+      }
     });
   },
 
+  /* READ */
   read: function() {
-    let _this = this;
     let data;
 
     $.ajax({
       type:"POST",
       url:"/review",
       async: false,
+      data: JSON.stringify({
+        page: this.currentPage, // 현재 페이지
+        limit: this.limit // 한번에 몇 개의 데이터를 보여줄 것인지
+      }),
       contentType:"application/json; charset=utf-8",
       success: function(response){
         data = response;
@@ -73,5 +100,23 @@ let review = {
       }
     });
     return data;
+  },
+
+  /* 데이터 개수 세는 함수 */
+  readCnt: function () {
+    let cnt;
+
+    $.ajax({
+      type: "POST",
+      url: "/review/cnt",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      success: function(response){
+        cnt = response;
+      },
+      error: function() {
+      }
+    });
+    return cnt;
   }
 }

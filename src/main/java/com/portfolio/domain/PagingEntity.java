@@ -1,0 +1,21 @@
+package com.portfolio.domain;
+
+import com.fasterxml.jackson.annotation.JsonGetter;
+import lombok.Data;
+
+@Data
+public class PagingEntity {
+    private int limit;
+    private int page;
+    private int offset;
+
+    @JsonGetter
+    public int getOffset(){
+        if(limit <= 0)
+            limit = 10;
+        if(page <= 0)
+            page = 1;
+
+        return (page - 1) * limit;
+    }
+}

@@ -13,23 +13,29 @@ public class ReviewService {
 
     private final ReviewMapper mapper;
 
-    // READ
-    public List<ReviewEntity> list() throws Exception {
-        List<ReviewEntity> list = mapper.read();
+    /* READ */
+    public List<ReviewEntity> read(ReviewEntity entity) throws Exception {
+        List<ReviewEntity> list = mapper.read(entity);
         return list;
     }
 
-    // CREATE
+    /* ReadCnt */
+    public Integer readCnt() throws Exception {
+        Integer cnt = mapper.readCnt();
+        return cnt;
+    }
+
+    /* CREATE */
     public void create(ReviewEntity entity) throws Exception {
         mapper.create(entity);
     }
 
-    // UPDATE
+    /* UPDATE */
     public void update(ReviewEntity entity) throws Exception {
         mapper.update(entity);
     }
 
-    // DELETE
+    /* DELETE */
     public void delete(ReviewEntity entity) throws Exception {
         mapper.delete(entity);
     }

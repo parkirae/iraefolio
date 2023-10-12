@@ -19,33 +19,40 @@ public class ReviewController {
 
     private final ReviewService service;
 
-    // PAGING
+    /* PAGING */
     @GetMapping
     public ModelAndView review() {
         ModelAndView mav = new ModelAndView("review");
         return mav;
     }
 
-    // READ
+    /* READ */
     @PostMapping
-    public List<ReviewEntity> read() throws Exception {
-        List<ReviewEntity> list = service.list();
+    public List<ReviewEntity> read(@RequestBody ReviewEntity entity) throws Exception {
+        List<ReviewEntity> list = service.read(entity);
         return list;
     }
 
-    // CREATE
+    /* CNT */
+    @PostMapping("/cnt")
+     public Integer readCnt() throws Exception {
+        Integer cnt = service.readCnt();
+        return cnt;
+    }
+
+    /* CREATE */
     @PutMapping
     public void create(@RequestBody ReviewEntity entity) throws Exception {
         service.create(entity);
     }
 
-    // UPDATE
+    /* UPDATE */
     @PatchMapping
     public void update(@RequestBody ReviewEntity entity) throws Exception {
         service.update(entity);
     }
 
-    // DELETE
+    /* DELETE */
     @DeleteMapping
     public void delete(@RequestBody ReviewEntity entity) throws Exception {
         service.delete(entity);

@@ -6,6 +6,12 @@
 
     <select id="read" resultType="com.portfolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="readCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM TB_REVIEW
     </select>
 
     <insert id="create">

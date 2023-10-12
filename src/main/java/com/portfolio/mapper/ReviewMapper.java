@@ -8,11 +8,18 @@ import java.util.List;
 @Mapper
 public interface ReviewMapper {
 
-    List<ReviewEntity> read();
+    /* READ */
+    List<ReviewEntity> read(ReviewEntity entity);
 
+    /* READCNT */
+    Integer readCnt();
+
+    /* CREATE */
     boolean create(ReviewEntity entity);
 
+    /* UPDATE */
     boolean update(ReviewEntity entity);
 
+    /* DELTE */
     boolean delete(ReviewEntity entity);
 }
