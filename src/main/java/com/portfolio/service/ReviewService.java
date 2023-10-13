@@ -41,11 +41,9 @@ public class ReviewService {
             if (e.isUpdated()) {
                 mapper.update(e);
             }
+            if (e.isDeleted()) {
+                mapper.delete(e);
+            }
         }
-    }
-
-    /* DELETE */
-    public void delete(ReviewEntity entity) throws Exception {
-        mapper.delete(entity);
     }
 }

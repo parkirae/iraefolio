@@ -188,6 +188,21 @@ let review = {
     return cnt;
   },
 
+  /* 숨김 */
+  delete: function() {
+    let checkRows = [];
+    checkRows = this.grid.getCheckedRowKeys();
+
+    console.log(checkRows);
+
+    this.grid.uncheckAll();
+
+    for(let i = 0; i < checkRows.length ; i++){
+      this.grid.setRow(checkRows[i], $.extend({}, this.grid.getRow(checkRows[i]), {deleted: true}));
+      this.grid.disableRow(checkRows[i], true);
+    }
+  },
+
   /* 저장 */
   save: function() {
     let _this = this;
@@ -215,26 +230,14 @@ let review = {
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(arr),
       success: function(response) {
-        console.log("성공");
+        let list = _this.read();
+        if (list) {
+          _this.grid.resetData(list);
+          _this.pagination.setTotalItems(_this.cnt);
+        }
       },
       error: function () {
-
       }
     })
-
-    // let arr = [];
-    // arr = data.updatedRows;
-    // let rtn = null;
-    //
-    // rtn = ajax.payload("PATCH", "/liveNoticeManage", JSON.stringify(arr), true);
-    //
-    // if (rtn?.result === true) {
-    //   Toast.circleCheckShow({body : "저장되었습니다."});
-    //   _this.read();
-    //   return true;
-    // } else {
-    //   Toast.AlertShow({body: rtn});
-    //   return false;
-    // }
   },
 }

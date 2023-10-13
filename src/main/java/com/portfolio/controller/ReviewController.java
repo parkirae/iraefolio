@@ -51,10 +51,4 @@ public class ReviewController {
     public void update(@RequestBody List<ReviewEntity> entity) throws Exception {
         service.update(entity);
     }
-
-    /* DELETE */
-    @DeleteMapping
-    public void delete(@RequestBody ReviewEntity entity) throws Exception {
-        service.delete(entity);
-    }
 }
