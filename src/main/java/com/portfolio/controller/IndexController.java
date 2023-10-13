@@ -2,6 +2,7 @@ package com.portfolio.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -19,4 +20,5 @@ public class IndexController {
     public String test() {
         return "test";
     }
+
 }

@@ -9,6 +9,7 @@
         <if test="CONTENT != null and !CONTENT.equals('')">
             WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
         </if>
+        ORDER BY SEQ DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
 

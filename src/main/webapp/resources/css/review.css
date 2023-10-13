@@ -160,6 +160,108 @@
   opacity: 0;
 }
 
+.main .inner dialog {
+  position: absolute;
+  background-color: #fff;
+  top: 200px;
+  height: 480px;
+  width: 800px;
+  z-index: 9;
+  border: #ccccd1 1px solid;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+}
+
+.main .inner dialog table caption {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+  left: -260px;
+  top: 15px;
+}
+
+dialog table {
+  position: relative;
+  width: 80%;
+  left: 10%;
+  height: 70%;
+  border: 1px solid #ccccd1;
+}
+
+dialog table tbody {
+  position: relative;
+  /*border: 1px solid #ccccd1;*/
+  /*border-radius: 5px;*/
+  top: 30px;
+}
+
+dialog table th {
+  border: 1px #ccccd1 solid;
+  border-radius: 5px;
+  background-color: #fafafd;
+  /*background-color: blue;*/
+}
+
+dialog table td {
+}
+
+dialog .toastui-editor-tooltip {
+  display: none !important;
+}
+
+dialog .toastui-editor-defaultUI {
+  font-family: "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
+}
+/*.main .inner dialog table {*/
+/*  background-color: orange;*/
+/*  position: absolute;*/
+/*  margin-left: 10px;*/
+/*}*/
+
+/*.main .inner dialog tbody {*/
+/*  position: absolute;*/
+/*  top: 90px;*/
+/*  width: 790px;*/
+/*  height: 40px;*/
+/*}*/
+
+/*.main .inner dialog tbody th {*/
+/*  width: 395px;*/
+/*  position: relative;*/
+/*  border: 1px #ccccd1 solid;*/
+/*}*/
+
+/*.main .inner dialog tbody tr {*/
+/*  width: 100px;*/
+/*  position: relative;*/
+/*}*/
+
+/*.main .inner dialog tbody td {*/
+/*  height: 40px;*/
+/*}*/
+
+/*.main .inner dialog tbody td p {*/
+/*  height: 40px;*/
+/*  width: 395px;*/
+/*  position: relative;*/
+/*  top: -10px;*/
+/*}*/
+
+/*.main .inner dialog tbody td input {*/
+/*  height: 40px;*/
+/*  width: 395px;*/
+/*  border: 1px #ccccd1 solid;*/
+/*}*/
+
+/*.main .inner dialog tbody #editor {*/
+/*  width: 590px;*/
+/*}*/
+
+
+
+
+
 .main .gridWrapper {
   left: 415px;
   top: 270px;
@@ -197,4 +299,8 @@
 
 .main .gridWrapper .tui-grid-layer-editing .tui-grid-content-text:focus {
   border-color: #ccccd1;
+}
+
+.main .gridWrapper .tui-grid-layer-focus-border {
+  display: none;
 }

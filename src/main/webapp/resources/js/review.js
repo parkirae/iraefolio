@@ -14,7 +14,7 @@ let review = {
     let _this = this;
 
     let Grid = tui.Grid;
-    Grid.applyTheme('default');
+    Grid.applyTheme('clean');
 
     this.grid = new Grid({
       el: document.getElementById('grid'),
@@ -84,14 +84,32 @@ let review = {
       }
     });
 
+    /* 모달 관련 함수 */
+    $(".btn-create").click(function () {
+      $("dialog").show();
+      $("dialog").attr('style', 'display: block');
+    })
+
+    // 버튼을 클릭했을 때 어떤 작업을 수행하려면 이벤트 핸들러를 추가할 수 있습니다.
+    $("#Close").click(function() {
+      $("dialog").hide();
+    });
+
+    /* 모달 내 wysiwyg */
+    let editor = new toastui.Editor({
+      el: document.querySelector('#content'),
+      initialEditType: 'wysiwyg',
+    });
+    _this.editor = editor;
+
     /* 검색창 관련 함수 */
     const searchEl = $(".search");
     const searchInputEl = searchEl.find("input");
 
-    searchEl.on("click", function() {
+    searchEl.click(function () {
       searchInputEl.focus();
       searchInputEl.val('');
-    });
+    })
 
     searchInputEl.on("focus", function() {
       searchEl.addClass("focused");
@@ -133,8 +151,6 @@ let review = {
         let modifiedContent = _this.grid.getRow(ev.rowKey).content;
 
         let seq = _this.grid.getRow(ev.rowKey).seq;
-        // console.log(modifiedContent)
-        // console.log(seq);
       }
     });
   },
@@ -165,35 +181,10 @@ let review = {
     return data;
   },
 
-  /* CRUD 도와주는 함수들 */
-  /* 데이터 개수 세는 함수 */
-  readCnt: function () {
-    let _this = this;
-    let cnt;
-
-    $.ajax({
-      type: "POST",
-      url: "/review/cnt",
-      async: false,
-      contentType:"application/json; charset=utf-8",
-      data: JSON.stringify({
-        content: $(".search_input").val(),
-      }),
-      success: function(response){
-        cnt = response;
-      },
-      error: function() {
-      }
-    });
-    return cnt;
-  },
-
-  /* 숨김 */
+  /* 삭제 */
   delete: function() {
     let checkRows = [];
     checkRows = this.grid.getCheckedRowKeys();
-
-    console.log(checkRows);
 
     this.grid.uncheckAll();
 
@@ -239,5 +230,28 @@ let review = {
       error: function () {
       }
     })
+  },
+
+  /* CRUD 도와주는 함수들 */
+  /* 데이터 개수 세는 함수 */
+  readCnt: function () {
+    let _this = this;
+    let cnt;
+
+    $.ajax({
+      type: "POST",
+      url: "/review/cnt",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      data: JSON.stringify({
+        content: $(".search_input").val(),
+      }),
+      success: function(response){
+        cnt = response;
+      },
+      error: function() {
+      }
+    });
+    return cnt;
   },
 }

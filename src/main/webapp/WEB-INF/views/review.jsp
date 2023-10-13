@@ -40,6 +40,23 @@
                 <img src="../../resources/images/review/searchIcon.png">
             </div>
         </div>
+        <dialog style="display: none">
+            <form method="post">
+                <table>
+                    <caption>새 글 작성</caption>
+                    <tbody>
+                    <tr style="height: 30px">
+                        <th colspan="2">내용</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div id="content"></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+<%--                <button value="close" id="Close">Close</button>--%>
+<%--                <button value="confirm">Confirm</button>--%>
+            </form>
+        </dialog>
     </div>
 
     <div class="gridWrapper">

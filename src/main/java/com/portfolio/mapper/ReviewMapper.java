@@ -20,6 +20,6 @@ public interface ReviewMapper {
     /* UPDATE */
     boolean update(ReviewEntity entity);
 
-    /* DELTE */
+    /* DELETE */
     boolean delete(ReviewEntity entity);
 }
