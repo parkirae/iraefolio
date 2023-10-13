@@ -27,8 +27,10 @@
 
     <update id="update">
         UPDATE TB_REVIEW SET
-            CONTENT = #{CONTENT},
             UPDATE_DT = current_timestamp
+        <if test="isUpdated">
+            , CONTENT = #{CONTENT}
+        </if>
         WHERE SEQ = #{SEQ}
     </update>
 

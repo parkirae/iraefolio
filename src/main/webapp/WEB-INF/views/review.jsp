@@ -33,8 +33,8 @@
         </div>
         <div class="btn-box">
             <div class="btn-create">등록</div>
-            <div class="btn-update">수정</div>
             <div class="btn-delete">삭제</div>
+            <div class="btn-save" onclick="review.save()">저장</div>
             <div class="search">
                 <input type="text" class="search_input"/>
                 <img src="../../resources/images/review/searchIcon.png">

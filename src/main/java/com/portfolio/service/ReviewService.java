@@ -34,8 +34,14 @@ public class ReviewService {
     }
 
     /* UPDATE */
-    public void update(ReviewEntity entity) throws Exception {
-        mapper.update(entity);
+    public void update(List<ReviewEntity> entity) throws Exception {
+
+        for (int i = 0; i < entity.size(); i++) {
+            ReviewEntity e = entity.get(i);
+            if (e.isUpdated()) {
+                mapper.update(e);
+            }
+        }
     }
 
     /* DELETE */

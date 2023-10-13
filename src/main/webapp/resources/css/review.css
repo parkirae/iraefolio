@@ -71,7 +71,7 @@
   margin-right: 10px;
 }
 
-.main .inner .btn-box .btn-update {
+.main .inner .btn-box .btn-save {
   border: 1px solid #ccccd1;
   border-radius: 5px;
   padding: 10px;
@@ -112,13 +112,13 @@
   color: #fff;
 }
 
-.main .inner .btn-box .btn-update:hover {
-  background-color: #fcde74;
+.main .inner .btn-box .btn-delete:hover {
+  background-color: #fb3f45;
   color: #fff;
 }
 
-.main .inner .btn-box .btn-delete:hover {
-  background-color: #fb3f45;
+.main .inner .btn-box .btn-save:hover {
+  background-color: #fcde74;
   color: #fff;
 }
 
@@ -177,4 +177,24 @@
 
 .main .gridWrapper .tui-grid-lside-area {
   position: absolute;
+}
+
+.main .gridWrapper .tui-grid-table {
+  position: relative;
+}
+
+.main .gridWrapper .tui-grid-layer-editing {
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.main .gridWrapper .tui-grid-layer-editing .tui-grid-content-text {
+  height: 40px !important;
+  width: 195px;
+  border-radius: 5px;
+}
+
+.main .gridWrapper .tui-grid-layer-editing .tui-grid-content-text:focus {
+  border-color: #ccccd1;
 }

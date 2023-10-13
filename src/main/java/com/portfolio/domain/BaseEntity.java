@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Data;
 
 @Data
-public class PagingEntity {
+public class BaseEntity {
+
+    boolean isCreated;
+    boolean isUpdated;
+    boolean isDeleted;
+
     private int limit;
     private int page;
     private int offset;

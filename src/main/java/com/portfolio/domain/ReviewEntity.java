@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Data
-public class ReviewEntity extends PagingEntity {
+public class ReviewEntity extends BaseEntity {
 
     private int SEQ;
     private String WRITER;

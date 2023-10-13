@@ -14,7 +14,7 @@ let review = {
     let _this = this;
 
     let Grid = tui.Grid;
-    Grid.applyTheme('clean');
+    Grid.applyTheme('default');
 
     this.grid = new Grid({
       el: document.getElementById('grid'),
@@ -37,6 +37,8 @@ let review = {
           header: "내용",
           name: "content",
           align: "center",
+          resizable: true,
+          editor: 'text'
         },
         {
           header: "작성일자",
@@ -118,23 +120,23 @@ let review = {
     });
 
 
-    // this.grid.on('click', (ev) => {
-    //   let _this = this;
-    //
-    //   // 내용을 선택하는 경우에만 수행
-    //   if (ev.columnName != "content") return;
-    //
-    //   // Column을 클릭했을 때만 수행
-    //   let focuesCell = this.grid.getFocusedCell();
-    //
-    //   if (focuesCell) {
-    //     let modifiedContent = _this.grid.getRow(ev.rowKey).content;
-    //
-    //     let seq = _this.grid.getRow(ev.rowKey).seq;
-    //     console.log(modifiedContent)
-    //     console.log(seq);
-    //   }
-    // });
+    this.grid.on('click', (ev) => {
+      let _this = this;
+
+      // 내용을 선택하는 경우에만 수행
+      if (ev.columnName != "content") return;
+
+      // Column을 클릭했을 때만 수행
+      let focuesCell = this.grid.getFocusedCell();
+
+      if (focuesCell) {
+        let modifiedContent = _this.grid.getRow(ev.rowKey).content;
+
+        let seq = _this.grid.getRow(ev.rowKey).seq;
+        // console.log(modifiedContent)
+        // console.log(seq);
+      }
+    });
   },
 
   /* CRUD 함수들 */
@@ -184,5 +186,55 @@ let review = {
       }
     });
     return cnt;
-  }
+  },
+
+  /* 저장 */
+  save: function() {
+    let _this = this;
+
+    /* grid 블러 처리 */
+    this.grid.blur();
+
+    /* 수정된 그리드 정보 변수에 담기 */
+    let data = this.grid.getModifiedRows();
+
+    /* 수정된 데이터에 updated flag 붙이기 */
+    for (let i = 0; i < data.updatedRows.length; i++) {
+      data.updatedRows[i].updated = true;
+    }
+
+    let arr = [];
+    arr = data.updatedRows;
+
+    console.log(arr);
+
+    $.ajax({
+      type: "PATCH",
+      url: "/review",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      data: JSON.stringify(arr),
+      success: function(response) {
+        console.log("성공");
+      },
+      error: function () {
+
+      }
+    })
+
+    // let arr = [];
+    // arr = data.updatedRows;
+    // let rtn = null;
+    //
+    // rtn = ajax.payload("PATCH", "/liveNoticeManage", JSON.stringify(arr), true);
+    //
+    // if (rtn?.result === true) {
+    //   Toast.circleCheckShow({body : "저장되었습니다."});
+    //   _this.read();
+    //   return true;
+    // } else {
+    //   Toast.AlertShow({body: rtn});
+    //   return false;
+    // }
+  },
 }

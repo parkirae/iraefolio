@@ -48,7 +48,7 @@ public class ReviewController {
 
     /* UPDATE */
     @PatchMapping
-    public void update(@RequestBody ReviewEntity entity) throws Exception {
+    public void update(@RequestBody List<ReviewEntity> entity) throws Exception {
         service.update(entity);
     }
 
