@@ -43,18 +43,21 @@
         <dialog style="display: none">
             <form method="post">
                 <table>
-                    <caption>새 글 작성</caption>
                     <tbody>
                     <tr style="height: 30px">
-                        <th colspan="2">내용</th>
+                        <th colspan="2" id="dialog_title">새로운 글을 작성해보세요! 🥰</th>
                     </tr>
                     <tr>
                         <td colspan="2"><div id="content"></div></td>
                     </tr>
+                    <tr>
+                        <button type="button" id="create">등록</button>
+                        <button type="button" id="close">닫기</button>
+                    </tr>
                     </tbody>
+
                 </table>
-<%--                <button value="close" id="Close">Close</button>--%>
-<%--                <button value="confirm">Confirm</button>--%>
+
             </form>
         </dialog>
     </div>

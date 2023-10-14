@@ -88,10 +88,10 @@ let review = {
     $(".btn-create").click(function () {
       $("dialog").show();
       $("dialog").attr('style', 'display: block');
+      editor.setHTML('');
     })
 
-    // 버튼을 클릭했을 때 어떤 작업을 수행하려면 이벤트 핸들러를 추가할 수 있습니다.
-    $("#Close").click(function() {
+    $("#close").click(function() {
       $("dialog").hide();
     });
 
@@ -101,6 +101,11 @@ let review = {
       initialEditType: 'wysiwyg',
     });
     _this.editor = editor;
+
+    $("#create").click(function () {
+      let data = editor.getHTML();
+      _this.create(data);
+    })
 
     /* 검색창 관련 함수 */
     const searchEl = $(".search");
@@ -156,6 +161,30 @@ let review = {
   },
 
   /* CRUD 함수들 */
+  /* CREATE */
+  create: function (data) {
+    let _this = this;
+
+    data = data;
+
+    $.ajax({
+      type: "PUT",
+      url: "/review",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      data: JSON.stringify({
+        content: data
+      }),
+      success: function(response) {
+        $("dialog").hide();
+        _this.read();
+      },
+      error: function () {
+
+      }
+    })
+  },
+
   /* READ */
   read: function() {
     let _this = this;
@@ -173,6 +202,7 @@ let review = {
       }),
       success: function(response){
         data = response;
+        _this.grid.resetData(data);
         // _this.pagination.setTotalItems(response.length);
       },
       error: function() {
@@ -211,8 +241,6 @@ let review = {
 
     let arr = [];
     arr = data.updatedRows;
-
-    console.log(arr);
 
     $.ajax({
       type: "PATCH",

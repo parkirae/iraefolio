@@ -22,8 +22,8 @@
     </select>
 
     <insert id="create">
-        INSERT INTO TB_REVIEW(WRITER, CONTENT, CREATE_DT)
-        VALUES (#{WRITER}, #{CONTENT}, current_timestamp)
+        INSERT INTO TB_REVIEW(CONTENT, CREATE_DT)
+        VALUES (#{CONTENT}, current_timestamp)
     </insert>
 
     <update id="update">

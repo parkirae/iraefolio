@@ -170,97 +170,76 @@
   border: #ccccd1 1px solid;
   border-radius: 7px;
   display: flex;
-  justify-content: center;
 }
 
-.main .inner dialog table caption {
-  position: relative;
-  font-size: 30px;
-  text-align: center;
-  left: -260px;
-  top: 15px;
-}
-
-dialog table {
-  position: relative;
-  width: 80%;
-  left: 10%;
-  height: 70%;
-  border: 1px solid #ccccd1;
-}
-
-dialog table tbody {
-  position: relative;
-  /*border: 1px solid #ccccd1;*/
-  /*border-radius: 5px;*/
+.main .inner dialog #dialog_title {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
   top: 30px;
-}
-
-dialog table th {
-  border: 1px #ccccd1 solid;
+  border: 1px solid #ccccd1;
   border-radius: 5px;
+  padding: 10px;
+  display: block;
+  width: 93.5%;
   background-color: #fafafd;
-  /*background-color: blue;*/
 }
 
-dialog table td {
+.main .inner dialog table td #content {
+  width: 800px;
+  position: absolute;
+  top: 100px;
 }
 
-dialog .toastui-editor-tooltip {
+.main .inner dialog table .btn-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 500px;
+}
+
+.main .inner dialog .toastui-editor-tooltip {
   display: none !important;
 }
 
-dialog .toastui-editor-defaultUI {
+.main .inner dialog .toastui-editor-defaultUI {
   font-family: "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
 }
-/*.main .inner dialog table {*/
-/*  background-color: orange;*/
-/*  position: absolute;*/
-/*  margin-left: 10px;*/
-/*}*/
 
-/*.main .inner dialog tbody {*/
-/*  position: absolute;*/
-/*  top: 90px;*/
-/*  width: 790px;*/
-/*  height: 40px;*/
-/*}*/
+#create {
+  position: absolute;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px;
+  width: 120px;
+  font-size: 16px;
+  top: 430px;
+  left: 270px;
+}
 
-/*.main .inner dialog tbody th {*/
-/*  width: 395px;*/
-/*  position: relative;*/
-/*  border: 1px #ccccd1 solid;*/
-/*}*/
+#close {
+  position: absolute;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px;
+  width: 120px;
+  font-size: 16px;
+  top: 430px;
+  left: 430px;
+}
 
-/*.main .inner dialog tbody tr {*/
-/*  width: 100px;*/
-/*  position: relative;*/
-/*}*/
+#create:hover {
+  background-color: #0066CC;
+  color: #fff;
+}
 
-/*.main .inner dialog tbody td {*/
-/*  height: 40px;*/
-/*}*/
-
-/*.main .inner dialog tbody td p {*/
-/*  height: 40px;*/
-/*  width: 395px;*/
-/*  position: relative;*/
-/*  top: -10px;*/
-/*}*/
-
-/*.main .inner dialog tbody td input {*/
-/*  height: 40px;*/
-/*  width: 395px;*/
-/*  border: 1px #ccccd1 solid;*/
-/*}*/
-
-/*.main .inner dialog tbody #editor {*/
-/*  width: 590px;*/
-/*}*/
-
-
-
-
+#close:hover {
+  background-color: #fb3f45;
+  color: #fff;
+}
 
 .main .gridWrapper {
   left: 415px;
