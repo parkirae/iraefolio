@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>review</title>
+    <title>iraefolio - review</title>
 
     <!-- Icon -->
     <link rel="icon" href="../../resources/images/logo.png">

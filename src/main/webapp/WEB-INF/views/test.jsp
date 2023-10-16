@@ -4,10 +4,8 @@
 <head>
     <title>Title</title>
     <%@include file="common/library.jsp"%>
-    <script src="../../resources/js/liveNoticeManage.js"></script>
-
 </head>
 <body>
-<div id="grid"></div>
+TEST JSP!!
 </body>
 </html>

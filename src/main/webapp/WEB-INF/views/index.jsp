@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>어우러져 좋은 곳</title>
+    <title>iraefolio</title>
 
     <!-- Icon -->
     <link rel="icon" href="../../resources/images/logo.png">
