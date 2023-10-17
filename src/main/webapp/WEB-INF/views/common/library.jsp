@@ -18,3 +18,7 @@
 <%-- Toast Editor --%>
 <link rel="stylesheet" href="../../resources/library/toastui-editor.css">
 <script src="../../resources/library/toastui-editor-all.js"></script>
+
+<%-- Sweet Alert2 --%>
+<link rel="stylesheet" href="../../resources/library/sweetAlert2.css">
+<script src="../../resources/library/sweetAlert2.js"></script>

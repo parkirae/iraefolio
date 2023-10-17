@@ -1,17 +1,28 @@
 package com.portfolio.domain;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 public class BaseEntity {
 
+    @Schema(description = "CRUD 구분을 위한 flag", nullable = false)
     boolean isCreated;
+
+    @Schema(description = "CRUD 구분을 위한 flag", nullable = false)
     boolean isUpdated;
+
+    @Schema(description = "CRUD 구분을 위한 flag", nullable = false)
     boolean isDeleted;
 
+    @Schema(description = "pagination에 사용하는 변수", nullable = false)
     private int limit;
+
+    @Schema(description = "pagination에 사용하는 변수", nullable = false)
     private int page;
+
+    @Schema(description = "pagination에 사용하는 변수", nullable = false)
     private int offset;
 
     @JsonGetter

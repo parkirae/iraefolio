@@ -205,7 +205,11 @@ let review = {
         _this.grid.resetData(data);
         // _this.pagination.setTotalItems(response.length);
       },
-      error: function() {
+      error: function(response) {
+        swal({
+          title: response.responseText,
+          type: 'warning'
+        })
       }
     });
     return data;

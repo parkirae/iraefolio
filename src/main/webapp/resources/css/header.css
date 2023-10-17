@@ -60,13 +60,20 @@ header .main-menu .item .item__contents .contents__menu > ul {
 }
 
 header .main-menu .item .item__contents .contents__menu > ul > li {
-  width: 220px;
+  width: 300px;
 }
 
 header .main-menu .item .item__contents .contents__menu > ul > li h4 {
   padding: 3px 0 12px 0;
   font-size: 14px;
   color: #000;
+}
+
+header .main-menu .item .item__contents .contents__menu > ul > li h4 a{
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #0066CC;
+  text-decoration: underline;
 }
 
 header .main-menu .item .item__contents .contents__menu > ul > li ul li {

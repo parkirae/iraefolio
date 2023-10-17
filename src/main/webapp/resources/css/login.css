@@ -1,0 +1,78 @@
+/* LOGIN */
+
+/* main */
+.main {
+  margin-top: 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.main .inner {
+  position: relative;
+  top: 10px;
+  display: flex;
+}
+
+.main .inner .text-box {
+  height: 80px;
+  width: 100%;
+  position: relative;
+}
+
+.main .inner span {
+  font-size: 30px;
+  top: 17px;
+  position: absolute;
+  left: 60px;
+}
+
+.main .boxWrapper {
+  position: absolute;
+  width: 100%;
+  top: 350px;
+  height: 300px;
+  justify-content: center;
+  display: flex;
+}
+
+.main .boxWrapper .input-box {
+  position: relative;
+  text-align: center;
+}
+
+.main .boxWrapper .input-box #idIcon {
+  position: absolute;
+  right: 10px;
+  top: 8%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.main .boxWrapper .input-box #passwordIcon {
+  position: absolute;
+  right: 10px;
+  top: 25%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.main .boxWrapper .input-box input {
+  display: block;
+}
+
+.main .boxWrapper .input-box input[type="text"][name="input"],
+.main .boxWrapper .input-box input[type="password"][name="input"] {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ccccd1;
+  font-size: 16px;
+}
+
+.main .boxWrapper .input-box input[type="text"][name="input"]:focus,
+.main .boxWrapper .input-box input[type="password"][name="input"]:focus {
+  border: 1px solid #000;
+  outline: none;
+}

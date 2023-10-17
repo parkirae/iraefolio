@@ -146,7 +146,7 @@
           <div class="contents__menu">
             <ul class="inner">
               <li>
-                <h4>추적과 반영</h4>
+                <h4>더 많은 기능을 이용하시려면 <a href="login">로그인</a>하세요!</h4>
                 <ul>
                   <li><a href="/notice">공지사항</a></li>
                   <li><a href="/review">방명록</a></li>
