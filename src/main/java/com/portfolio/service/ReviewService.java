@@ -22,6 +22,12 @@ public class ReviewService {
         return list;
     }
 
+    /* READONE */
+    public ReviewEntity readOne(Integer seq) throws Exception {
+        ReviewEntity data = mapper.readOne(seq);
+        return data;
+    }
+
     /* ReadCnt */
     public Integer readCnt(@RequestBody ReviewEntity entity) throws Exception {
         Integer cnt = mapper.readCnt(entity);

@@ -3,10 +3,7 @@ package com.portfolio.domain;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 
@@ -20,6 +17,9 @@ public class ReviewEntity extends BaseEntity {
     @Schema(description = "review 작성자", nullable = false)
     private String WRITER;
 
+    @Schema(description = "review 제목", nullable = false)
+    private String TITLE;
+
     @Schema(description = "review 내용", nullable = false)
 //    @NotNull(message = "비어 있을 수 없습니다.")
 //    @Length(min = 1, message = "test")
@@ -29,6 +29,5 @@ public class ReviewEntity extends BaseEntity {
     private LocalDate CREATE_DT;
 
     @Schema(description = "수정일자", nullable = false)
-    @FutureOrPresent
     private LocalDate UPDATE_DT;
 }

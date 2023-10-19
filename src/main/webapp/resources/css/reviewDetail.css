@@ -1,0 +1,285 @@
+/* REVIEW */
+
+/* main */
+.main {
+  margin-top: 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.main .inner {
+  position: relative;
+  top: 10px;
+  display: flex;
+}
+
+.main .inner .text-box {
+  height: 80px;
+  width: 100%;
+  position: relative;
+}
+
+.main .inner span {
+  font-size: 30px;
+  top: 17px;
+  position: absolute;
+  left: 60px;
+}
+
+.main .inner .text {
+  position: absolute;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px 20px;
+  left: 60px;
+  top: 100px;
+  width: 100%;
+  background-color: #fafafd;
+  color: #000;
+  font-weight: 700;
+  width: 900px;
+}
+
+.main .inner .text-box .plain {
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.main .inner .text-box .plain a{
+  color: #0066CC;
+}
+
+.main .inner .btn-box {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  top: 190px;
+  left: 60px;
+  z-index: 2;
+  display: flex;
+}
+
+.main .inner .btn-box .btn-create {
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  width: 120px;
+  height: 20px;
+  text-align: center;
+  background-color: #fafafd;
+  color: #000;
+  margin-right: 10px;
+}
+
+.main .inner .btn-box .btn-save {
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  width: 120px;
+  height: 20px;
+  text-align: center;
+  background-color: #fafafd;
+  color: #000;
+  margin-right: 10px;
+}
+
+.main .inner .btn-box .btn-delete {
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  width: 120px;
+  height: 20px;
+  text-align: center;
+  background-color: #fafafd;
+  color: #000;
+  margin-right: 10px;
+}
+
+.main .inner .btn-box .btn-search {
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  width: 465px;
+  height: 20px;
+  text-align: left;
+  background-color: #fff;
+  color: #ccccd1;
+  margin-right: 10px;
+}
+
+.main .inner .btn-box .btn-create:hover {
+  background-color: #0066CC;
+  color: #fff;
+}
+
+.main .inner .btn-box .btn-delete:hover {
+  background-color: #fb3f45;
+  color: #fff;
+}
+
+.main .inner .btn-box .btn-save:hover {
+  background-color: #fcde74;
+  color: #fff;
+}
+
+.main .inner .btn-box .search {
+  height: 34px;
+  position: relative;
+}
+
+.main .inner .btn-box .search input {
+  width: 36px;
+  height: 42px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+  transition: width 0.4s;
+}
+
+.main .inner .btn-box .search input:focus {
+  width: 485px;
+  border-color: #ccccd1;
+}
+
+.main .inner .btn-box .search img {
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: 0.4s;
+}
+
+.main .inner .btn-box .search.focused img {
+  opacity: 0;
+}
+
+.main .inner dialog {
+  position: absolute;
+  background-color: #fff;
+  top: 200px;
+  height: 480px;
+  width: 800px;
+  z-index: 9;
+  border: #ccccd1 1px solid;
+  border-radius: 7px;
+  display: flex;
+}
+
+.main .inner dialog #dialog_title {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 30px;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  display: block;
+  width: 93.5%;
+  background-color: #fafafd;
+}
+
+.main .inner dialog table td #content {
+  width: 800px;
+  position: absolute;
+  top: 100px;
+}
+
+.main .inner dialog table .btn-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 500px;
+}
+
+.main .inner dialog .toastui-editor-tooltip {
+  display: none !important;
+}
+
+.main .inner dialog .toastui-editor-defaultUI {
+  font-family: "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
+}
+
+#create {
+  position: absolute;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px;
+  width: 120px;
+  font-size: 16px;
+  top: 430px;
+  left: 270px;
+}
+
+#close {
+  position: absolute;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 10px;
+  width: 120px;
+  font-size: 16px;
+  top: 430px;
+  left: 430px;
+}
+
+#create:hover {
+  background-color: #0066CC;
+  color: #fff;
+}
+
+#close:hover {
+  background-color: #fb3f45;
+  color: #fff;
+}
+
+.main .gridWrapper {
+  left: 415px;
+  top: 270px;
+  position: absolute;
+  width: 1000px;
+  height: 790px;
+  z-index: 1;
+}
+
+.main .gridWrapper .pagination {
+  left: 440px;
+  top: 1150px;
+  position: relative;
+}
+
+.main .gridWrapper .tui-grid-lside-area {
+  position: absolute;
+}
+
+.main .gridWrapper .tui-grid-table {
+  position: relative;
+}
+
+.main .gridWrapper .tui-grid-layer-editing {
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.main .gridWrapper .tui-grid-layer-editing .tui-grid-content-text {
+  height: 40px !important;
+  width: 195px;
+  border-radius: 5px;
+}
+
+.main .gridWrapper .tui-grid-layer-editing .tui-grid-content-text:focus {
+  border-color: #ccccd1;
+}
+
+.main .gridWrapper .tui-grid-layer-focus-border {
+  display: none;
+}

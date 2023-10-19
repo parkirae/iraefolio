@@ -11,6 +11,9 @@ public interface ReviewMapper {
     /* READ */
     List<ReviewEntity> read(ReviewEntity entity);
 
+    /* READONE */
+    ReviewEntity readOne(Integer seq);
+
     /* ReadCNT */
     Integer readCnt(ReviewEntity entity);
 

@@ -29,7 +29,7 @@ let login = {
 
         /* 아이디를 입력하고 엔터를 누른 경우 */
         if (e.keyCode === 13 && $("#id").val().length > 0) {
-            $("#password").attr('style', 'display: block');
+            $("#password").attr('style', 'display: show');
             $("#idIcon").attr('style', 'display: none');
             $("#password").focus();
         }

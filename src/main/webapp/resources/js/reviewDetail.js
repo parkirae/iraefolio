@@ -1,8 +1,8 @@
 $(function() {
-  review.init();
+  reviewDetail.init();
 });
 
-let review = {
+let reviewDetail = {
 
   seq: null,
   pagination : null,
@@ -12,9 +12,6 @@ let review = {
 
   init: function () {
     let _this = this;
-
-    $(".btn-delete").attr('onClick', "review.delete()");
-    $(".btn-save").attr('onClick', "review.save()");
 
     let Grid = tui.Grid;
     Grid.applyTheme('clean');
@@ -37,19 +34,11 @@ let review = {
           align: "center",
         },
         {
-          header: "제목",
-          name: "title",
-          align: "center",
-        },
-        {
           header: "내용",
           name: "content",
           align: "center",
           resizable: true,
           editor: 'text',
-          // formatter: function (value) {
-          //   console.log(value.row.seq);
-          // }
         },
         {
           header: "작성일자",
@@ -165,8 +154,7 @@ let review = {
 
       if (focuesCell) {
         let seq = _this.grid.getRow(ev.rowKey).seq;
-        console.log(seq);
-        console.log(typeof seq)
+
         this.readOne(seq);
       }
     });
@@ -232,12 +220,16 @@ let review = {
     let _this = this;
 
     $.ajax({
-      type:"GET",
-      url:"/review/reviewDetail?seq=" + seq,
+      type:"POST",
+      url:"/review/" + seq,
       async: false,
       contentType:"application/json; charset=utf-8",
+      data: JSON.stringify({
+        seq: seq, // 현재 페이지
+      }),
       success: function(response){
-        window.location.href = this.url;
+        console.log(response);
+        window.location.href = "/";
       },
       error: function(response) {
         swal({
@@ -270,8 +262,6 @@ let review = {
 
     /* 수정된 그리드 정보 변수에 담기 */
     let data = this.grid.getModifiedRows();
-
-    console.log(data);
 
     /* 수정된 데이터에 updated flag 붙이기 */
     for (let i = 0; i < data.updatedRows.length; i++) {

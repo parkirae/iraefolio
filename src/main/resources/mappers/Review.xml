@@ -13,6 +13,11 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+    <select id="readOne" resultType="com.portfolio.domain.ReviewEntity">
+        SELECT * FROM TB_REVIEW
+        WHERE SEQ = #{SEQ}
+    </select>
+
     <select id="readCnt" resultType="Integer">
         SELECT COUNT(*)
         FROM TB_REVIEW
