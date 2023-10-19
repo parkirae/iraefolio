@@ -48,6 +48,10 @@
                         <th colspan="2" id="dialog_title">새로운 글을 작성해보세요! 🥰</th>
                     </tr>
                     <tr>
+                        <td><div id="titleBox">제목</div></td>
+                        <td><input type="text" id="title" maxlength="100"></td>
+                    </tr>
+                    <tr>
                         <td colspan="2"><div id="content"></div></td>
                     </tr>
                     <tr>

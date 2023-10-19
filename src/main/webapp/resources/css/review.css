@@ -164,7 +164,7 @@
   position: absolute;
   background-color: #fff;
   top: 200px;
-  height: 480px;
+  height: 520px;
   width: 800px;
   z-index: 9;
   border: #ccccd1 1px solid;
@@ -186,10 +186,47 @@
   background-color: #fafafd;
 }
 
+.main .inner dialog table td #titleBox {
+  width: 20%;
+  height: 20px;
+  background-color: #fafafd;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 90px;
+  align-items: center;
+}
+
+.main .inner dialog table td #title {
+  display: block;
+  right: 15px;
+  width: 73%;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  top: 90px;
+  align-items: center;
+}
+
+.main .inner dialog table td #title:focus {
+  border: 1px solid #000;
+  outline: none;
+}
+
 .main .inner dialog table td #content {
   width: 800px;
   position: absolute;
-  top: 100px;
+  top: 150px;
 }
 
 .main .inner dialog table .btn-box {
@@ -215,7 +252,7 @@
   padding: 10px;
   width: 120px;
   font-size: 16px;
-  top: 430px;
+  top: 480px;
   left: 270px;
 }
 
@@ -227,7 +264,7 @@
   padding: 10px;
   width: 120px;
   font-size: 16px;
-  top: 430px;
+  top: 480px;
   left: 430px;
 }
 

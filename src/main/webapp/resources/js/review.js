@@ -99,7 +99,9 @@ let review = {
     $(".btn-create").click(function () {
       $("dialog").show();
       $("dialog").attr('style', 'display: block');
+      $("#title").val('');
       editor.setHTML('');
+      $("#title").focus();
     })
 
     $("#close").click(function() {
@@ -113,8 +115,32 @@ let review = {
     });
     _this.editor = editor;
 
+    /* 등록 버튼 클릭 */
     $("#create").click(function () {
-      let data = editor.getHTML();
+
+      /* 제목 입력 안 했을 경우 */
+      if ($("#title").val() == "") {
+        swal({
+          title: "제목을 입력하세요.",
+          type: 'warning'
+        });
+        $("#title").focus();
+        return false;
+      }
+
+      /* 내용 입력 안 했을 경우 */
+      if (editor.getHTML() == "<p><br></p>") {
+        swal({
+          title: "내용을 입력하세요.",
+          type: 'warning'
+        });
+        $(".ProseMirror toastui-editor-contents").focus();
+        return false;
+      }
+
+      let data = {};
+      data.title = $("#title").val();
+      data.content = editor.getHTML();
       _this.create(data);
     })
 
@@ -154,19 +180,18 @@ let review = {
     });
 
 
+    /* 게시글 상세보기 */
     this.grid.on('click', (ev) => {
       let _this = this;
 
-      // 내용을 선택하는 경우에만 수행
+      /* 내용을 선택하는 경우에만 수행 */
       if (ev.columnName != "content") return;
 
-      // Column을 클릭했을 때만 수행
+      /* Column을 클릭했을 때만 수행 */
       let focuesCell = this.grid.getFocusedCell();
 
       if (focuesCell) {
         let seq = _this.grid.getRow(ev.rowKey).seq;
-        console.log(seq);
-        console.log(typeof seq)
         this.readOne(seq);
       }
     });
@@ -185,7 +210,8 @@ let review = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify({
-        content: data
+        title: data.title,
+        content: data.content
       }),
       success: function(response) {
         $("dialog").hide();

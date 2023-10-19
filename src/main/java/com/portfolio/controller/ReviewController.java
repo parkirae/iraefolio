@@ -36,7 +36,7 @@ public class ReviewController {
     /* READ */
     @Operation(summary = "READ review data", description = "/review의 데이터를 읽어옵니다.")
     @PostMapping
-    public ResponseEntity read(@Valid ReviewEntity entity, BindingResult bindingResult) throws Exception {
+    public ResponseEntity read(@Valid @RequestBody ReviewEntity entity, BindingResult bindingResult) throws Exception {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationException("요청 파라미터가 적절하지 않습니다.");
@@ -48,6 +48,7 @@ public class ReviewController {
     }
 
     /* READONE */
+    @Operation(summary = "READ review data by seq", description = "/review의 데이터를 한 개 읽어옵니다.")
     @GetMapping("/reviewDetail")
     public ModelAndView read(Integer seq) throws Exception {
         ReviewEntity data = service.readOne(seq);
@@ -55,27 +56,6 @@ public class ReviewController {
         mav.addObject("data", data);
         return mav;
     }
-//    @Operation(summary = "READ review data by seq", description = "/review의 데이터를 한 개 읽어옵니다.")
-//    @PostMapping("/{seq}")
-//    public ModelAndView readOne(@PathVariable("seq") int seq) throws Exception {
-//
-//
-//        log.error(seq);
-//        ModelAndView mav = new ModelAndView("reviewDetail");
-//
-//        ReviewEntity data = service.readOne(seq);
-//
-//        mav.addObject(data);
-//
-//        return mav;
-//    }
-//
-//    @GetMapping("/reviewDetail")
-//    public ModelAndView reviewDetail(ReviewEntity entity) throws Exception {
-//        ModelAndView mav = new ModelAndView("reviewDetail");
-//
-//        return mav;
-//    }
 
     /* CNT */
     @Operation(summary = "READ review cnt", description = "/review의 데이터 개수를 읽어옵니다.")
