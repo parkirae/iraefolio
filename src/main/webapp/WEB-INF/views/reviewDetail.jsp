@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>iraefolio - reviewDetail</title>
+    <title>iraefolio - ${data.TITLE}</title>
 
     <!-- Icon -->
     <link rel="icon" href="../../resources/images/logo.png">
@@ -26,45 +26,22 @@
     <div class="inner">
         <div class="text-box">
             <span>review Detail 😀😂</span>
-            <div class="text">${data.TITLE}<br />
-                <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
+            <div class="text">
+                <p class="plain">새로운 글을 작성하려면 <a href="/review">여기</a>를 클릭해 주세요!</p>
             </div>
         </div>
 
-        <div class="btn-box">
-            <div class="btn-create">등록</div>
-            <div class="btn-delete" onclick="review.delete()">삭제</div>
-            <div class="btn-save" onclick="review.save()">저장</div>
-            <div class="search">
-                <input type="text" class="search_input"/>
-                <img src="../../resources/images/review/searchIcon.png">
-            </div>
+        <div class="content">
+            <div class="content_titleName"> 제목</div>
+            <div class="content_title">${data.TITLE}</div>
+
+            <div class="content_contentName">내용</div>
         </div>
-        <dialog style="display: none">
-            <form method="post">
-                <table>
-                    <tbody>
-                    <tr style="height: 30px">
-                        <th colspan="2" id="dialog_title">새로운 글을 작성해보세요! 🥰</th>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div id="content"></div></td>
-                    </tr>
-                    <tr>
-                        <button type="button" id="create">등록</button>
-                        <button type="button" id="close">닫기</button>
-                    </tr>
-                    </tbody>
 
-                </table>
-
-            </form>
-        </dialog>
-    </div>
-
-    <div class="gridWrapper">
-        <div id="grid"></div>
-        <div id="pagination" class="tui-pagination"></div>
+        <div class="content_content">${data.CONTENT}</div>
+<%--        ${data.CONTENT}--%>
+<%--        ${data.CREATE_DT}--%>
+<%--        ${data.UPDATE_DT}--%>
     </div>
 </section>
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.portfolio.mapper.ReviewMapper">
+<mapper namespace="com.iraefolio.mapper.ReviewMapper">
 
-    <select id="read" resultType="com.portfolio.domain.ReviewEntity">
+    <select id="read" resultType="com.iraefolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
         <if test="CONTENT != null and !CONTENT.equals('')">
             WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
@@ -13,7 +13,7 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
-    <select id="readOne" resultType="com.portfolio.domain.ReviewEntity">
+    <select id="readOne" resultType="com.iraefolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
         WHERE SEQ = #{SEQ}
     </select>

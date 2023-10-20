@@ -18,7 +18,7 @@
     <script type="text/javascript" src="../../resources/js/login.js"></script>
 
 </head>
-<body>
+<body>qq
 <!-- Header -->
 <%@include file="common/header.jsp"%>
 
@@ -32,10 +32,12 @@
 
     <div class="boxWrapper">
         <div class="input-box">
-            <input type="text" name="input" id="id" placeholder=" 아이디를 입력해주세요." autocomplete="new-password"/>
-            <img src="../../resources/images/common/return.png" alt="return icon" id="idIcon" class="icon" style="display: none"/>
-            <input type="password" name="input" id="password" placeholder=" 비밀번호를 입력해주세요." autocomplete="new-password" style="display: none"/>
-            <img src="../../resources/images/common/return.png" alt="return icon" id="passwordIcon" class="icon" style="display: none"/>
+            <form action="/login" id="loginForm" method="post">
+                <input type="text" name="input" id="id" placeholder=" 아이디를 입력해주세요." autocomplete="new-password"/>
+                <img src="../../resources/images/common/return.png" alt="return icon" id="idIcon" class="icon" style="display: none"/>
+                <input type="password" name="input" id="password" placeholder=" 비밀번호를 입력해주세요." autocomplete="new-password" style="display: none"/>
+                <img src="../../resources/images/common/return.png" alt="return icon" id="passwordIcon" class="icon" style="display: none"/>
+            </form>
         </div>
     </div>
 </section>

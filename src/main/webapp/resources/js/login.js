@@ -6,6 +6,13 @@ let login = {
   init: function () {
     let _this = this;
 
+    /* 크롬 비밀번호 자동 완성 관련 */
+    if ($("#id").val() != "") {
+        $("#idIcon").attr('style', 'display: none');
+        $("#password").attr('style', 'display: show !important');
+        $("#passwordIcon").attr('style', 'display: none');
+    }
+
     /* id 입력창 */
     $("#id").on('keydown', function (e) {
 
@@ -74,9 +81,26 @@ let login = {
 
         /* 비밀번호를 입력하고 엔터를 누른 경우 */
         if (e.keyCode === 13 && $("#password").val().length + 1 > 0) {
-            alert($("#id").val() + $("#password").val());
-            // 로그인 API 호출
+            $.post("/login", $("#loginForm").serialize(), function(data) {
+                // 서버 응답을 처리하는 코드
+                console.log(data); // 이 예제에서는 콘솔에 응답을 로깅합니다.
+            });
         }
     })
-   }
+   },
+
+    login: function () {
+        $.ajax({
+            type:"GET",
+            url:"/login",
+            async: false,
+            contentType:"application/json; charset=utf-8",
+            success: function(response){
+                window.location.href = "/";
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    }
 }

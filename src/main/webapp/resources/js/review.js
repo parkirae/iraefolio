@@ -183,9 +183,10 @@ let review = {
     /* 게시글 상세보기 */
     this.grid.on('click', (ev) => {
       let _this = this;
+      let selectedColumn = ev.columnName;
 
       /* 내용을 선택하는 경우에만 수행 */
-      if (ev.columnName != "content") return;
+      if (selectedColumn != "content") return;
 
       /* Column을 클릭했을 때만 수행 */
       let focuesCell = this.grid.getFocusedCell();
@@ -244,6 +245,7 @@ let review = {
         // _this.pagination.setTotalItems(response.length);
       },
       error: function(response) {
+        console.log(response);
         swal({
           title: response.responseText,
           type: 'warning'
