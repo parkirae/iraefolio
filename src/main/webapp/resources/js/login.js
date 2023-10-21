@@ -82,25 +82,15 @@ let login = {
         /* 비밀번호를 입력하고 엔터를 누른 경우 */
         if (e.keyCode === 13 && $("#password").val().length + 1 > 0) {
             $.post("/login", $("#loginForm").serialize(), function(data) {
-                // 서버 응답을 처리하는 코드
-                console.log(data); // 이 예제에서는 콘솔에 응답을 로깅합니다.
+            }).done(function() {
+                window.location.href = "/";
+            }).fail(function() {
+                swal({
+                    title: "계정 정보를 확인하세요.",
+                    type: "warning"
+                })
             });
         }
     })
    },
-
-    login: function () {
-        $.ajax({
-            type:"GET",
-            url:"/login",
-            async: false,
-            contentType:"application/json; charset=utf-8",
-            success: function(response){
-                window.location.href = "/";
-            },
-            error: function(response) {
-                console.log(response);
-            }
-        });
-    }
 }
