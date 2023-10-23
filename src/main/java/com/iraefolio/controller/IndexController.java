@@ -19,4 +19,7 @@ public class IndexController {
     public String login(String error, String logout) {
         return "login";
     }
+
+    @GetMapping("/signIn")
+    public String signIn() { return "signIn"; }
 }

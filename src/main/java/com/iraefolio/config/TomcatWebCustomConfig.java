@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TomcatWebCustomConfig implements WebServerFactoryCustomizer<TomcatServletWebServerFactory> {
 
+    /* 허용 문자열 추가 */
     @Override
     public void customize(TomcatServletWebServerFactory factory) {
         factory.addConnectorCustomizers((TomcatConnectorCustomizer)

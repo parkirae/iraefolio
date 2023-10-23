@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class ReviewEntity extends BaseEntity {
 
 //    @Schema(description = "데이터 구분하는 변수", nullable = false)
-    private int SEQ;
+    private int REVIEW_ID;
 
 //    @Schema(description = "review 작성자", nullable = false)
     private String WRITER;

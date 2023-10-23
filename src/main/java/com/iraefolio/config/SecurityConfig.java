@@ -16,15 +16,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
-public class CustomSecurityConfig {
+public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        log.info("@@@@@@@@@@@@@@@@configure@@@@@@@@@@@@@@@@@@@@");
-
         /* 로그인 페이지 지정 */
-        http.formLogin().loginPage("/login");
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/");
 
         http.logout().logoutSuccessUrl("/");
 

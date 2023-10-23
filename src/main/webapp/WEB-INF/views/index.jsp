@@ -28,10 +28,10 @@
         <div class="text-box">
             <c:choose>
                 <c:when test="${user != null}">
-                    ${user.getUsername()} 님, 환영합니다!
+                    ${user.getUsername()} 님, 환영합니다! 🥳
                 </c:when>
                 <c:otherwise>
-                    더 많은 기능을 이용하시려면 로그인 하세요!
+                    더 많은 기능을 이용하시려면 <a href="/login" id="text-login">로그인</a> 하세요! 😆
                 </c:otherwise>
             </c:choose>
         </div>
@@ -40,7 +40,7 @@
                     <div class="logout"><a href="/logout" id="btn-logout">logout</a></div>
                 </c:when>
                 <c:otherwise>
-                    <div class="logout"><a href="/login" id="btn-logIn">logIn</a></div>
+                    <div class="logout"><a href="/signIn" id="btn-signIn">Sign In</a></div>
                 </c:otherwise>
             </c:choose>
     </div>
@@ -83,47 +83,6 @@
 </section>
 
 <%-- fourth --%>
-<!--NOTICE-->
-<section class="notice">
-
-    <!--NOTICE LINE-->
-    <div class="notice-line">
-        <div class="bg-left"></div>
-        <div class="bg-right"></div>
-        <div class="inner">
-
-            <div class="inner__left">
-                <h2>공지사항</h2>
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0)">크리스마스 & 연말연시 스타벅스 매장 영업시간 변경 안내</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0)">[당첨자 발표] 2021 스타벅스 플래너 영수증 이벤트</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0)">스타벅스커피 코리아 애플리케이션 버전 업데이트 안내</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="javascript:void(0)">[당첨자 발표] 뉴이어 전자영수증 이벤트</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="javascript:void(0)" class="notice-line__more">
-                    <span class="material-icons">add_circle</span>
-                </a>
-            </div>
-
-            <div class="inner__right">
-                <h2>스타벅스 프로모션</h2>
-                <div class="toggle-promotion open">
-                    <div class="material-icons">upload</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 <%--<section class="fourth">--%>
 
 <%--    <div class="inner">--%>

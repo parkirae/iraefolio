@@ -29,7 +29,7 @@ public class ReviewService {
     }
 
     /* ReadCnt */
-    public Integer readCnt(@RequestBody ReviewEntity entity) throws Exception {
+    public Integer readCnt(ReviewEntity entity) throws Exception {
         Integer cnt = mapper.readCnt(entity);
         return cnt;
     }

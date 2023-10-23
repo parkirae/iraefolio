@@ -9,13 +9,13 @@
         <if test="CONTENT != null and !CONTENT.equals('')">
             WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
         </if>
-        ORDER BY SEQ DESC
+        ORDER BY REVIEW_ID DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="readOne" resultType="com.iraefolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
-        WHERE SEQ = #{SEQ}
+        WHERE REVIEW_ID = #{REVIEW_ID}
     </select>
 
     <select id="readCnt" resultType="Integer">
@@ -37,11 +37,11 @@
         <if test="isUpdated">
             , CONTENT = #{CONTENT}
         </if>
-        WHERE SEQ = #{SEQ}
+        WHERE REVIEW_ID = #{REVIEW_ID}
     </update>
 
     <delete id="delete">
         DELETE FROM TB_REVIEW
-        WHERE SEQ = #{SEQ}
+        WHERE REVIEW_ID = #{REVIEW_ID}
     </delete>
 </mapper>
