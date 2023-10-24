@@ -23,8 +23,8 @@ public class ReviewService {
     }
 
     /* READONE */
-    public ReviewEntity readOne(Integer seq) throws Exception {
-        ReviewEntity data = mapper.readOne(seq);
+    public ReviewEntity readOne(Integer review_id) throws Exception {
+        ReviewEntity data = mapper.readOne(review_id);
         return data;
     }
 

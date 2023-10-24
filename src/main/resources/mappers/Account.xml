@@ -4,14 +4,21 @@
 
 <mapper namespace="com.iraefolio.mapper.AccountMapper">
 
-    <select id="accountCheck" resultType="boolean" parameterType="com.iraefolio.domain.AccountEntity">
+    <!-- id 중복 체크 -->
+    <select id="accountCheck" resultType="boolean" parameterType="com.iraefolio.domain.Member">
         SELECT COUNT(*)
         FROM TB_USER
-        WHERE USER_ID = #{USER_ID}
+        WHERE username = #{username}
     </select>
 
-    <insert id="create" parameterType="com.iraefolio.domain.AccountEntity">
-        INSERT INTO TB_USER (USER_ID, USER_PW, USER_NAME)
-        VALUES (#{USER_ID}, #{USER_PW}, #{USER_NAME})
+    <select id="findByUserName" resultType="com.iraefolio.domain.Member">
+        SELECT * FROM TB_USER
+        WHERE username = #{username}
+    </select>
+
+    <!-- 회원 가입 -->
+    <insert id="create" parameterType="com.iraefolio.domain.Member">
+        INSERT INTO TB_USER (username, password, name, auth)
+        VALUES (#{username}, #{password}, #{name}, "ROLE_USER")
     </insert>
 </mapper>

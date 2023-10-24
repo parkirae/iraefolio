@@ -1,5 +1,4 @@
 const englishOnly = /^[a-zA-Z]*$/;
-const koreanOnly = /[^가-힣]/g;
 
 $(function() {
   signIn.init();
@@ -9,10 +8,10 @@ let signIn = {
     init: function () {
         let _this = this;
 
-        $("#id").focus();
+        $("#username").focus();
 
-        $("#id").on('keydown', function (e) {
-            $("#id").on('input', function (e) {
+        $("#username").on('keydown', function (e) {
+            $("#username").on('input', function (e) {
                 let inputID = $(this).val().length;
 
                 if (inputID > 0) {
@@ -22,32 +21,32 @@ let signIn = {
                 }
             });
 
-            if (e.keyCode == 13 && $("#id").val().length == 0) {
+            if (e.keyCode == 13 && $("#username").val().length == 0) {
                 $('.boxWrapper .input-box p').text('아이디를 입력해주세요.');
                 return false;
             }
 
-            if (e.keyCode == 13 && $("#id").val().length != 0) {
-                let userID = $("#id").val();
+            if (e.keyCode == 13 && $("#username").val().length != 0) {
+                let USER_NAME = $("#username").val();
                 let result;
 
-                if (!englishOnly.test(userID)) {
+                if (!englishOnly.test(USER_NAME)) {
                     $('.boxWrapper .input-box p').text('아이디는 영어 소문자만 사용할 수 있어요.');
                     return false;
                 }
 
-                if (userID.length < 4) {
+                if (USER_NAME.length < 4) {
                     $('.boxWrapper .input-box p').text('아이디는 최소 4글자 이상이여야 해요.');
                     return false;
                 }
 
-                result = _this.accountCheck(userID);
+                result = _this.accountCheck(USER_NAME);
 
                 if (result) {
                     $('.boxWrapper .input-box p').text('이미 사용 중인 아이디입니다.');
                     return false;
                 } else {
-                    $("#id").hide();
+                    $("#username").hide();
                     $('.boxWrapper .input-box p').text('비밀번호를 입력하고 엔터를 쳐보세요!');
                     $("#password").show();
                     $("#password").focus();
@@ -116,15 +115,15 @@ let signIn = {
                     $("#secondPassword").hide();
                     $('.boxWrapper .input-box p').text('');
                     $('#returnIcon').css('display', 'none');
-                    $("#username").show();
-                    $("#username").focus();
+                    $("#name").show();
+                    $("#name").focus();
                     $('.boxWrapper .input-box p').text('이제 마지막이에요 :)');
                 }
             }
         })
 
-        $("#username").on('keydown', function (e) {
-            $("#username").on('input', function (e) {
+        $("#name").on('keydown', function (e) {
+            $("#name").on('input', function (e) {
                 let inputUserName = $(this).val();
 
                 if (inputUserName.length > 0) {
@@ -134,20 +133,20 @@ let signIn = {
                 }
             })
 
-            if (e.keyCode == 13 && $("#username").val().length == 0) {
+            if (e.keyCode == 13 && $("#name").val().length == 0) {
                 $('.boxWrapper .input-box p').text('이름을 입력해주세요.');
                 return false;
             }
 
-            if (e.keyCode == 13 && $("#username").val().length != 0) {
+            if (e.keyCode == 13 && $("#name").val().length != 0) {
 
                 $.ajax({
                     type: "POST",
                     url: "/create",
                     data: JSON.stringify({
-                       USER_ID: $("#id").val(),
-                       USER_PW: $("#password").val(),
-                       USER_NAME: $("#username").val(),
+                       username: $("#username").val(),
+                       password: $("#password").val(),
+                       name: $("#name").val(),
                     }),
                     contentType: "application/json",
                     dataType: "json",
@@ -155,8 +154,7 @@ let signIn = {
                         window.location.href = "/";
                     },
                     error: function (response) {
-                        // 요청이 실패한 경우 실행될 코드
-                        console.log(response);
+                        window.location.href = "/";
                     }
                 });
 
@@ -165,7 +163,7 @@ let signIn = {
 
     },
 
-    accountCheck: function (userID) {
+    accountCheck: function (USER_NAME) {
         let result;
 
         $.ajax({
@@ -174,7 +172,7 @@ let signIn = {
             async: false,
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify({
-                USER_ID: userID
+                username: USER_NAME
             }),
             success: function(response){
                 result = response;

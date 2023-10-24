@@ -47,8 +47,8 @@ public class ReviewController {
     /* READONE */
 //    @Operation(summary = "READ review data by seq", description = "/review의 데이터를 한 개 읽어옵니다.")
     @GetMapping("/reviewDetail")
-    public ModelAndView read(@RequestBody Integer seq) throws Exception {
-        ReviewEntity data = service.readOne(seq);
+    public ModelAndView readOne(@RequestParam Integer review_id) throws Exception {
+        ReviewEntity data = service.readOne(review_id);
         ModelAndView mav = new ModelAndView("/reviewDetail");
         mav.addObject("data", data);
         return mav;

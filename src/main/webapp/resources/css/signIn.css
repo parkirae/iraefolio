@@ -40,9 +40,9 @@
   text-align: center;
 }
 
-.main .boxWrapper .input-box input[type="text"][name="userID"],
+.main .boxWrapper .input-box input[type="text"][name="username"],
 .main .boxWrapper .input-box input[type="password"][name="password"],
-.main .boxWrapper .input-box input[type="text"][name="username"] {
+.main .boxWrapper .input-box input[type="text"][name="name"] {
   width: 350px;
   height: 50px;
   border-radius: 5px;
@@ -50,9 +50,9 @@
   font-size: 16px;
 }
 
-.main .boxWrapper .input-box input[type="text"][name="userID"]:focus,
+.main .boxWrapper .input-box input[type="text"][name="username"]:focus,
 .main .boxWrapper .input-box input[type="password"][name="password"]:focus,
-.main .boxWrapper .input-box input[type="text"][name="username"]:focus {
+.main .boxWrapper .input-box input[type="text"][name="name"]:focus {
   border: 1px solid #000;
   outline: none;
 }

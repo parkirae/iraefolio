@@ -5,6 +5,12 @@ spring:
     username: root
     password: "0000"
 
+#logging:
+#  level:
+#    org.springframework: info
+#    com.iraefolio: debug
+#    org.springframework.security: trace
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -12,3 +18,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mappers/**/*.xml
+

@@ -6,6 +6,8 @@ let login = {
   init: function () {
     let _this = this;
 
+    $("#id").focus();
+
     /* 크롬 비밀번호 자동 완성 관련 */
     if ($("#id").val() != "") {
         $("#idIcon").attr('style', 'display: none');
@@ -74,7 +76,7 @@ let login = {
         }
 
         /* 비밀번호를 입력한 경우 */
-        if ( $("#password").val().length + 1 > 0) {
+        if ($("#password").val().length + 1 > 0) {
             $("#idIcon").attr('style', 'display: none');
             $("#passwordIcon").attr('style', 'display: show');
         }
@@ -84,7 +86,8 @@ let login = {
             $.post("/login", $("#loginForm").serialize(), function(data) {
             }).done(function() {
                 window.location.href = "/";
-            }).fail(function() {
+            }).fail(function(response) {
+                console.log(response)
                 swal({
                     title: "계정 정보를 확인하세요.",
                     type: "warning"

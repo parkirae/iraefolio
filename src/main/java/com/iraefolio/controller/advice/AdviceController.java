@@ -3,6 +3,7 @@ package com.iraefolio.controller.advice;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,5 +36,13 @@ public class AdviceController {
         }
 
         return ResponseEntity.badRequest().body(errorMap);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
+    public ResponseEntity<String> handleUserNameNotFoundException(UsernameNotFoundException e) {
+
+        log.error("UsernameNotFoundException 발생");
+        return new ResponseEntity<>("UsernameNotFoundException 발생: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

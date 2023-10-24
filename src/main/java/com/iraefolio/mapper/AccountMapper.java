@@ -1,15 +1,19 @@
 package com.iraefolio.mapper;
 
-import com.iraefolio.domain.AccountEntity;
-import com.iraefolio.domain.ReviewEntity;
+import com.iraefolio.domain.Member;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface AccountMapper {
 
-    Boolean accountCheck(AccountEntity entity);
+    /* 아이디 중복 체크 */
+    Boolean accountCheck(Member member);
 
-    boolean create(AccountEntity entity);
+    /* 회원 가입 */
+    boolean create(Member member);
+
+    /* 로그인 시 사용 */
+    Optional<Member> findByUserName(String username);
 }

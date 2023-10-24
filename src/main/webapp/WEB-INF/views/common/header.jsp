@@ -153,7 +153,7 @@
               <li>
                 <c:choose>
                   <c:when test="${user != null}">
-                    <h4>${user.getUsername()} 님의 상상력을 여기서!</h4>
+                    <h4>${user} 님의 상상력을 여기서!</h4>
                   </c:when>
                   <c:otherwise>
                     <h4>더 많은 기능을 이용하시려면 <a href="login">로그인</a>하세요!</h4>

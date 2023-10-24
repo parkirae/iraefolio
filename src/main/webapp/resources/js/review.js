@@ -28,7 +28,7 @@ let review = {
       columns: [
         {
           header: "게시글 번호",
-          name: "seq",
+          name: "review_id",
           align: "center",
         },
         {
@@ -47,9 +47,6 @@ let review = {
           align: "center",
           resizable: true,
           editor: 'text',
-          // formatter: function (value) {
-          //   console.log(value.row.seq);
-          // }
         },
         {
           header: "작성일자",
@@ -171,9 +168,6 @@ let review = {
         if (list) {
           _this.grid.resetData(list);
           _this.cnt = _this.readCnt();
-          console.log(_this.cnt);
-          // this.cnt = list.length; // 이건 확실히 아님
-          // console.log(this.cnt); // 이건 확실히 아님
           _this.pagination.setTotalItems(_this.cnt);
         }
       }
@@ -192,8 +186,9 @@ let review = {
       let focuesCell = this.grid.getFocusedCell();
 
       if (focuesCell) {
-        let seq = _this.grid.getRow(ev.rowKey).seq;
-        this.readOne(seq);
+
+        let review_id = _this.grid.getRow(ev.rowKey).review_id;
+        this.readOne(review_id);
       }
     });
   },
@@ -256,12 +251,12 @@ let review = {
   },
 
   /* READONE */
-  readOne: function(seq) {
+  readOne: function(review_id) {
     let _this = this;
 
     $.ajax({
       type:"GET",
-      url:"/review/reviewDetail?seq=" + seq,
+      url:"/review/reviewDetail?review_id=" + review_id,
       async: false,
       contentType:"application/json; charset=utf-8",
       success: function(response){

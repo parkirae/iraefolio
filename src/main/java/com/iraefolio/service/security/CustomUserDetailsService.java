@@ -1,18 +1,18 @@
 package com.iraefolio.service.security;
 
-import com.iraefolio.domain.AccountEntity;
+import com.iraefolio.domain.Member;
 import com.iraefolio.mapper.AccountMapper;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -20,27 +20,30 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
+    private final AccountMapper accountMapper;
 
-    @Autowired
-    private AccountMapper accountMapper;
-    @Transactional
-    public boolean create(AccountEntity entity){
+    /* 회원 가입 */
+    public boolean create(Member member){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        entity.setUSER_ID(entity.getUSER_ID());
-        entity.setUSER_PW(passwordEncoder.encode(entity.getUSER_PW()));
-        entity.setUSER_NAME(entity.getUSER_NAME());
-        boolean result = accountMapper.create(entity);
+
+        member.setUsername(member.getUsername());
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
+        member.setName(member.getName());
+        boolean result = accountMapper.create(member);
+
         return result;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDetails userDetails = User.builder().username("test")
-                .password(passwordEncoder.encode("test"))
-                .authorities("ROLE_USER")
-                .build();
+        Optional<Member> result = accountMapper.findByUserName(username);
 
-        return userDetails;
+        if (result.isEmpty()) throw new UsernameNotFoundException("not found");
+
+        Member member = result.get();
+
+        return member;
+
     }
 }
