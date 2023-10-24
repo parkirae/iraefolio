@@ -13,6 +13,7 @@ let review = {
   init: function () {
     let _this = this;
 
+
     $(".btn-delete").attr('onClick', "review.delete()");
     $(".btn-save").attr('onClick', "review.save()");
 

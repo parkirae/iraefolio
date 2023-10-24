@@ -18,7 +18,7 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/review")
-@PreAuthorize("hasRole('USER')")
+@PreAuthorize("hasRole('ROLE_USER')")
 @RestController
 public class ReviewController {
 

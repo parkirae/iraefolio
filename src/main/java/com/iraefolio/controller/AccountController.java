@@ -43,7 +43,7 @@ public class AccountController {
         if (!result) throw new Exception("회원 가입 오류");
 
         /* 회원 가입 후 자동 로그인 */
-        service.login(member);
+//        service.login(member);
 
         return result;
     }

@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,11 +22,9 @@ public class Member implements UserDetails {
     private String username;
     private String password;
     private String name;
+    private String role;
     private boolean del;
     private boolean social;
-
-    @Builder.Default
-    private Set<MemberRole> roleSet = new HashSet<>();
 
     public void changePassword(String password) {
         this.password = password; // 이전의 비밀번호를 새 비밀번호로 변경
@@ -39,23 +38,13 @@ public class Member implements UserDetails {
         this.del = del;
     }
 
-    public void addRole(MemberRole memberRole) {
-        this.roleSet.add(memberRole);
-    }
-
-    public void clearRoles() {
-        this.roleSet.clear();
-    }
-
     public void changeSocial(boolean social) {
         this.social = social;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roleSet.stream()
-                .map(memberRole -> new SimpleGrantedAuthority("ROLE_" + memberRole.name()))
-                .collect(Collectors.toList());
+        return Collections.singletonList(new SimpleGrantedAuthority(this.role));
     }
 
     @Override

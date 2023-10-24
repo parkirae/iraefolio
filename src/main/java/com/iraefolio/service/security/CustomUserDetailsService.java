@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return result;
     }
 
+    /* 로그인 */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
