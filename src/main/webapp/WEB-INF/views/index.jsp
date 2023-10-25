@@ -28,7 +28,7 @@
         <div class="text-box">
             <c:choose>
                 <c:when test="${user != null}">
-                    ${user} 님, 환영합니다! 🥳
+                    ${user.getName()} 님, 환영합니다! 🥳
                 </c:when>
                 <c:otherwise>
                     더 많은 기능을 이용하시려면 <a href="/login" id="text-login">로그인</a> 하세요! 😆

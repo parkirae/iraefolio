@@ -7,9 +7,18 @@
 <!-- Header CSS -->
 <link rel="stylesheet" href="../../resources/css/header.css" />
 
+<!-- 사용자 정보 -->
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="user"/>
 </sec:authorize>
+
+<!-- 로그인 정보 JS 전달 -->
+<script type="text/javascript">
+  let user = {};
+  user.username = '${user.getUsername()}';
+  user.name = '${user.getName()}';
+  user.role = '${user.getRole()}';
+</script>
 
 <!-- HEADER -->
 <header>
@@ -153,7 +162,7 @@
               <li>
                 <c:choose>
                   <c:when test="${user != null}">
-                    <h4>${user} 님의 상상력을 여기서!</h4>
+                    <h4>${user.getName()} 님의 상상력을 여기서!</h4>
                   </c:when>
                   <c:otherwise>
                     <h4>더 많은 기능을 이용하시려면 <a href="login">로그인</a>하세요!</h4>

@@ -27,14 +27,15 @@
     </select>
 
     <insert id="create">
-        INSERT INTO TB_REVIEW(TITLE, CONTENT, CREATE_DT)
-        VALUES (#{TITLE}, #{CONTENT}, current_timestamp)
+        INSERT INTO TB_REVIEW(USERNAME, WRITER, TITLE, CONTENT, CREATE_DT)
+        VALUES (#{USERNAME}, #{WRITER}, #{TITLE}, #{CONTENT}, current_timestamp)
     </insert>
 
     <update id="update">
         UPDATE TB_REVIEW SET
             UPDATE_DT = current_timestamp
         <if test="isUpdated">
+            , TITLE = #{TITLE}
             , CONTENT = #{CONTENT}
         </if>
         WHERE REVIEW_ID = #{REVIEW_ID}

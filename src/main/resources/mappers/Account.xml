@@ -18,7 +18,7 @@
 
     <!-- 회원 가입 -->
     <insert id="create" parameterType="com.iraefolio.domain.Member">
-        INSERT INTO TB_USER (username, password, name, auth)
+        INSERT INTO TB_USER (username, password, name, role)
         VALUES (#{username}, #{password}, #{name}, "ROLE_USER")
     </insert>
 </mapper>

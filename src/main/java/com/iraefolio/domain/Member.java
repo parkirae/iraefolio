@@ -27,11 +27,11 @@ public class Member implements UserDetails {
     private boolean social;
 
     public void changePassword(String password) {
-        this.password = password; // 이전의 비밀번호를 새 비밀번호로 변경
+        this.password = password;
     }
 
     public void changeName(String name) {
-        this.name = name; // name 필드를 email로 변경
+        this.name = name;
     }
 
     public void changeDel(boolean del) {

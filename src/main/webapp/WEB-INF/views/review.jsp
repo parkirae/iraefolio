@@ -27,9 +27,19 @@
     <div class="inner">
         <div class="text-box">
             <span>review 😀😂</span>
-            <div class="text">팁: review는 회원가입해야 작성할 수 있어요!<br />
-                <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
-            </div>
+
+            <c:choose>
+                <c:when test="${user != null}">
+                    <div class="text">팁: 내가 작성한 제목과 내용만 수정할 수 있어요!<br />
+                        <p class="plain">제목 또는 내용을 더블 클릭 해보세요!</p>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="text">팁: review는 회원가입해야 작성할 수 있어요!<br />
+                        <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="btn-box">
             <div class="btn-create">등록</div>

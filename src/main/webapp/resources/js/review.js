@@ -1,3 +1,8 @@
+/*
+객체 user는 로그인한 유저 정보를 담고 있음.
+header.jsp에 선언되어 있음.
+ */
+
 $(function() {
   review.init();
 });
@@ -13,10 +18,11 @@ let review = {
   init: function () {
     let _this = this;
 
-
+    /* 버튼에 onclick 함수 할당 */
     $(".btn-delete").attr('onClick', "review.delete()");
     $(".btn-save").attr('onClick', "review.save()");
 
+    /* 그리드 초기화 */
     let Grid = tui.Grid;
     Grid.applyTheme('clean');
 
@@ -33,7 +39,7 @@ let review = {
           align: "center",
         },
         {
-          header: "글쓴이",
+          header: "작성자",
           name: "writer",
           align: "center",
         },
@@ -41,6 +47,7 @@ let review = {
           header: "제목",
           name: "title",
           align: "center",
+          editor: 'text'
         },
         {
           header: "내용",
@@ -102,9 +109,15 @@ let review = {
       $("#title").focus();
     })
 
+    /* 모달 종료 관련 함수 */
     $("#close").click(function() {
       $("dialog").hide();
     });
+
+    /* 모달 종료 관련 함수 */
+    $("dialog").on('keydown', function (e) {
+      if (e.keyCode === 27) $("dialog").hide();
+    })
 
     /* 모달 내 wysiwyg */
     let editor = new toastui.Editor({
@@ -136,9 +149,12 @@ let review = {
         return false;
       }
 
+      /* 게시글 작성 시 전달하는 데이터 */
       let data = {};
+      data.name = user.username;
       data.title = $("#title").val();
       data.content = editor.getHTML();
+      data.writer = user.name;
       _this.create(data);
     })
 
@@ -173,25 +189,6 @@ let review = {
         }
       }
     });
-
-
-    /* 게시글 상세보기 */
-    this.grid.on('click', (ev) => {
-      let _this = this;
-      let selectedColumn = ev.columnName;
-
-      /* 내용을 선택하는 경우에만 수행 */
-      if (selectedColumn != "content") return;
-
-      /* Column을 클릭했을 때만 수행 */
-      let focuesCell = this.grid.getFocusedCell();
-
-      if (focuesCell) {
-
-        let review_id = _this.grid.getRow(ev.rowKey).review_id;
-        this.readOne(review_id);
-      }
-    });
   },
 
   /* CRUD 함수들 */
@@ -199,14 +196,14 @@ let review = {
   create: function (data) {
     let _this = this;
 
-    data = data;
-
     $.ajax({
       type: "PUT",
       url: "/review",
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify({
+        username: data.name,
+        writer: data.writer,
         title: data.title,
         content: data.content
       }),
@@ -251,27 +248,6 @@ let review = {
     return data;
   },
 
-  /* READONE */
-  readOne: function(review_id) {
-    let _this = this;
-
-    $.ajax({
-      type:"GET",
-      url:"/review/reviewDetail?review_id=" + review_id,
-      async: false,
-      contentType:"application/json; charset=utf-8",
-      success: function(response){
-        window.location.href = this.url;
-      },
-      error: function(response) {
-        swal({
-          title: response.responseText,
-          type: 'warning'
-        })
-      }
-    });
-  },
-
   /* 삭제 */
   delete: function() {
     let checkRows = [];
@@ -296,6 +272,19 @@ let review = {
     let data = this.grid.getModifiedRows();
 
     console.log(data);
+
+    /* 내가 작성한 글이 아니라면 reject */
+    for (let i = 0; i < data.updatedRows.length; i++) {
+      if (data.updatedRows[i].username != user.username) {
+        swal({
+          title: "내가 작성한 글만 수정할 수 있어요.",
+          type: 'warning'
+        });
+        /* 그리드 다시 활성화 */
+        this.grid.enable();
+        return false;
+      }
+    }
 
     /* 수정된 데이터에 updated flag 붙이기 */
     for (let i = 0; i < data.updatedRows.length; i++) {

@@ -19,7 +19,6 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
     private final AccountMapper accountMapper;
 
     /* 회원 가입 */
@@ -45,6 +44,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         Member member = result.get();
 
         return member;
-
     }
 }
