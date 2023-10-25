@@ -18,7 +18,7 @@ let review = {
   init: function () {
     let _this = this;
 
-    /* 버튼에 onclick 함수 할당 */
+    /* 버튼에 onClick 함수 할당 */
     $(".btn-delete").attr('onClick', "review.delete()");
     $(".btn-save").attr('onClick', "review.save()");
 
@@ -34,7 +34,7 @@ let review = {
       rowHeaders: ['checkbox'],
       columns: [
         {
-          header: "게시글 번호",
+          header: "번호",
           name: "review_id",
           align: "center",
         },
@@ -57,12 +57,12 @@ let review = {
           editor: 'text',
         },
         {
-          header: "작성일자",
+          header: "작성일",
           name: "create_dt",
           align: "center",
         },
         {
-          header: "수정일자",
+          header: "수정일",
           name: "update_dt",
           align: "center",
         },
@@ -100,14 +100,37 @@ let review = {
       }
     });
 
-    /* 모달 관련 함수 */
-    $(".btn-create").click(function () {
-      $("dialog").show();
-      $("dialog").attr('style', 'display: block');
-      $("#title").val('');
-      editor.setHTML('');
-      $("#title").focus();
+    /* 검색창 관련 함수 */
+    const searchEl = $(".search");
+    const searchInputEl = searchEl.find("input");
+
+    searchEl.click(function () {
+      searchInputEl.focus();
+      searchInputEl.val('');
     })
+
+    searchInputEl.on("focus", function() {
+      searchEl.addClass("focused");
+      searchInputEl.attr("placeholder", "검색할 내용을 입력하세요.");
+    });
+
+    searchInputEl.on("blur", function() {
+      searchEl.removeClass("focused");
+      searchInputEl.attr("placeholder", "");
+      searchInputEl.val('');
+    });
+
+    /* 검색창 enterkey 이벤트 */
+    $(".search_input").on("keydown", function(e){
+      if(e.keyCode === 13) {
+        let list = _this.read();
+        if (list) {
+          _this.grid.resetData(list);
+          _this.cnt = _this.readCnt();
+          _this.pagination.setTotalItems(_this.cnt);
+        }
+      }
+    });
 
     /* 모달 종료 관련 함수 */
     $("#close").click(function() {
@@ -126,67 +149,115 @@ let review = {
     });
     _this.editor = editor;
 
-    /* 등록 버튼 클릭 */
-    $("#create").click(function () {
+    /* 모달 생성 관련 함수 */
+    $(".btn-create").click(function () {
+      $("dialog").show();
+      $("dialog").attr('style', 'display: block');
+      $("#title").val('');
+      editor.setHTML('');
+      $("#title").focus();
+      $("#create").text('등록');
 
-      /* 제목 입력 안 했을 경우 */
-      if ($("#title").val() == "") {
-        swal({
-          title: "제목을 입력하세요.",
-          type: 'warning'
-        });
-        $("#title").focus();
-        return false;
-      }
+      /* 등록 버튼 눌렀을 경우
+    * 이게 지금 수정에도 콜 되니까 잘못된 거잖아. */
+      $("#create").click(function () {
 
-      /* 내용 입력 안 했을 경우 */
-      if (editor.getHTML() == "<p><br></p>") {
-        swal({
-          title: "내용을 입력하세요.",
-          type: 'warning'
-        });
-        $(".ProseMirror toastui-editor-contents").focus();
-        return false;
-      }
-
-      /* 게시글 작성 시 전달하는 데이터 */
-      let data = {};
-      data.name = user.username;
-      data.title = $("#title").val();
-      data.content = editor.getHTML();
-      data.writer = user.name;
-      _this.create(data);
-    })
-
-    /* 검색창 관련 함수 */
-    const searchEl = $(".search");
-    const searchInputEl = searchEl.find("input");
-
-    searchEl.click(function () {
-      searchInputEl.focus();
-      searchInputEl.val('');
-    })
-
-    searchInputEl.on("focus", function() {
-      searchEl.addClass("focused");
-      searchInputEl.attr("placeholder", "검색할 내용을 입력하세요.");
-    });
-
-    searchInputEl.on("blur", function() {
-      searchEl.removeClass("focused");
-      // searchInputEl.val('');
-      searchInputEl.attr("placeholder", "");
-    });
-
-    /* 검색창 enterkey 이벤트 */
-    $(".search_input").on("keydown", function(e){
-      if(e.keyCode === 13) {
-        let list = _this.read();
-        if (list) {
-          _this.grid.resetData(list);
-          _this.cnt = _this.readCnt();
-          _this.pagination.setTotalItems(_this.cnt);
+        /* 제목 입력 안 했을 경우 */
+        if ($("#title").val() == "") {
+          swal({
+            title: "제목을 입력하세요.",
+            type: 'warning'
+          });
+          $("#title").focus();
+          return false;
         }
+
+        /* 내용 입력 안 했을 경우 */
+        if (editor.getHTML() == "<p><br></p>") {
+          swal({
+            title: "내용을 입력하세요.",
+            type: 'warning'
+          });
+          $(".ProseMirror toastui-editor-contents").focus();
+          return false;
+        }
+
+        /* 게시글 작성 시 전달하는 데이터 */
+        let data = {};
+        data.username = user.username;
+        data.writer = user.name;
+        data.title = $("#title").val();
+        data.content = editor.getHTML();
+
+        _this.create(data);
+      })
+    });
+
+    /* 게시글 상세 수정 */
+    this.grid.on('click', (ev) => {
+      let _this = this;
+      let selectedColumn = ev.columnName;
+
+      /* 내용을 선택하는 경우에만 수행 */
+      if (selectedColumn != "review_id") return false;
+
+      /* 다른 사람 글 수정하려고 하면 reject */
+      if (_this.grid.getRow(ev.rowKey).username != user.username) {
+        swal({
+          title: "내가 작성한 글만 수정할 수 있어요.",
+          type: 'warning'
+        });
+        return false;
+      }
+
+      /* Column을 클릭했을 때만 수행 */
+      let focusCell = this.grid.getFocusedCell();
+
+      if (focusCell) {
+
+        $("dialog").show();
+        $("#dialog_title").text('게시 글을 수정해보세요! 😙');
+        $("#create").text('수정');
+
+        /* 기존 내용 모달에 붙여 넣기 */
+        $("#title").val(_this.grid.getRow(ev.rowKey).title);
+        editor.setHTML(_this.grid.getRow(ev.rowKey).content);
+
+        $("#create").click(function () {
+
+          /* 제목 입력 안 했을 경우 */
+          if ($("#title").val() == "") {
+            swal({
+              title: "제목을 입력하세요.",
+              type: 'warning'
+            });
+            $("#title").focus();
+            return false;
+          }
+
+          /* 내용 입력 안 했을 경우 */
+          if (editor.getHTML() == "<p><br></p>") {
+            swal({
+              title: "내용을 입력하세요.",
+              type: 'warning'
+            });
+            $(".ProseMirror toastui-editor-contents").focus();
+            return false;
+          }
+
+          /* 게시글 수정 시 전달하는 데이터 파싱 */
+          let data = [];
+
+          let dialogData = {
+            "title": $("#title").val(),
+            "content": editor.getHTML(),
+            "review_id": _this.grid.getRow(ev.rowKey).review_id,
+            "updated": true
+          };
+
+          data.push(dialogData);
+          _this.update(data);
+        })
       }
     });
   },
@@ -202,7 +273,7 @@ let review = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify({
-        username: data.name,
+        username: data.username,
         writer: data.writer,
         title: data.title,
         content: data.content
@@ -248,6 +319,31 @@ let review = {
     return data;
   },
 
+  /* UPDATE */
+  update: function (data) {
+    let _this = this;
+
+    $.ajax({
+      type: "PATCH",
+      url: "/review",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      data: JSON.stringify(data),
+      success: function(response) {
+        let list = _this.read();
+        if (list) {
+          _this.grid.resetData(list);
+          _this.pagination.setTotalItems(_this.cnt);
+          $("dialog").hide();
+        }
+      },
+      error: function (response) {
+        console.log(response)
+        // if (response.statusText == "error") window.location.href = "/login";
+      }
+    })
+  },
+
   /* 삭제 */
   delete: function() {
     let checkRows = [];
@@ -270,8 +366,6 @@ let review = {
 
     /* 수정된 그리드 정보 변수에 담기 */
     let data = this.grid.getModifiedRows();
-
-    console.log(data);
 
     /* 내가 작성한 글이 아니라면 reject */
     for (let i = 0; i < data.updatedRows.length; i++) {

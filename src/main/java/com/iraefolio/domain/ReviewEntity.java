@@ -5,11 +5,12 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 @Data
-public class ReviewEntity extends BaseEntity {
+public class ReviewEntity extends BaseEntity implements Serializable  {
 
 //    @Schema(description = "데이터 구분하는 변수", nullable = false)
     private int REVIEW_ID;

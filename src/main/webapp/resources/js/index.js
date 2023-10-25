@@ -5,5 +5,6 @@ $(function() {
 let index = {
 
   init: function () {
+
   }
 }

@@ -323,3 +323,54 @@
 .main .gridWrapper .tui-grid-layer-focus-border {
   display: none;
 }
+
+/*CheckBox 커스텀*/
+.gridDefaultWrapper input[type=checkbox],
+.modalCheckboxWrapper input[type=checkbox] {
+  position: relative;
+  border: 1px solid rgba(159, 159, 159, 1);
+  border-radius: 2px;
+  background: white !important;
+  cursor: pointer;
+  line-height: 0;
+  margin: 0 .6em 0 0;
+  outline: 0;
+  padding: 0 !important;
+  vertical-align: text-top;
+  height: 20px;
+  width: 20px;
+  -webkit-appearance: none;
+  transition: 0.3s all;
+}
+
+/*hover css */
+.gridWrapper input[type=checkbox]:hover, .modalCheckboxWrapper input[type=checkbox]:hover{
+}
+
+.gridWrapper input[type=checkbox]:checked, .modalCheckboxWrapper input[type=checkbox]:checked {
+  transition: 0.3s all;
+  opacity: 1;
+}
+
+.gridWrapper input[type=checkbox]:before,
+.modalCheckboxWrapper input[type=checkbox]:before {
+  content: '';
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  width: 6px;
+  height: 10px;
+  border-width: 0 2px 2px 0;
+  margin: -1px -1px 0 -1px;
+  transform: rotate(45deg) translate(-50%, -50%);
+  z-index: 2;
+}
+
+.gridWrapper input[type='checkbox']{
+  margin: 0;
+}
+
+/*customCheckedRowClass*/
+.gridWrapper .customCheckedClass {
+  background-color: rgba(209, 215, 241, 1);
+}

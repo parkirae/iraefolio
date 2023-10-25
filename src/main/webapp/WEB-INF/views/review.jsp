@@ -30,8 +30,8 @@
 
             <c:choose>
                 <c:when test="${user != null}">
-                    <div class="text">팁: 내가 작성한 제목과 내용만 수정할 수 있어요!<br />
-                        <p class="plain">제목 또는 내용을 더블 클릭 해보세요!</p>
+                    <div class="text">팁: 제목 또는 내용을 더블 클릭 해보세요!<br />
+                        <p class="plain">번호를 누르면 상세 수정할 수 있어요!</p>
                     </div>
                 </c:when>
                 <c:otherwise>
