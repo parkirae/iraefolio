@@ -5,12 +5,6 @@ spring:
     username: root
     password: "0000"
 
-#logging:
-#  level:
-#    org.springframework: info
-#    com.iraefolio: debug
-#    org.springframework.security: trace
-
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -19,3 +13,17 @@ spring:
 mybatis:
   mapper-locations: classpath:mappers/**/*.xml
 
+springdoc:
+  packages-to-scan: com.iraefolio.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: swagger-ui.html         # http://localhost:8080/swagger-ui/index.html
+    tags-sorter: method
+    operations-sorter: method
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: true
+  cache:
+    disabled: true

@@ -11,6 +11,7 @@
         WHERE username = #{username}
     </select>
 
+    <!-- 로그인 시 사용 -->
     <select id="findByUserName" resultType="com.iraefolio.domain.Member">
         SELECT * FROM TB_USER
         WHERE username = #{username}

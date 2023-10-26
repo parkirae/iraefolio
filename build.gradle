@@ -45,7 +45,7 @@ dependencies {
     /* MariaDB */
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
-    /* JSP */
+    /* JSP & Jasper */
     implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 
@@ -58,6 +58,9 @@ dependencies {
 
     /* Spring security taglib for JSP */
     implementation 'org.springframework.security:spring-security-taglibs'
+
+    /* SpringDoc OpenAPI */
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
 }
 

@@ -25,13 +25,4 @@ public class AccountService {
         Boolean result = mapper.accountCheck(member);
         return result;
     }
-
-    /* 회원 가입 후 자동 로그인 */
-    public void login(Member member) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                member.getUsername(),
-                member.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_USER")));
-        SecurityContextHolder.getContext().setAuthentication(token);
-    }
 }

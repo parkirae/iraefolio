@@ -4,6 +4,7 @@
 
 <mapper namespace="com.iraefolio.mapper.ReviewMapper">
 
+    <!-- READ -->
     <select id="read" resultType="com.iraefolio.domain.ReviewEntity">
         SELECT * FROM TB_REVIEW
         <if test="CONTENT != null and !CONTENT.equals('')">
@@ -13,11 +14,30 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
-    <select id="readOne" resultType="com.iraefolio.domain.ReviewEntity">
-        SELECT * FROM TB_REVIEW
-        WHERE REVIEW_ID = #{REVIEW_ID}
-    </select>
+    <!-- CREATE -->
+    <insert id="create">
+        INSERT INTO TB_REVIEW(USERNAME, WRITER, TITLE, CONTENT, CREATE_DT)
+        VALUES (#{USERNAME}, #{WRITER}, #{TITLE}, #{CONTENT}, current_timestamp)
+    </insert>
 
+    <!-- UPDATE -->
+    <update id="update">
+        UPDATE TB_REVIEW SET
+        UPDATE_DT = current_timestamp
+        <if test="isUpdated">
+            , TITLE = #{TITLE}
+            , CONTENT = #{CONTENT}
+        </if>
+        WHERE REVIEW_ID = #{REVIEW_ID}
+    </update>
+
+    <!-- DELETE -->
+    <delete id="delete">
+        DELETE FROM TB_REVIEW
+        WHERE REVIEW_ID = #{REVIEW_ID}
+    </delete>
+
+    <!-- ReadCnt -->
     <select id="readCnt" resultType="Integer">
         SELECT COUNT(*)
         FROM TB_REVIEW
@@ -26,23 +46,4 @@
         </if>
     </select>
 
-    <insert id="create">
-        INSERT INTO TB_REVIEW(USERNAME, WRITER, TITLE, CONTENT, CREATE_DT)
-        VALUES (#{USERNAME}, #{WRITER}, #{TITLE}, #{CONTENT}, current_timestamp)
-    </insert>
-
-    <update id="update">
-        UPDATE TB_REVIEW SET
-            UPDATE_DT = current_timestamp
-        <if test="isUpdated">
-            , TITLE = #{TITLE}
-            , CONTENT = #{CONTENT}
-        </if>
-        WHERE REVIEW_ID = #{REVIEW_ID}
-    </update>
-
-    <delete id="delete">
-        DELETE FROM TB_REVIEW
-        WHERE REVIEW_ID = #{REVIEW_ID}
-    </delete>
 </mapper>
