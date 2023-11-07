@@ -59,7 +59,7 @@ public class SecurityConfig {
                 /* CSRF 비활성화 */
                 .csrf().disable()
                 /* CORS 허용 */
-                .cors().configurationSource(corsConfigurationSource());
+                .cors();
 
         return http.build();
     }
@@ -74,22 +74,6 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    /* CORS 설정 */
-    @Order(2)
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
     }
 }
 
