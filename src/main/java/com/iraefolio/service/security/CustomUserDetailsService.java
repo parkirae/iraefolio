@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     /* 로그인 */
+    @CrossOrigin
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
