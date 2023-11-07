@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final MemberMapper memberMapper;
 
     /* 회원 가입 */
-    public void create(Member member){
+    public void create(Member member) {
         /* 비밀번호 암호화 */
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
