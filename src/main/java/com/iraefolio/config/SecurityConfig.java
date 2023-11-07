@@ -26,7 +26,6 @@ import org.springframework.web.filter.CorsFilter;
 @RequiredArgsConstructor
 //@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
 public class SecurityConfig {
 
@@ -43,6 +42,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
                 .formLogin()
                 /* 로그인 페이지 지정 */
                 .loginPage("/login")
@@ -74,22 +75,6 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    /* CORS 허용 */
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-
-        config.addAllowedOrigin("http://localhost"); // 로컬
-        config.addAllowedOrigin("http://iraefolio.com"); // 구매한 도메인 주소
-        config.addAllowedMethod("*"); // 모든 메소드 허용.
-        config.addAllowedHeader("*");
-        config.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
     }
 }
 
