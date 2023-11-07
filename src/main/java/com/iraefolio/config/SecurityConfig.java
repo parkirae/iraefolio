@@ -58,9 +58,7 @@ public class SecurityConfig {
                 .accessDeniedPage("/access-denied")
                 .and()
                 /* CSRF 비활성화 */
-                .csrf().disable()
-                /* CORS 허용 */
-                .cors();
+                .csrf().disable();
 
         return http.build();
     }

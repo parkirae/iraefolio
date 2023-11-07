@@ -54,7 +54,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     /* 로그인 */
-    @CrossOrigin
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
