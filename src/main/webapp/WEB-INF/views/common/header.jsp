@@ -17,7 +17,7 @@
   let user = {};
   user.username = '${user.getUsername()}';
   user.name = '${user.getName()}';
-  user.role = '${user.getRole()}';
+  user.role = '${user.getAuthorities()}';
 </script>
 
 <!-- HEADER -->
@@ -169,8 +169,8 @@
                   </c:otherwise>
                 </c:choose>
                 <ul>
-                  <li><a href="/notice">공지사항</a></li>
                   <li><a href="/review">방명록</a></li>
+                  <li><a href="/notice">계정 관리</a></li>
                 </ul>
               </li>
             </ul>

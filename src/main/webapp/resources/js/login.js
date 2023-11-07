@@ -88,10 +88,10 @@ let login = {
                 window.location.href = "/";
             }).fail(function(response) {
                 console.log(response)
-                swal({
-                    title: "계정 정보를 확인하세요.",
-                    type: "warning"
-                })
+                // swal({
+                //     title: "계정 정보를 확인하세요.",
+                //     type: "warning"
+                // })
             });
         }
     })

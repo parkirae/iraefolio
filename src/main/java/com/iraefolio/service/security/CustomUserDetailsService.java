@@ -56,11 +56,17 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        /* 아이디 조회 */
         Optional<Member> result = memberMapper.findByUserName(username);
 
-        if (result.isEmpty()) throw new UsernameNotFoundException("not found");
+        /* 아이디 없을 경우 Exception 발생 */
+        if (result.isEmpty()) throw new UsernameNotFoundException("User not found");
 
+        /* Member 객체로 파싱 */
         Member member = result.get();
+        /* 권한 정보 추가 */
+        Set<MemberAuthority> authority = memberMapper.searchAuthority(member.getMemberId());
+        member.setAuthorities(authority);
 
         return member;
     }
