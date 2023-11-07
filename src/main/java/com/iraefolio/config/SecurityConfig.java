@@ -5,31 +5,54 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 @Log4j2
 @RequiredArgsConstructor
+//@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class SecurityConfig {
 
 
-    /* 자원 접근 조정 및 csrf 토근 관리 */
+    /* 권한 계층 부여 */
+    @Bean
+    RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
+        return roleHierarchy;
+    }
+
+    /* 자원 접근 조정 및 csrf 토큰 관리 */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        /* 로그인 페이지 지정 */
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/");
-
-        http.logout().logoutSuccessUrl("/");
-
-        /* CSRF 비활성화 */
-        http.csrf().disable();
+        http
+                .formLogin()
+                /* 로그인 페이지 지정 */
+                .loginPage("/login")
+                .defaultSuccessUrl("/", false)
+                /* 로그인 실패 페이지 지정 */
+                .failureUrl("/login-error")
+                .and()
+                .logout()
+                /* 로그아웃 페이지 지정 */
+                .logoutSuccessUrl("/")
+                .and()
+                .exceptionHandling()
+                /* 접근 권한 에러 페이지 지정 */
+                .accessDeniedPage("/access-denied")
+                .and()
+                /* CSRF 비활성화 */
+                .csrf().disable();
 
         return http.build();
     }

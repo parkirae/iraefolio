@@ -1,5 +1,6 @@
 package com.iraefolio.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,60 +12,32 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Setter
-@Getter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "roleSet")
 public class Member implements UserDetails {
 
+    private Long memberId;
     private String username;
     private String password;
     private String name;
-    private String role;
-    private boolean del;
-    private boolean social;
-
-    public void changePassword(String password) {
-        this.password = password;
-    }
-
-    public void changeName(String name) {
-        this.name = name;
-    }
-
-    public void changeDel(boolean del) {
-        this.del = del;
-    }
-
-    public void changeSocial(boolean social) {
-        this.social = social;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(this.role));
-    }
+    private Set<MemberAuthority> authorities;
+    private boolean enabled = true;
 
     @Override
     public boolean isAccountNonExpired() {
-        return !del;
+        return enabled;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return !del;
+        return enabled;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return !del;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return !del && !social;
+        return enabled;
     }
 }
 

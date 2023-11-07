@@ -1,6 +1,6 @@
 package com.iraefolio.controller;
 
-import com.iraefolio.mapper.AccountMapper;
+import com.iraefolio.mapper.MemberMapper;
 import com.iraefolio.service.security.CustomUserDetailsService;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AccountMapperTests {
 
     @Autowired
-    private AccountMapper mapper;
+    private MemberMapper mapper;
     private CustomUserDetailsService userDetailsService;
     private PasswordEncoder passwordEncoder;
 
