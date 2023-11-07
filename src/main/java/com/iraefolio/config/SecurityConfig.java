@@ -78,16 +78,18 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true); // 요청에 인증 정보 허용
-        config.addAllowedOrigin("http://iraefolio.com"); // 허용할 도메인을 설정
-        config.addAllowedHeader("*"); // 모든 헤더 허용
-        config.addAllowedMethod("*"); // 모든 HTTP 메서드 허용
-        source.registerCorsConfiguration("/**", config);
 
-        return new CorsFilter(source);
+        config.addAllowedOrigin("http://localhost"); // 로컬
+        config.addAllowedOrigin("http://iraefolio.com"); // 구매한 도메인 주소
+        config.addAllowedMethod("*"); // 모든 메소드 허용.
+        config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 }
 
