@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
@@ -25,6 +26,7 @@ import org.springframework.web.filter.CorsFilter;
 @RequiredArgsConstructor
 //@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
 public class SecurityConfig {
 
@@ -38,7 +40,6 @@ public class SecurityConfig {
     }
 
     /* 자원 접근 조정 및 csrf 토큰 관리 */
-    @Order(1)
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -75,6 +76,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    /* CORS 허용 */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
