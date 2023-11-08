@@ -21,7 +21,7 @@ springdoc:
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
-    path: swagger-ui.html         # http://localhost/swagger-ui/index.html
+    path: swagger-ui.html         # http://www.iraefolio.com/swagger-ui/index.html
     tags-sorter: method
     operations-sorter: method
   api-docs:
