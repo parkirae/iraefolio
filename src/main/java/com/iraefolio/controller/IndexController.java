@@ -22,4 +22,9 @@ public class IndexController {
 
     @GetMapping("/signIn")
     public String signIn() { return "signIn"; }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }
