@@ -66,6 +66,7 @@
                     </tr>
                     <tr>
                         <button type="button" id="create">등록</button>
+                        <button type="button" id="update">수정</button>
                         <button type="button" id="close">닫기</button>
                     </tr>
                     </tbody>

@@ -157,6 +157,9 @@ let review = {
       editor.setHTML('');
       $("#title").focus();
       $("#create").text('등록');
+      $("#update").css('display', 'none');
+      $("#create").css('display', 'block');
+    });
 
       /* 등록 버튼 눌렀을 경우
     * 이게 지금 수정에도 콜 되니까 잘못된 거잖아. */
@@ -191,14 +194,13 @@ let review = {
 
         _this.create(data);
       })
-    });
 
     /* 게시글 상세 수정 */
     this.grid.on('click', (ev) => {
       let _this = this;
       let selectedColumn = ev.columnName;
 
-      /* 내용을 선택하는 경우에만 수행 */
+      /* 번호를 선택한 경우만 수행 */
       if (selectedColumn != "review_id") return false;
 
       /* 다른 사람 글 수정하려고 하면 reject */
@@ -218,12 +220,14 @@ let review = {
         $("dialog").show();
         $("#dialog_title").text('게시 글을 수정해보세요! 😙');
         $("#create").text('수정');
+        $("#update").css('display', 'block');
+        $("#create").css('display', 'none');
 
         /* 기존 내용 모달에 붙여 넣기 */
         $("#title").val(_this.grid.getRow(ev.rowKey).title);
         editor.setHTML(_this.grid.getRow(ev.rowKey).content);
 
-        $("#create").click(function () {
+        $("#update").click(function () {
 
           /* 제목 입력 안 했을 경우 */
           if ($("#title").val() == "") {
