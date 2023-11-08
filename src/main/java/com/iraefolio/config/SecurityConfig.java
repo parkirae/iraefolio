@@ -42,7 +42,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors().disable()
                 .formLogin()
                 /* 로그인 페이지 지정 */
                 .loginPage("/login")
