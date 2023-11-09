@@ -22,9 +22,9 @@ public class MemberController {
 
     /* 아이디 중복 체크 */
     @Operation(summary = "username 중복 체크", description = "username 중복을 체크합니다.")
-    @PostMapping("/accountCheck")
-    public Boolean accountCheck(@RequestBody Member member) throws Exception {
-        Boolean result = memberService.accountCheck(member);
+    @PostMapping("/memberCheck")
+    public Boolean memberCheck(@RequestBody Member member) throws Exception {
+        Boolean result = memberService.memberCheck(member);
         return result;
     }
 

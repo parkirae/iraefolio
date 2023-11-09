@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Builder
 public class MemberAuthority implements GrantedAuthority {
 
+    private Long authorityId;
     private Long memberId;
     private String authority;
 

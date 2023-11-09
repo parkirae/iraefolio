@@ -14,8 +14,8 @@ public class MemberService {
     private final MemberMapper mapper;
 
     /* 아이디 중복 체크 */
-    public Boolean accountCheck(Member member) throws Exception {
-        Boolean result = mapper.accountCheck(member);
+    public Boolean memberCheck(Member member) throws Exception {
+        Boolean result = mapper.memberCheck(member);
         return result;
     }
 }

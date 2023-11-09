@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iraefolio.mapper.AccountMapper">
+
+    <!-- READ -->
+    <select id="read" resultMap="memberResultMap">
+        SELECT M.memberId, M.username, M.name, M.enabled, MA.authority
+        FROM TB_MEMBER M
+        LEFT JOIN TB_MEMBER_AUTHORITY MA ON M.memberId = MA.memberId
+        ORDER BY M.memberId DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+
+    <!-- ReadCnt -->
+    <select id="readCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM TB_MEMBER
+    </select>
+
+    <!-- resultMap for READ -->
+    <resultMap id="memberResultMap" type="com.iraefolio.domain.Member">
+        <id property="memberId" column="memberId" />
+        <result property="username" column="username" />
+        <result property="name" column="name" />
+        <result property="enabled" column="enabled" />
+        <collection property="authorities" ofType="com.iraefolio.domain.MemberAuthority">
+            <result property="authority" column="authority" />
+        </collection>
+    </resultMap>
+
+</mapper>

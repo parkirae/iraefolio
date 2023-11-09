@@ -11,7 +11,7 @@ import java.util.Set;
 public interface MemberMapper {
 
     /* 아이디 중복 체크 */
-    Boolean accountCheck(Member member);
+    Boolean memberCheck(Member member);
 
     /* 회원 가입 */
     void create(Member member);

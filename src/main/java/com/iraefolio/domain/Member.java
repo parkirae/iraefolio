@@ -9,7 +9,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member implements UserDetails {
+public class Member extends BaseEntity implements UserDetails {
 
     private Long memberId;
     private String username;

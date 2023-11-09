@@ -5,7 +5,7 @@
 <mapper namespace="com.iraefolio.mapper.MemberMapper">
 
     <!-- id 중복 체크 -->
-    <select id="accountCheck" resultType="boolean" parameterType="com.iraefolio.domain.Member">
+    <select id="memberCheck" resultType="boolean" parameterType="com.iraefolio.domain.Member">
         SELECT COUNT(*)
         FROM TB_MEMBER
         WHERE username = #{username}

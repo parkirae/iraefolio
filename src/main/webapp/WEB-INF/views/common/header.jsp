@@ -170,7 +170,7 @@
                 </c:choose>
                 <ul>
                   <li><a href="/review">방명록</a></li>
-                  <li><a href="/notice">계정 관리</a></li>
+                  <li><a href="/account">계정 관리</a></li>
                 </ul>
               </li>
             </ul>

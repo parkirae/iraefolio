@@ -40,7 +40,7 @@ let signIn = {
                     return false;
                 }
 
-                result = _this.accountCheck(USER_NAME);
+                result = _this.memberCheck(USER_NAME);
 
                 if (result) {
                     $('.boxWrapper .input-box p').text('이미 사용 중인 아이디입니다.');
@@ -163,12 +163,12 @@ let signIn = {
 
     },
 
-    accountCheck: function (USER_NAME) {
+    memberCheck: function (USER_NAME) {
         let result;
 
         $.ajax({
             type:"POST",
-            url:"/accountCheck",
+            url:"/memberCheck",
             async: false,
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify({
