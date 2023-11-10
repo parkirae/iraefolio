@@ -6,6 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/* 사용자 -> 관리자
+   관리자 -> 사용자
+   권한 변경 시 사용하는 DTO
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

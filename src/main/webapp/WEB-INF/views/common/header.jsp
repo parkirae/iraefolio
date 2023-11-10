@@ -7,6 +7,9 @@
 <!-- Header CSS -->
 <link rel="stylesheet" href="../../resources/css/header.css" />
 
+<!-- Header JS -->
+<script src="../../resources/js/header.js"></script>
+
 <!-- 사용자 정보 -->
 <sec:authorize access="isAuthenticated()">
   <sec:authentication property="principal" var="user"/>
@@ -17,7 +20,9 @@
   let user = {};
   user.username = '${user.getUsername()}';
   user.name = '${user.getName()}';
-  user.role = '${user.getAuthorities()}';
+
+  let userAuthority = '${user.getAuthorities()}';
+  user.role = userAuthority.includes("ROLE_ADMIN") ? "ROLE_ADMIN" : "ROLE_USER";
 </script>
 
 <!-- HEADER -->
@@ -168,9 +173,8 @@
                     <h4>더 많은 기능을 이용하시려면 <a href="login">로그인</a>하세요!</h4>
                   </c:otherwise>
                 </c:choose>
-                <ul>
+                <ul id="isAdmin">
                   <li><a href="/review">방명록</a></li>
-                  <li><a href="/account">계정 관리</a></li>
                 </ul>
               </li>
             </ul>
