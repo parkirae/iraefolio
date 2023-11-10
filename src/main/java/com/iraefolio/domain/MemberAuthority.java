@@ -10,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberAuthority implements GrantedAuthority {
+public class MemberAuthority extends BaseEntity implements GrantedAuthority {
 
     private Long authorityId;
     private Long memberId;

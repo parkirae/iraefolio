@@ -12,7 +12,7 @@
     <%@include file="common/library.jsp"%>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../resources/css/review.css">
+    <link rel="stylesheet" href="../../resources/css/account.css">
 
     <!-- JS -->
     <script type="text/javascript" src="../../resources/js/account.js"></script>
@@ -55,14 +55,11 @@
                 <table>
                     <tbody>
                     <tr style="height: 30px">
-                        <th colspan="2" id="dialog_title">새로운 글을 작성해보세요! 🥰</th>
+                        <th colspan="2" id="dialog_title">새로운 사용자를 등록하세요. 🥰</th>
                     </tr>
                     <tr>
-                        <td><div id="titleBox">제목</div></td>
-                        <td><input type="text" id="title" maxlength="100"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div id="content"></div></td>
+                        <td><div id="titleBox">아이디</div></td>
+                        <td><input type="text" id="title" maxlength="100" placeholder="아이디를 입력하세요."></td>
                     </tr>
                     <tr>
                         <button type="button" id="create">등록</button>

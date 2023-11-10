@@ -6,6 +6,7 @@
     <%@include file="common/library.jsp"%>
 </head>
 <body>
-error page
+403 FORBIDDEN
+권한이 없습니다.
 </body>
 </html>

@@ -18,6 +18,8 @@ let account = {
   init: function () {
     let _this = this;
 
+    $(".btn-save").attr('onClick', "account.save()");
+
     /* 그리드 초기화 */
     let Grid = tui.Grid;
     Grid.applyTheme('clean');
@@ -31,7 +33,7 @@ let account = {
       columns: [
         {
           header: "번호",
-          name: "memberId",
+          name: "member_id",
           align: "center",
         },
         {
@@ -58,7 +60,7 @@ let account = {
               ]
             }
           },
-          formatter: function(props) {
+          formatter: function (props) {
             let authorities = props.value;
 
             /* select box로 선택한 경우 사용자, 관리자 표시해주는 함수 */
@@ -69,22 +71,17 @@ let account = {
             }
 
             /* 초기에 사용자, 관리자 표시해주는 함수 */
-            if (Array.isArray(authorities) && authorities && authorities.length > 0) {
-              // 권한을 '관리자' 또는 '사용자'로 변환
-              const isAdmin = authorities.some(authority => authority.authority === 'ROLE_ADMIN');
-              const isUser = authorities.some(authority => authority.authority === 'ROLE_USER');
-              if (isAdmin && isUser) {
-                return '관리자';
-              } else if (isUser) {
-                return '사용자';
+            if (Array.isArray(authorities) && authorities.length > 0) {
+              const authority = authorities[0].authority;
+
+              if (authority === 'ROLE_USER') {
+                return "사용자";
               } else {
-                return '기타 권한';
+                return "관리자";
               }
-            } else {
-              return "";
             }
           },
-        },
+        }
       ],
     });
 
@@ -130,7 +127,7 @@ let account = {
 
     searchInputEl.on("focus", function() {
       searchEl.addClass("focused");
-      searchInputEl.attr("placeholder", "검색할 내용을 입력하세요.");
+      searchInputEl.attr("placeholder", "이름을 검색하세요.");
     });
 
     searchInputEl.on("blur", function() {
@@ -161,128 +158,135 @@ let account = {
       if (e.keyCode === 27) $("dialog").hide();
     })
 
-    /* 모달 내 wysiwyg */
-    let editor = new toastui.Editor({
-      el: document.querySelector('#content'),
-      initialEditType: 'wysiwyg',
-    });
-    _this.editor = editor;
-
     /* 모달 생성 관련 함수 */
     $(".btn-create").click(function () {
       $("dialog").show();
       $("dialog").attr('style', 'display: block');
       $("#title").val('');
-      editor.setHTML('');
       $("#title").focus();
       $("#create").text('등록');
       $("#update").css('display', 'none');
       $("#create").css('display', 'block');
     });
 
-      /* 등록 버튼 눌렀을 경우
-    * 이게 지금 수정에도 콜 되니까 잘못된 거잖아. */
-      $("#create").click(function () {
+    $("#title").on('keydown', function (e) {
+      if (e.keyCode === 13 || e.keyCode === 9) {
+        let newUsername = $("#title").val();
 
-        /* 제목 입력 안 했을 경우 */
-        if ($("#title").val() == "") {
-          swal({
-            title: "제목을 입력하세요.",
-            type: 'warning'
-          });
+        let memberCheck = _this.memberCheck(newUsername);
+        /* 이미 사용 중인 아이디인 경우 */
+        if (memberCheck) {
           $("#title").focus();
           return false;
+        } else {
+          alert("사용 가능한 아이디입니다.")
         }
-
-        /* 내용 입력 안 했을 경우 */
-        if (editor.getHTML() == "<p><br></p>") {
-          swal({
-            title: "내용을 입력하세요.",
-            type: 'warning'
-          });
-          $(".ProseMirror toastui-editor-contents").focus();
-          return false;
-        }
-
-        /* 게시글 작성 시 전달하는 데이터 */
-        let data = {};
-        data.username = user.username;
-        data.writer = user.name;
-        data.title = $("#title").val();
-        data.content = editor.getHTML();
-
-        _this.create(data);
-      })
-
-    /* 게시글 상세 수정 */
-    this.grid.on('click', (ev) => {
-      let _this = this;
-      let selectedColumn = ev.columnName;
-
-      /* 번호를 선택한 경우만 수행 */
-      if (selectedColumn != "review_id") return false;
-
-      /* 다른 사람 글 수정하려고 하면 reject */
-      if (_this.grid.getRow(ev.rowKey).username != user.username) {
-        swal({
-          title: "내가 작성한 글만 수정할 수 있어요.",
-          type: 'warning'
-        });
-        return false;
       }
+    })
 
-      /* Column을 클릭했을 때만 수행 */
-      let focusCell = this.grid.getFocusedCell();
-
-      if (focusCell) {
-
-        $("dialog").show();
-        $("#dialog_title").text('게시 글을 수정해보세요! 😙');
-        $("#create").text('수정');
-        $("#update").css('display', 'block');
-        $("#create").css('display', 'none');
-
-        /* 기존 내용 모달에 붙여 넣기 */
-        $("#title").val(_this.grid.getRow(ev.rowKey).title);
-        editor.setHTML(_this.grid.getRow(ev.rowKey).content);
-
-        $("#update").click(function () {
-
-          /* 제목 입력 안 했을 경우 */
-          if ($("#title").val() == "") {
-            swal({
-              title: "제목을 입력하세요.",
-              type: 'warning'
-            });
-            $("#title").focus();
-            return false;
-          }
-
-          /* 내용 입력 안 했을 경우 */
-          if (editor.getHTML() == "<p><br></p>") {
-            swal({
-              title: "내용을 입력하세요.",
-              type: 'warning'
-            });
-            $(".ProseMirror toastui-editor-contents").focus();
-            return false;
-          }
-
-          /* 게시글 수정 시 전달하는 데이터 파싱 */
-          let data = [];
-
-          let dialogData = {
-            "title": $("#title").val(),
-            "content": editor.getHTML(),
-            "review_id": _this.grid.getRow(ev.rowKey).review_id,
-            "updated": true
-          };
-
-          data.push(dialogData);
-          _this.update(data);
-        })
-      }
-    });
+      /* 등록 버튼 눌렀을 경우
+    * 이게 지금 수정에도 콜 되니까 잘못된 거잖아. */
+    //   $("#create").click(function () {
+    //
+    //     /* 제목 입력 안 했을 경우 */
+    //     if ($("#title").val() == "") {
+    //       swal({
+    //         title: "제목을 입력하세요.",
+    //         type: 'warning'
+    //       });
+    //       $("#title").focus();
+    //       return false;
+    //     }
+    //
+    //     /* 내용 입력 안 했을 경우 */
+    //     if (editor.getHTML() == "<p><br></p>") {
+    //       swal({
+    //         title: "내용을 입력하세요.",
+    //         type: 'warning'
+    //       });
+    //       $(".ProseMirror toastui-editor-contents").focus();
+    //       return false;
+    //     }
+    //
+    //     /* 게시글 작성 시 전달하는 데이터 */
+    //     let data = {};
+    //     data.username = user.username;
+    //     data.writer = user.name;
+    //     data.title = $("#title").val();
+    //     data.content = editor.getHTML();
+    //
+    //     _this.create(data);
+    //   })
+    //
+    // /* 게시글 상세 수정 */
+    // this.grid.on('click', (ev) => {
+    //   let _this = this;
+    //   let selectedColumn = ev.columnName;
+    //
+    //   /* 번호를 선택한 경우만 수행 */
+    //   if (selectedColumn != "review_id") return false;
+    //
+    //   /* 다른 사람 글 수정하려고 하면 reject */
+    //   if (_this.grid.getRow(ev.rowKey).username != user.username) {
+    //     swal({
+    //       title: "내가 작성한 글만 수정할 수 있어요.",
+    //       type: 'warning'
+    //     });
+    //     return false;
+    //   }
+    //
+    //   /* Column을 클릭했을 때만 수행 */
+    //   let focusCell = this.grid.getFocusedCell();
+    //
+    //   if (focusCell) {
+    //
+    //     $("dialog").show();
+    //     $("#dialog_title").text('게시 글을 수정해보세요! 😙');
+    //     $("#create").text('수정');
+    //     $("#update").css('display', 'block');
+    //     $("#create").css('display', 'none');
+    //
+    //     /* 기존 내용 모달에 붙여 넣기 */
+    //     $("#title").val(_this.grid.getRow(ev.rowKey).title);
+    //     editor.setHTML(_this.grid.getRow(ev.rowKey).content);
+    //
+    //     $("#update").click(function () {
+    //
+    //       /* 제목 입력 안 했을 경우 */
+    //       if ($("#title").val() == "") {
+    //         swal({
+    //           title: "제목을 입력하세요.",
+    //           type: 'warning'
+    //         });
+    //         $("#title").focus();
+    //         return false;
+    //       }
+    //
+    //       /* 내용 입력 안 했을 경우 */
+    //       if (editor.getHTML() == "<p><br></p>") {
+    //         swal({
+    //           title: "내용을 입력하세요.",
+    //           type: 'warning'
+    //         });
+    //         $(".ProseMirror toastui-editor-contents").focus();
+    //         return false;
+    //       }
+    //
+    //       /* 게시글 수정 시 전달하는 데이터 파싱 */
+    //       let data = [];
+    //
+    //       let dialogData = {
+    //         "title": $("#title").val(),
+    //         "content": editor.getHTML(),
+    //         "review_id": _this.grid.getRow(ev.rowKey).review_id,
+    //         "updated": true
+    //       };
+    //
+    //       data.push(dialogData);
+    //       _this.update(data);
+    //     })
+    //   }
+    // });
   },
 
   /* CRUD 함수들 */
@@ -299,7 +303,7 @@ let account = {
       data: JSON.stringify({
         page: this.currentPage, // 현재 페이지
         limit: this.limit, // 한번에 몇 개의 데이터를 보여줄 것인지
-        // content: $(".search_input").val(),
+        name: $(".search_input").val(),
       }),
       success: function(response){
         data = response;
@@ -365,19 +369,21 @@ let account = {
     /* 수정된 그리드 정보 변수에 담기 */
     let data = this.grid.getModifiedRows();
 
-    /* 내가 작성한 글이 아니라면 reject */
-    for (let i = 0; i < data.updatedRows.length; i++) {
-      if (data.updatedRows[i].username != user.username) {
-        swal({
-          title: "내가 작성한 글만 수정할 수 있어요.",
-          type: 'warning'
-        });
-        /* 그리드 다시 활성화 */
-        this.grid.enable();
-        return false;
-      }
-    }
+    console.log(data);
 
+    // /* 내가 작성한 글이 아니라면 reject */
+    // for (let i = 0; i < data.updatedRows.length; i++) {
+    //   if (data.updatedRows[i].username != user.username) {
+    //     swal({
+    //       title: "내가 작성한 글만 수정할 수 있어요.",
+    //       type: 'warning'
+    //     });
+    //     /* 그리드 다시 활성화 */
+    //     this.grid.enable();
+    //     return false;
+    //   }
+    // }
+    //
     /* 수정된 데이터에 updated flag 붙이기 */
     for (let i = 0; i < data.updatedRows.length; i++) {
       data.updatedRows[i].updated = true;
@@ -388,7 +394,7 @@ let account = {
 
     $.ajax({
       type: "PATCH",
-      url: "/review",
+      url: "/account",
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(arr),
@@ -425,5 +431,27 @@ let account = {
       }
     });
     return cnt;
+  },
+
+  memberCheck: function (USER_NAME) {
+    let result;
+
+    $.ajax({
+      type:"POST",
+      url:"/memberCheck",
+      async: false,
+      contentType:"application/json; charset=utf-8",
+      data: JSON.stringify({
+        username: USER_NAME
+      }),
+      success: function(response){
+        console.log(response)
+        result = response;
+      },
+      error: function(response) {
+        console.log(response)
+      }
+    });
+    return result;
   },
 }

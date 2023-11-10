@@ -6,29 +6,59 @@
 
     <!-- READ -->
     <select id="read" resultMap="memberResultMap">
-        SELECT M.memberId, M.username, M.name, M.enabled, MA.authority
+        SELECT M.memberId, M.username, M.name, M.enabled, COALESCE(GROUP_CONCAT(MA.authority), '') AS authorities
         FROM TB_MEMBER M
         LEFT JOIN TB_MEMBER_AUTHORITY MA ON M.memberId = MA.memberId
-        ORDER BY M.memberId DESC
+        <if test="name != null and !name.equals('')">
+            WHERE name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        GROUP BY M.memberId, M.username, M.name, M.enabled
+        ORDER BY M.memberId ASC
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
-
-    <!-- ReadCnt -->
-    <select id="readCnt" resultType="Integer">
-        SELECT COUNT(*)
-        FROM TB_MEMBER
-    </select>
-
-    <!-- resultMap for READ -->
+    <!-- ResultMap for READ -->
     <resultMap id="memberResultMap" type="com.iraefolio.domain.Member">
         <id property="memberId" column="memberId" />
         <result property="username" column="username" />
         <result property="name" column="name" />
         <result property="enabled" column="enabled" />
         <collection property="authorities" ofType="com.iraefolio.domain.MemberAuthority">
-            <result property="authority" column="authority" />
+            <result property="authorityId" column="authorityId" />
+            <result property="memberId" column="memberId" />
+            <result property="authority" column="authorities" />
         </collection>
     </resultMap>
+
+    <!-- UPDATE -->
+    <update id="update">
+        UPDATE TB_MEMBER_AUTHORITY SET
+        <if test="isUpdated">
+            <if test="authorities.equals('ROLE_ADMIN')">
+                AUTHORITY = "ROLE_ADMIN"
+            </if>
+        </if>
+        WHERE memberId = #{memberId}
+    </update>
+
+    <!-- UPDATE AUTHORITY -->
+    <!-- 사용자 -> 관리자 변경 시 사용 -->
+    <insert id="updateAuthority">
+        INSERT INTO TB_MEMBER_AUTHORITY (memberId, authority)
+        VALUES (#{memberId}, "ROLE_USER")
+    </insert>
+
+    <!-- DELETE AUTHORITY -->
+    <!-- 관리자 -> 사용자 변경 시 사용 -->
+    <delete id="deleteAuthority">
+        DELETE FROM TB_MEMBER_AUTHORITY
+        WHERE memberId = #{memberId}
+    </delete>
+
+    <!-- ReadCnt -->
+    <select id="readCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM TB_MEMBER
+    </select>
 
 </mapper>

@@ -1,7 +1,9 @@
 package com.iraefolio.service;
 
 import com.iraefolio.domain.Member;
+import com.iraefolio.domain.MemberAuthority;
 import com.iraefolio.domain.ReviewEntity;
+import com.iraefolio.domain.dto.MemberAuthorityDTO;
 import com.iraefolio.mapper.AccountMapper;
 import com.iraefolio.mapper.ReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +31,22 @@ public class AccountService {
     public Integer readCnt(Member member) throws Exception {
         Integer cnt = mapper.readCnt(member);
         return cnt;
+    }
+
+    /* UPDATE */
+    public void update(List<MemberAuthorityDTO> memberAuthority) throws Exception {
+
+        for (int i = 0; i < memberAuthority.size(); i++) {
+            MemberAuthorityDTO e = memberAuthority.get(i);
+
+            if (e.isUpdated() && e.getAuthorities().equals("ROLE_ADMIN")) {
+                mapper.update(e);
+                mapper.updateAuthority(e);
+            }
+//            else if (e.isUpdated() && e.getAuthorities().equals("ROLE_USER")) {
+//                mapper.update(e);
+//                mapper.deleteAuthority(e);
+//            }
+        }
     }
 }
