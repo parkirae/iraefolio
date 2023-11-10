@@ -41,12 +41,11 @@ public class AccountService {
 
             if (e.isUpdated() && e.getAuthorities().equals("ROLE_ADMIN")) {
                 mapper.update(e);
-                mapper.updateAuthority(e);
+                mapper.upgradeAuthority(e);
             }
-//            else if (e.isUpdated() && e.getAuthorities().equals("ROLE_USER")) {
-//                mapper.update(e);
-//                mapper.deleteAuthority(e);
-//            }
+            else if (e.isUpdated() && e.getAuthorities().equals("ROLE_USER")) {
+                mapper.downgradeAuthority(e);
+            }
         }
     }
 }

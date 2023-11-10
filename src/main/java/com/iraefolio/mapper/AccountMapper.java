@@ -17,9 +17,9 @@ public interface AccountMapper {
     /* UPDATE */
     boolean update(MemberAuthorityDTO memberAuthority);
 
-    boolean updateAuthority(MemberAuthorityDTO memberAuthority);
+    boolean upgradeAuthority(MemberAuthorityDTO memberAuthority);
 
-    boolean deleteAuthority(MemberAuthorityDTO memberAuthority);
+    boolean downgradeAuthority(MemberAuthorityDTO memberAuthority);
 
     /* DELETE */
 //    boolean delete(MemberAuthority memberAuthority);

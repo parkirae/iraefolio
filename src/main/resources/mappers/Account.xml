@@ -41,18 +41,19 @@
         WHERE memberId = #{memberId}
     </update>
 
-    <!-- UPDATE AUTHORITY -->
+    <!-- UPGRADE AUTHORITY -->
     <!-- 사용자 -> 관리자 변경 시 사용 -->
-    <insert id="updateAuthority">
+    <insert id="upgradeAuthority">
         INSERT INTO TB_MEMBER_AUTHORITY (memberId, authority)
         VALUES (#{memberId}, "ROLE_USER")
     </insert>
 
-    <!-- DELETE AUTHORITY -->
+    <!-- DOWNGRADE AUTHORITY -->
     <!-- 관리자 -> 사용자 변경 시 사용 -->
-    <delete id="deleteAuthority">
+    <delete id="downgradeAuthority">
         DELETE FROM TB_MEMBER_AUTHORITY
         WHERE memberId = #{memberId}
+        AND authority = "ROLE_ADMIN"
     </delete>
 
     <!-- ReadCnt -->
