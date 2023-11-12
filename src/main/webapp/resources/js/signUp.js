@@ -1,10 +1,10 @@
 const englishOnly = /^[a-zA-Z]*$/;
 
 $(function() {
-  signIn.init();
+    signUp.init();
 });
 
-let signIn = {
+let signUp = {
     init: function () {
         let _this = this;
 

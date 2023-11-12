@@ -1,30 +1,46 @@
 package com.iraefolio.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Log4j2
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
+    @Operation(summary = "index paging", description = "/index로 이동합니다.")
     @GetMapping("/")
     public String index() {
         return "index";
     }
 
+    @Operation(summary = "login paging", description = "/login로 이동하거나 login 실패 시 안내 문구를 출력합니다.")
     @GetMapping("/login")
-    public String login(String error, String logout) {
-        return "login";
+    public ModelAndView login(@RequestParam(required = false) boolean error, @RequestParam(required = false) String exception) {
+
+        ModelAndView mav = new ModelAndView("login");
+
+        /* 로그인 실패 */
+        if (error) {
+            mav.addObject("error", true);
+            mav.addObject("exception", exception);
+            log.error(error);
+            log.error(exception);
+            return mav;
+        }
+
+        /* 로그인 페이지 접근 */
+        return mav;
     }
 
-    @GetMapping("/signIn")
-    public String signIn() { return "signIn"; }
-
-    @GetMapping("/error")
-    public String error() {
-        return "error";
-    }
+    @Operation(summary = "signUp paging", description = "/signUp로 이동합니다.")
+    @GetMapping("/signUp")
+    public String signUp() { return "signUp"; }
 }

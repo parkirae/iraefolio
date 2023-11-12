@@ -14,9 +14,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../../resources/css/index.css">
 
-    <!-- JS -->
-    <script type="text/javascript" src="../../resources/js/index.js"></script>
-
 </head>
 <body>
 <!-- Header -->
@@ -41,7 +38,7 @@
                     <div class="logout"><a href="/logout" id="btn-logout">logout</a></div>
                 </c:when>
                 <c:otherwise>
-                    <div class="logout"><a href="/signIn" id="btn-signIn">Sign In</a></div>
+                    <div class="logout"><a href="/signUp" id="btn-signIn">Sign Up</a></div>
                 </c:otherwise>
             </c:choose>
     </div>
@@ -84,31 +81,28 @@
 </section>
 
 <%-- fourth --%>
-<%--<section class="fourth">--%>
+<section class="fourth">
 
-<%--    <div class="inner">--%>
-<%--        <div class="left">--%>
-<%--            <div class="text-box">--%>
-<%--                <span class="main-text">jQuery<br /></span>--%>
-<%--                <span class="sub-text">적은 것이 많은 것</span><br />--%>
-<%--                <a href="/">더 알아보기 ></a>--%>
-<%--            </div>--%>
-<%--            <img src="../../resources/images/index/jquery.png" alt="jQuery" style="width: 500px; height: 500px">--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="left">
+        <div class="text-box">
+            <span class="main-text">jQuery<br /></span>
+            <span class="sub-text">적은 것이 많은 것</span><br />
+            <a href="/">더 알아보기 ></a>
+        </div>
 
-<%--    <div class="inner">--%>
-<%--        <div class="right">--%>
-<%--            <div class="text-box">--%>
-<%--                <span class="main-text">JSP<br /></span>--%>
-<%--                <span class="sub-text">펼치다</span><br />--%>
-<%--                <a href="/">더 알아보기 ></a>--%>
-<%--            </div>--%>
-<%--            <img src="../../resources/images/index/jsp.png" alt="jsp" style="width: 500px; height: 500px">--%>
-<%--        </div>--%>
-<%--    </div>--%>
+        <img src="../../resources/images/index/jquery.png" alt="jQuery" style="width: 500px; height: 500px">
+    </div>
 
-<%--</section>--%>
+    <div class="right">
+        <div class="text-box">
+            <span class="main-text">JSP<br /></span>
+            <span class="sub-text">펼치다</span><br />
+            <a href="/">더 알아보기 ></a>
+        </div>
+        <img src="../../resources/images/index/jsp.png" alt="jsp" style="width: 500px; height: 500px">
+    </div>
+
+</section>
 
 <!-- Footer -->
 <%@include file="common/footer.jsp"%>

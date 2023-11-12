@@ -1,5 +1,7 @@
 package com.iraefolio.config;
 
+import com.iraefolio.controller.handler.LoginFailHandler;
+import com.iraefolio.controller.handler.LoginSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -16,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -45,9 +48,9 @@ public class SecurityConfig {
                 .formLogin()
                 /* 로그인 페이지 지정 */
                 .loginPage("/login")
-                .defaultSuccessUrl("/", false)
-                /* 로그인 실패 페이지 지정 */
-                .failureUrl("/login-error")
+                .successHandler(new LoginSuccessHandler())
+                /* 로그인 실패 핸들러 지정 */
+                .failureHandler(new LoginFailHandler())
                 .and()
                 .logout()
                 /* 로그아웃 페이지 지정 */
@@ -74,5 +77,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
 

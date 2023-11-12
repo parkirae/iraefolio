@@ -8,6 +8,10 @@ let login = {
 
     $("#id").focus();
 
+    if ($("#loginFailMsg").val() != "") {
+        $("#signUp").attr('style', 'display: none');
+    }
+
     /* 크롬 비밀번호 자동 완성 관련 */
     if ($("#id").val() != "") {
         $("#idIcon").attr('style', 'display: none');
@@ -17,16 +21,19 @@ let login = {
 
     /* id 입력창 */
     $("#id").on('keydown', function (e) {
+        $("#id").on('input', function (e) {
+            let input = $(this).val().length;
 
-        /* 아이디를 입력한 경우 enter icon 표시 */
-        if ($("#id").val().length + 1 > 0) {
-            $("#idIcon").attr('style', 'display: show');
-        }
-
-        /* 아이디에 값이 있는 경우 */
-        if ($("#id").val() != "") {
-            $("#idIcon").attr('style', 'display: show');
-        }
+            if (input > 0) {
+                $("#idIcon").attr('style', 'display: show');
+                $("#signUp").attr('style', 'display: none');
+                $("#idInformation").attr('style', 'display: show');
+                $("#loginFailMsg").attr('style', 'display: none');
+            } else {
+                $("#signUp").attr('style', 'display: show');
+                $("#idInformation").attr('style', 'display: none');
+            }
+        })
 
         /* 아이디를 입력하지 않고 엔터를 누른 경우 */
         if (e.keyCode === 13 && $("#id").val().length == 0) {
@@ -37,9 +44,10 @@ let login = {
         }
 
         /* 아이디를 입력하고 엔터를 누른 경우 */
-        if (e.keyCode === 13 && $("#id").val().length > 0) {
+        if (e.keyCode === 9 || e.keyCode === 13 && $("#id").val().length > 0) {
             $("#password").attr('style', 'display: show');
             $("#idIcon").attr('style', 'display: none');
+            $("#idInformation").attr('style', 'display: none');
             $("#password").focus();
         }
     })
@@ -66,8 +74,20 @@ let login = {
 
     /* password 입력창 */
     $("#password").on('keydown', function (e) {
+        $("#password").on('input', function (e) {
+            let input = $(this).val().length;
 
-        /* 비밀번호를 입력하지 않고 엔터를 누른 경우 */
+            if (input > 0) {
+                $("#idIcon").attr('style', 'display: none');
+                $("#passwordIcon").attr('style', 'display: show');
+                $("#pwInformation").attr('style', 'display: show');
+            } else {
+                $("#idIcon").attr('style', 'display: show');
+                $("#passwordIcon").attr('style', 'display: none');
+                $("#pwInformation").attr('style', 'display: none');
+            }
+        })
+
         if (e.keyCode === 13 && $("#password").val().length == 0) {
             swal({
                 title: "비밀번호를 입력하세요."
@@ -75,24 +95,10 @@ let login = {
             return false;
         }
 
-        /* 비밀번호를 입력한 경우 */
-        if ($("#password").val().length + 1 > 0) {
-            $("#idIcon").attr('style', 'display: none');
-            $("#passwordIcon").attr('style', 'display: show');
-        }
+        if (e.keyCode === 13 && $("#password").val().length > 0) {
 
-        /* 비밀번호를 입력하고 엔터를 누른 경우 */
-        if (e.keyCode === 13 && $("#password").val().length + 1 > 0) {
-            $.post("/login", $("#loginForm").serialize(), function(data) {
-            }).done(function() {
-                window.location.href = "/";
-            }).fail(function(response) {
-                console.log(response)
-                // swal({
-                //     title: "계정 정보를 확인하세요.",
-                //     type: "warning"
-                // })
-            });
+            $("#submitBtn").prop('disabled', false);
+
         }
     })
    },

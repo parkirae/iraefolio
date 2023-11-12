@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>iraefolio - sign In</title>
+    <title>iraefolio - sign Up</title>
 
     <!-- Icon -->
     <link rel="icon" href="../../resources/images/logo.png">
@@ -12,10 +12,10 @@
     <%@include file="common/library.jsp"%>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../resources/css/signIn.css">
+    <link rel="stylesheet" href="../../resources/css/signUp.css">
 
     <!-- JS -->
-    <script type="text/javascript" src="../../resources/js/signIn.js"></script>
+    <script type="text/javascript" src="../../resources/js/signUp.js"></script>
 
 </head>
 <body>
@@ -32,7 +32,7 @@
 
     <div class="boxWrapper">
         <div class="input-box">
-            <form action="/signIn" id="signInForm" method="post">
+            <form action="/signUp" id="signUpForm" method="post">
                 <input type="text" name="username" id="username" placeholder=" 아이디를 입력해주세요."/>
                 <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요." style="display: none"/>
                 <img src="../../resources/images/common/return.png" alt="return icon" id="returnIcon" class="icon" style="display: none"/>
