@@ -48,4 +48,13 @@ public class AccountService {
             }
         }
     }
+
+    /* DELETE */
+    public void delete(List<Member> member) throws Exception {
+
+        for (int i = 0 ; i < member.size(); i++) {
+            Member e = member.get(i);
+            mapper.delete(e);
+        }
+    }
 }

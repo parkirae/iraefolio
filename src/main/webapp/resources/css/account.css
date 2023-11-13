@@ -164,7 +164,7 @@
   position: absolute;
   background-color: #fff;
   top: 200px;
-  height: 520px;
+  height: 470px;
   width: 800px;
   z-index: 9;
   border: #ccccd1 1px solid;
@@ -186,7 +186,7 @@
   background-color: #fafafd;
 }
 
-.main .inner dialog table td #titleBox {
+.main .inner dialog table td #usernameBox {
   width: 45%;
   height: 20px;
   background-color: #fafafd;
@@ -201,7 +201,7 @@
   align-items: center;
 }
 
-.main .inner dialog table td #title {
+.main .inner dialog table td #username {
   display: block;
   right: 15px;
   width: 48.7%;
@@ -218,7 +218,131 @@
   align-items: center;
 }
 
-.main .inner dialog table td #title:focus {
+
+.main .inner dialog table td #usernameInform {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ccccd1;
+  top: 140px;
+  left: 415px;
+}
+
+.main .inner dialog table td #passwordBox {
+  width: 45%;
+  height: 20px;
+  background-color: #fafafd;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 170px;
+  align-items: center;
+}
+
+.main .inner dialog table td #password {
+  display: block;
+  right: 15px;
+  width: 48.7%;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  top: 170px;
+  align-items: center;
+}
+
+.main .inner dialog table td #passwordInform {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ccccd1;
+  top: 220px;
+  left: 415px;
+}
+
+.main .inner dialog table td #nameBox {
+  width: 45%;
+  height: 20px;
+  background-color: #fafafd;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 250px;
+  align-items: center;
+}
+
+.main .inner dialog table td #name {
+  display: block;
+  right: 15px;
+  width: 48.7%;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  top: 250px;
+  align-items: center;
+}
+
+.main .inner dialog table td #nameInform {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 400;
+  color: #ccccd1;
+  top: 300px;
+  left: 415px;
+}
+
+.main .inner dialog table td #authorityBox {
+  width: 45%;
+  height: 20px;
+  background-color: #fafafd;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  position: absolute;
+  top: 330px;
+  align-items: center;
+}
+
+.main .inner dialog table td #authority {
+  display: block;
+  right: 15px;
+  width: 48.7%;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #ccccd1;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
+  position: absolute;
+  top: 330px;
+  align-items: center;
+}
+
+.main .inner dialog table td #username:focus {
   border: 1px solid #000;
   outline: none;
 }
@@ -252,7 +376,7 @@
   padding: 10px;
   width: 120px;
   font-size: 16px;
-  top: 480px;
+  top: 420px;
   left: 270px;
 }
 
@@ -264,7 +388,7 @@
   padding: 10px;
   width: 120px;
   font-size: 16px;
-  top: 480px;
+  top: 420px;
   left: 270px;
 }
 
@@ -276,7 +400,7 @@
   padding: 10px;
   width: 120px;
   font-size: 16px;
-  top: 480px;
+  top: 420px;
   left: 430px;
 }
 

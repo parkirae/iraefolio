@@ -17,12 +17,14 @@ public interface AccountMapper {
     /* UPDATE */
     boolean update(MemberAuthorityDTO memberAuthority);
 
+    /* UPGRADE AUTHORITY */
     boolean upgradeAuthority(MemberAuthorityDTO memberAuthority);
 
+    /* DOWNGRADE AUTHORITY */
     boolean downgradeAuthority(MemberAuthorityDTO memberAuthority);
 
     /* DELETE */
-//    boolean delete(MemberAuthority memberAuthority);
+    boolean delete(Member member);
 
     /* ReadCNT */
     Integer readCnt(Member member);

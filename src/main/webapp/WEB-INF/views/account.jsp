@@ -48,8 +48,28 @@
                         <th colspan="2" id="dialog_title">새로운 사용자를 등록하세요. 🥰</th>
                     </tr>
                     <tr>
-                        <td><div id="titleBox">아이디</div></td>
-                        <td><input type="text" id="title" maxlength="100" placeholder="아이디를 입력하세요."></td>
+                        <td><div id="usernameBox">아이디</div></td>
+                        <td><input type="text" id="username" maxlength="20" placeholder="아이디를 입력하세요."></td>
+                        <td><p id="usernameInform">아이디를 입력하고 엔터를 쳐보세요!</p></td>
+                    </tr>
+                    <tr>
+                        <td><div id="passwordBox">비밀번호</div></td>
+                        <td><input type="text" id="password" placeholder="초기 비밀번호는 '1234'입니다." readonly onfocus="this.blur()"></td>
+                        <td><p id="passwordInform" style="display: none">비밀번호는 초기 비밀번호로 설정됩니다.</p></td>
+                    </tr>
+                    <tr>
+                        <td><div id="nameBox">이름</div></td>
+                        <td><input type="text" id="name" maxlength="100" placeholder="이름을 입력하세요."></td>
+                        <td><p id="nameInform" style="display: none">멋진 이름이네요!</p></td>
+                    </tr>
+                    <tr>
+                        <td><div id="authorityBox">권한</div></td>
+                        <td>
+                            <select id="authority">
+                                <option value="ROLE_USER">사용자</option>
+                                <option value="ROLE_ADMIN">관리자</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <button type="button" id="create">등록</button>

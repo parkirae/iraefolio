@@ -51,10 +51,17 @@ public class AccountController {
     }
 
     /* UPDATE */
-    @Operation(summary = "UPDATE account", description = "account를 수정합니다.")
+    @Operation(summary = "UPDATE account Authority", description = "account의 권한을 수정합니다.")
     @PatchMapping
     public void update(@RequestBody List<MemberAuthorityDTO> memberAuthority) throws Exception {
         service.update(memberAuthority);
+    }
+
+    /* DELETE */
+    @Operation(summary = "DELETE account", description = "account를 삭제합니다.")
+    @DeleteMapping
+    public void delete(@RequestBody List<Member> member) throws Exception {
+        service.delete(member);
     }
 
     /* CNT */

@@ -56,6 +56,12 @@
         AND authority = "ROLE_ADMIN"
     </delete>
 
+    <!-- DELETE -->
+    <delete id="delete">
+        DELETE FROM TB_MEMBER
+        WHERE memberId = #{memberId}
+    </delete>
+
     <!-- ReadCnt -->
     <select id="readCnt" resultType="Integer">
         SELECT COUNT(*)
