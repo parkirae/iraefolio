@@ -19,6 +19,7 @@ let account = {
     let _this = this;
 
     $(".btn-save").attr('onClick', "account.save()");
+    $(".btn-delete").attr('onClick', "account.delete()");
 
     /* 그리드 초기화 */
     let Grid = tui.Grid;
@@ -68,17 +69,22 @@ let account = {
               return "사용자"
             } else if (authorities === "ROLE_ADMIN") {
               return "관리자"
+            } else if (authorities === "ROLE_SUPER") {
+              return "운영자"
             }
 
             /* 초기에 사용자, 관리자 표시해주는 함수 */
             if (Array.isArray(authorities) && authorities.length > 0) {
               const authority = authorities[0].authority;
 
-              if (authority === 'ROLE_USER') {
+              if (authority === 'ROLE_SUPER') {
+                return "운영자";
+              } else if (authority === 'ROLE_USER') {
                 return "사용자";
               } else {
                 return "관리자";
               }
+
             }
           },
         }
@@ -267,19 +273,21 @@ let account = {
 
     console.log(data);
 
-    // /* 내가 작성한 글이 아니라면 reject */
-    // for (let i = 0; i < data.updatedRows.length; i++) {
-    //   if (data.updatedRows[i].username != user.username) {
-    //     swal({
-    //       title: "내가 작성한 글만 수정할 수 있어요.",
-    //       type: 'warning'
-    //     });
-    //     /* 그리드 다시 활성화 */
-    //     this.grid.enable();
-    //     return false;
-    //   }
-    // }
-    //
+    // /* 운영자, 관리자를 삭제하려고 하면 reject */
+    for (let i = 0; i < data.updatedRows.length; i++) {
+
+      console.log(data.updatedRows[i].authorities[i].authority);
+
+      if (data.updatedRows[i].authorities[i].authority.includes('ROLE_ADMIN') || data.updatedRows[i].authorities[i].authority.includes('ROLE_SUPER')) {
+        swal({
+          title: "관리자는 삭제할 수 없어요.",
+          type: 'warning'
+        });
+        this.grid.enable();
+        return false;
+      }
+    }
+
     /* 수정된 데이터에 updated flag 붙이기 */
     for (let i = 0; i < data.updatedRows.length; i++) {
       data.updatedRows[i].updated = true;

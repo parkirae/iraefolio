@@ -1,0 +1,22 @@
+/* POST */
+
+/* main */
+.main {
+  margin-top: 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.main .inner {
+  position: relative;
+  /*background-color: orange;*/
+  top: 10px;
+  margin-top: 10px;
+}
+
+.main .inner p {
+  padding: 10px;
+  /*position: absolute;*/
+  /*left: 40px;*/
+  font-size: 23px;
+}

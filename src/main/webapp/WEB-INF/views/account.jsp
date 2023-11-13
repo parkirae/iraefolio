@@ -27,19 +27,9 @@
     <div class="inner">
         <div class="text-box">
             <span>계정 관리 🧐🤔</span>
-
-            <c:choose>
-                <c:when test="${user != null}">
-                    <div class="text">계정 관리<br />
-                        <p class="plain">계정 관리</p>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="text">팁: review는 회원가입해야 작성할 수 있어요!<br />
-                        <p class="plain">회원가입을 하시려면 <a href="/">여기</a>를 클릭해 주세요!</p>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                <div class="text">팁: 권한을 선택하고 권한을 조정해보세요.<br />
+                    <p class="plain">운영자의 권한은 조정할 수 없어요 :)</p>
+                </div>
         </div>
         <div class="btn-box">
             <div class="btn-create">등록</div>

@@ -26,7 +26,6 @@
             <c:choose>
                 <c:when test="${user != null}">
                     ${user.getName()} 님, 환영합니다! 🥳
-<%--                    ${user.getAuthorities()}--%>
                 </c:when>
                 <c:otherwise>
                     더 많은 기능을 이용하시려면 <a href="/login" id="text-login">로그인</a> 하세요! 😆

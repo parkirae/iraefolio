@@ -22,7 +22,7 @@
   user.name = '${user.getName()}';
 
   let userAuthority = '${user.getAuthorities()}';
-  user.role = userAuthority.includes("ROLE_ADMIN") ? "ROLE_ADMIN" : "ROLE_USER";
+  user.role = userAuthority.includes("ROLE_ADMIN") || userAuthority.includes("ROLE_SUPER") ? "ROLE_ADMIN" : "ROLE_USER";
 </script>
 
 <!-- HEADER -->
@@ -41,7 +41,7 @@
               <li>
                 <h4>가장 완벽한 객체지향 언어</h4>
                 <ul>
-                  <li>JAVA 17</li>
+                  <li><a href="java_post">자바</a></li>
                   <li>JAVA 17</li>
                   <li>JAVA 17</li>
                 </ul>

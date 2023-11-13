@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Log4j2
-@RequiredArgsConstructor
 @Controller
 public class IndexController {
 
@@ -29,10 +28,7 @@ public class IndexController {
 
         /* 로그인 실패 */
         if (error) {
-            mav.addObject("error", true);
-            mav.addObject("exception", exception);
-            log.error(error);
-            log.error(exception);
+            mav.addObject("error", true).addObject("exception", exception);
             return mav;
         }
 
