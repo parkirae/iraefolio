@@ -140,24 +140,7 @@ let signUp = {
 
             if (e.keyCode == 13 && $("#name").val().length != 0) {
 
-                $.ajax({
-                    type: "POST",
-                    url: "/create",
-                    data: JSON.stringify({
-                       username: $("#username").val(),
-                       password: $("#password").val(),
-                       name: $("#name").val(),
-                    }),
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (data) {
-                        window.location.href = "/";
-                    },
-                    error: function (response) {
-                        window.location.href = "/";
-                    }
-                });
-
+                $("#submit").prop('disabled', false);
             }
         })
 

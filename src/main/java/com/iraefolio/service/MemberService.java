@@ -4,6 +4,7 @@ import com.iraefolio.domain.Member;
 import com.iraefolio.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Service;
 
 @Log4j2

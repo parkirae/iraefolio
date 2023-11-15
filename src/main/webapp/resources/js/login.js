@@ -90,7 +90,8 @@ let login = {
 
         if (e.keyCode === 13 && $("#password").val().length == 0) {
             swal({
-                title: "비밀번호를 입력하세요."
+                title: "비밀번호를 입력하세요.",
+                type: 'warning'
             });
             return false;
         }

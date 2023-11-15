@@ -29,9 +29,29 @@
         VALUES (#{username}, #{password}, #{name})
     </insert>
 
-    <!-- 권한 부여 -->
+    <!-- 회원 생성 -->
+    <insert id="createUser" parameterType="com.iraefolio.domain.dto.MemberDTO">
+        INSERT INTO TB_MEMBER (username, password, name)
+        VALUES (#{username}, #{password}, #{name})
+    </insert>
+
+    <!-- 회원 생성 시 사용 -->
+    <select id="findUserName" resultType="com.iraefolio.domain.dto.MemberDTO">
+        SELECT * FROM TB_MEMBER
+        WHERE username = #{username}
+    </select>
+
+    <!-- 회원 가입 -->
+    <!-- 사용자 권한 부여 -->
     <insert id="grantInitialAuthority">
         INSERT INTO TB_MEMBER_AUTHORITY (memberId, authority)
         VALUES (#{memberId}, #{authority})
+    </insert>
+
+    <!-- 회원 생성 -->
+    <!-- 권한 부여 -->
+    <insert id="grantAuthority">
+        INSERT INTO TB_MEMBER_AUTHORITY (memberId, authority)
+        VALUES (${memberId}, #{authority})
     </insert>
 </mapper>

@@ -1,15 +1,22 @@
 package com.iraefolio.controller;
 
 import com.iraefolio.domain.Member;
+import com.iraefolio.domain.dto.MemberDTO;
 import com.iraefolio.service.MemberService;
 import com.iraefolio.service.security.CustomUserDetailsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Tag(name = "member Controller", description = "member Controller")
 @Log4j2
@@ -28,11 +35,39 @@ public class MemberController {
         return result;
     }
 
-    /* 회원 가입 */
-    @Operation(summary = "회원 가입", description = "회원 가입합니다.")
+    /* 회원 가입 후 자동 로그인 */
+    @Operation(summary = "회원 가입", description = "회원 가입 후 로그인합니다.")
     @PostMapping("/create")
-    public void create(@RequestBody Member member) throws Exception {
+    public void create(@RequestParam String username, @RequestParam String password, @RequestParam String name, HttpServletResponse response) throws Exception {
+        Member member = Member.builder()
+                        .username(username)
+                        .password(password)
+                        .name(name)
+                        .build();
+
         /* 회원 가입 */
-        customUserDetailsService.create(member);
+        boolean result = customUserDetailsService.create(member);
+
+        /* 회원 가입 성공 시 자동 로그인 */
+        if (result) {
+            /* 자동 로그인 */
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(member.getUsername());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            response.sendRedirect("/");
+        } else {
+            response.sendRedirect("/signUp");
+        }
+    }
+
+    /* 회원 생성 */
+    @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PatchMapping("/create")
+    public void createUser(@RequestBody MemberDTO memberDTO) throws Exception {
+        /* 회원 생성 */
+        customUserDetailsService.createUser(memberDTO);
     }
 }

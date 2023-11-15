@@ -3,6 +3,8 @@
 header.jsp에 선언되어 있음.
  */
 
+const englishOnly = /^[a-zA-Z]*$/;
+
 $(function() {
   account.init();
 });
@@ -18,7 +20,6 @@ let account = {
   init: function () {
     let _this = this;
 
-    $("#create").attr('onClick', "account.create()");
     $(".btn-save").attr('onClick', "account.save()");
     $(".btn-delete").attr('onClick', "account.delete()");
 
@@ -72,7 +73,7 @@ let account = {
               return "관리자"
             } else {
               return "사용자"
-            ㄱ}
+            }
 
             /* select box로 선택한 경우 사용자, 관리자 표시해주는 함수 */
             if (Array.isArray(authorities) && authorities.length > 0) {
@@ -176,54 +177,82 @@ let account = {
       $("#create").css('display', 'block');
     });
 
-    $("#username").on('keydown', function (e) {
-      if (e.keyCode === 13) {
+
+    $("#username").on('keyup', function (e) {
+      let input = $(this).val().length;
+      console.log(input);
+
+      if (e.keyCode === 13 && input == 0) {
+        swal({
+          title: "아이디를 입력하세요.",
+          type: 'warning'
+        });
+        return false;
+      }
+
+      if (!englishOnly.test($("#username").val())) {
+        $("#usernameInform").text('아이디는 영어 소문자만 사용할 수 있어요.');
+        return false;
+      }
+
+      if (e.keyCode === 9 || e.keyCode === 13 && $("#username").val().length > 0) {
         let newUsername = $("#username").val();
-
-        let memberCheck = _this.memberCheck(newUsername);
-
-        /* 이미 사용 중인 아이디인 경우 */
-        if (memberCheck) {
+        /* 아이디 중복 검사 */
+        let result = _this.memberCheck(newUsername);
+        if (result) {
           swal({
             title: "이미 사용 중인 아이디입니다.",
             type: 'warning'
-          })
-          $("#username").val('');
-          $("#username").focus();
+          });
           return false;
         } else {
-          $("#usernameInform").text('사용 가능한 아이디입니다.');
-          $("#name").focus();
+          $("#usernameInform").text("멋진 아이디네요!");
+          $("#password").attr('disabled', false);
+          $("#password").focus();
+          $("#passwordInform").attr('style', 'display: show');
         }
       }
-    })
+    });
 
-    $("#password").on('click', function (e) {
-      $("#passwordInform").attr('style', 'display:show');
-    })
-
-    $("#name").focus(function (e) {
-      $("#passwordInform").attr('style', 'display:show');
-    })
-
-    $("#name").on('keydown', function (e) {
-      $("#name").on('input', function (e) {
+    $("#password").on('keydown', function (e) {
+      $("#password").on('input', function (e) {
         let input = $(this).val().length;
 
-        if (input > 0 ) {
-          $("#nameInform").attr('style', 'display: show');
+        if (input < 4) {
+          $("#passwordInform").text("비밀번호는 4자리 이상이여야 해요.");
         } else {
-          $("#nameInform").attr('style', 'display: none');
+          $("#passwordInform").text("멋진 비밀번호네요!");
         }
-      });
+      })
+      if (e.keyCode === 13 && $("#password").val().length < 4) {
+        $("#passwordInform").text("비밀번호는 4자리 이상이여야 해요.");
+        return false;
+      }
     })
-
-
   },
 
   /* CRUD 함수들 */
+  /* CREATE */
   create: function () {
-    alert("cerate");
+    $.ajax({
+      type: "PATCH",
+      url: "/create",
+      data: JSON.stringify({
+        username: $("#username").val(),
+        password: $("#password").val(),
+        name: $("#name").val(),
+        authority: $("#authority").val()
+      }),
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        alert("asdasd")
+        window.location.href = "/account";
+      },
+      error: function (response) {
+        console.log(response);
+      }
+    });
   },
 
   /* READ */
@@ -326,8 +355,6 @@ let account = {
 
     let arr = [];
     arr = data.updatedRows;
-
-    console.log(arr);
 
     $.ajax({
       type: "DELETE",

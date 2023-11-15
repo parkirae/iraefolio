@@ -41,7 +41,7 @@
             </div>
         </div>
         <dialog style="display: none">
-            <form method="post">
+            <form action="/create" method="patch" id="signInForm">
                 <table>
                     <tbody>
                     <tr style="height: 30px">
@@ -54,26 +54,25 @@
                     </tr>
                     <tr>
                         <td><div id="passwordBox">비밀번호</div></td>
-                        <td><input type="text" id="password" placeholder="초기 비밀번호는 '1234'입니다." readonly onfocus="this.blur()"></td>
-                        <td><p id="passwordInform" style="display: none">비밀번호는 초기 비밀번호로 설정됩니다.</p></td>
+                        <td><input type="password" id="password" placeholder="비밀번호를 입력하세요." disabled></td>
+                        <td><p id="passwordInform" style="display: none">비밀번호를 입력하고 엔터를 쳐보세요!</p></td>
                     </tr>
                     <tr>
                         <td><div id="nameBox">이름</div></td>
-                        <td><input type="text" id="name" maxlength="100" placeholder="이름을 입력하세요."></td>
+                        <td><input type="text" id="name" maxlength="20" placeholder="이름을 입력하세요." disabled></td>
                         <td><p id="nameInform" style="display: none">멋진 이름이네요!</p></td>
                     </tr>
                     <tr>
                         <td><div id="authorityBox">권한</div></td>
                         <td>
-                            <select id="authority">
+                            <select id="authority" disabled>
                                 <option value="ROLE_USER">사용자</option>
                                 <option value="ROLE_ADMIN">관리자</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <button type="button" id="create">등록</button>
-                        <button type="button" id="update">수정</button>
+                        <button type="submit" id="create" disabled>등록</button>
                         <button type="button" id="close">닫기</button>
                     </tr>
                     </tbody>
