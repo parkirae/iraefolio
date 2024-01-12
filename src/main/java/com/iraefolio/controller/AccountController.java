@@ -4,6 +4,7 @@ import com.iraefolio.domain.Member;
 import com.iraefolio.domain.MemberAuthority;
 import com.iraefolio.domain.ReviewEntity;
 import com.iraefolio.domain.dto.MemberAuthorityDTO;
+import com.iraefolio.domain.dto.MemberDTO;
 import com.iraefolio.service.AccountService;
 import com.iraefolio.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,15 +54,8 @@ public class AccountController {
     /* UPDATE */
     @Operation(summary = "UPDATE account Authority", description = "account의 권한을 수정합니다.")
     @PatchMapping
-    public void update(@RequestBody List<MemberAuthorityDTO> memberAuthority) throws Exception {
-        service.update(memberAuthority);
-    }
-
-    /* DELETE */
-    @Operation(summary = "DELETE account", description = "account를 삭제합니다.")
-    @DeleteMapping
-    public void delete(@RequestBody List<Member> member) throws Exception {
-        service.delete(member);
+    public void update(@RequestBody List<MemberDTO> memberDTO) throws Exception {
+        service.update(memberDTO);
     }
 
     /* CNT */

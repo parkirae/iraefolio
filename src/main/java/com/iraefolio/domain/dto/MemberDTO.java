@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 /* 회원 생성 시 사용하는 DTO
@@ -22,4 +23,5 @@ public class MemberDTO extends BaseEntity {
     private String password;
     private String name;
     private String authority;
+    private List<Object> authorities;
 }

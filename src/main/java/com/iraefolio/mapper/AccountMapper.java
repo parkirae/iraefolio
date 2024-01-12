@@ -4,6 +4,7 @@ import com.iraefolio.domain.Member;
 import com.iraefolio.domain.MemberAuthority;
 import com.iraefolio.domain.ReviewEntity;
 import com.iraefolio.domain.dto.MemberAuthorityDTO;
+import com.iraefolio.domain.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,13 +19,13 @@ public interface AccountMapper {
     boolean update(MemberAuthorityDTO memberAuthority);
 
     /* UPGRADE AUTHORITY */
-    boolean upgradeAuthority(MemberAuthorityDTO memberAuthority);
+    boolean upgradeAuthority(MemberDTO memberDTO);
 
     /* DOWNGRADE AUTHORITY */
-    boolean downgradeAuthority(MemberAuthorityDTO memberAuthority);
+    boolean downgradeAuthority(MemberDTO memberDTO);
 
     /* DELETE */
-    boolean delete(Member member);
+    boolean delete(Long memberId);
 
     /* ReadCNT */
     Integer readCnt(Member member);

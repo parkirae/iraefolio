@@ -45,7 +45,7 @@
     <!-- 사용자 -> 관리자 변경 시 사용 -->
     <insert id="upgradeAuthority">
         INSERT INTO TB_MEMBER_AUTHORITY (memberId, authority)
-        VALUES (#{memberId}, "ROLE_USER")
+        VALUES (#{memberId}, "ROLE_ADMIN")
     </insert>
 
     <!-- DOWNGRADE AUTHORITY -->

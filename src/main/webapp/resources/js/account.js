@@ -66,26 +66,14 @@ let account = {
           formatter: function (value) {
             let authorities = value.value[0].authority;
 
-            /* 초기에 사용자, 관리자 표시해주는 함수 */
-            if (authorities === 'ROLE_SUPER') {
+            /* authorities는 DB에서 가져온 값
+            *  value.value는 select로 선택한 값 */
+            if (authorities === 'ROLE_SUPER' || value.value === 'ROLE_SUPER') {
               return "운영자"
-            } else if (authorities === 'ROLE_ADMIN,ROLE_USER') {
+            } else if (authorities === 'ROLE_ADMIN,ROLE_USER' || authorities === 'ROLE_USER,ROLE_ADMIN' || value.value === 'ROLE_ADMIN') {
               return "관리자"
             } else {
               return "사용자"
-            }
-
-            /* select box로 선택한 경우 사용자, 관리자 표시해주는 함수 */
-            if (Array.isArray(authorities) && authorities.length > 0) {
-              const authority = authorities[0].authority;
-
-              if (authority.includes("ROLE_SUPER")) {
-                return "운영자";
-              } else if(authority.includes("ROLE_ADMIN") && authority.includes("ROLE_USER")) {
-                return "관리자";
-              } else {
-                return "사용자";
-              }
             }
 
           },
@@ -174,83 +162,144 @@ let account = {
       $("#username").focus();
       $("#create").text('등록');
       $("#update").css('display', 'none');
-      $("#create").css('display', 'block');
     });
 
+    $("#username").on('keydown', function (e) {
+      $("#username").on('input', function (e) {
+        let input = $(this).val().length;
 
-    $("#username").on('keyup', function (e) {
-      let input = $(this).val().length;
-      console.log(input);
+        if (input == 0) {
+          $("#usernameInform").text('아이디를 입력하고 엔터를 쳐보세요!');
+        }
+      })
 
-      if (e.keyCode === 13 && input == 0) {
+      /* 아이디를 입력하지 않고 엔터를 누른 경우 */
+      if (e.keyCode === 13 && $("#username").val().length == 0) {
         swal({
           title: "아이디를 입력하세요.",
-          type: 'warning'
         });
         return false;
       }
 
-      if (!englishOnly.test($("#username").val())) {
-        $("#usernameInform").text('아이디는 영어 소문자만 사용할 수 있어요.');
-        return false;
-      }
+      /* 아이디를 입력하고 엔터를 누른 경우 */
+      if ((e.key === 'Tab' || e.keyCode === 13) && $("#username").val().length > 0) {
+        let newUsername =  $("#username").val();
 
-      if (e.keyCode === 9 || e.keyCode === 13 && $("#username").val().length > 0) {
-        let newUsername = $("#username").val();
-        /* 아이디 중복 검사 */
+        if (newUsername.length < 4) {
+          $("#usernameInform").text('아이디는 4글자 이상이여야 해요.');
+          return false;
+        }
+
+        if (!englishOnly.test(newUsername)) {
+          $("#usernameInform").text('아이디는 영어 소문자만 사용할 수 있어요.');
+          return false;
+        }
+
         let result = _this.memberCheck(newUsername);
         if (result) {
           swal({
             title: "이미 사용 중인 아이디입니다.",
-            type: 'warning'
           });
           return false;
         } else {
-          $("#usernameInform").text("멋진 아이디네요!");
+          $("#usernameInform").text('멋진 아이디네요!');
           $("#password").attr('disabled', false);
-          $("#password").focus();
-          $("#passwordInform").attr('style', 'display: show');
+
+          setTimeout(function () {
+            $("#password").focus();
+            $("#passwordInform").attr('style', 'display: show');
+          }, 0);
         }
       }
-    });
 
     $("#password").on('keydown', function (e) {
       $("#password").on('input', function (e) {
         let input = $(this).val().length;
 
-        if (input < 4) {
-          $("#passwordInform").text("비밀번호는 4자리 이상이여야 해요.");
-        } else {
-          $("#passwordInform").text("멋진 비밀번호네요!");
-        }
       })
-      if (e.keyCode === 13 && $("#password").val().length < 4) {
-        $("#passwordInform").text("비밀번호는 4자리 이상이여야 해요.");
+
+      /* 비밀번호를 입력하지 않고 엔터를 누른 경우 */
+      if (e.keyCode === 13 && $("#password").val().length == 0) {
+        swal({
+          title: "비밀번호를 입력하세요.",
+        });
         return false;
       }
+
+      /* 비밀번호를 입력하고 엔터를 누른 경우 */
+      if ((e.key === 'Tab' || e.keyCode === 13) && $("#password").val().length > 0) {
+        let password =  $("#password").val();
+
+        if (password.length < 4) {
+          $("#passwordInform").text('비밀번호는 4글자 이상이여야 해요.');
+          return false;
+        }
+
+        $("#passwordInform").attr('style', 'display: show');
+        $("#passwordInform").text('멋진 비밀번호에요!');
+        $("#name").attr('disabled', false);
+
+          setTimeout(function () {
+            $("#name").focus();
+            $("#nameInform").attr('style', 'display: show');
+          }, 0);
+        }
+      });
+
+    $("#name").on('keydown', function (e) {
+      $("#name").on('input', function (e) {
+        let input = $(this).val().length;
+
+      })
+
+      /* 비밀번호를 입력하지 않고 엔터를 누른 경우 */
+      if (e.keyCode === 13 && $("#name").val().length == 0) {
+        swal({
+          title: "이름을 입력하세요.",
+        });
+        return false;
+      }
+
+      /* 비밀번호를 입력하고 엔터를 누른 경우 */
+      if ((e.key === 'Tab' || e.keyCode === 13) && $("#name").val().length > 0) {
+        let name =  $("#name").val();
+
+        $("#nameInform").text(name + ' 님 반가워요!');
+        $("#authority").attr('disabled', false);
+
+        setTimeout(function () {
+          $("#authority").focus();
+          $("#create").prop('disabled', false);
+          $("#create").attr('onClick', "account.create()");
+        }, 0);
+      }
+    });
+
     })
   },
 
   /* CRUD 함수들 */
   /* CREATE */
   create: function () {
+    let _this = this;
+    let data;
+
     $.ajax({
-      type: "PATCH",
-      url: "/create",
+      type: "POST",
+      url: "/create-user",
       data: JSON.stringify({
         username: $("#username").val(),
         password: $("#password").val(),
         name: $("#name").val(),
         authority: $("#authority").val()
       }),
-      contentType: "application/json",
+      contentType: "application/json; charset=utf-8",
       dataType: "json",
-      success: function (data) {
-        alert("asdasd")
-        window.location.href = "/account";
+      success: function (response) {
+        alert(response)
       },
-      error: function (response) {
-        console.log(response);
+      error: function (xhr, status, error) {
+        console.error("에러:", xhr.responseText);
       }
     });
   },
@@ -292,7 +341,7 @@ let account = {
 
     $.ajax({
       type: "PATCH",
-      url: "/review",
+      url: "/account",
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(data),
@@ -301,7 +350,6 @@ let account = {
         if (list) {
           _this.grid.resetData(list);
           _this.pagination.setTotalItems(_this.cnt);
-          $("dialog").hide();
         }
       },
       error: function (response) {
@@ -318,9 +366,9 @@ let account = {
 
     this.grid.uncheckAll();
 
+    /* row 제거 */
     for(let i = 0; i < checkRows.length ; i++){
-      this.grid.setRow(checkRows[i], $.extend({}, this.grid.getRow(checkRows[i]), {deleted: true}));
-      this.grid.disableRow(checkRows[i], true);
+      this.grid.removeRow(this.grid.getRow(checkRows[i]).rowKey);
     }
   },
 
@@ -334,18 +382,24 @@ let account = {
     /* 수정된 그리드 정보 변수에 담기 */
     let data = this.grid.getModifiedRows();
 
-    // /* 운영자, 관리자를 삭제하려고 하면 reject */
-    for (let i = 0; i < data.updatedRows.length - 1; i++) {
+    /* 관리자 혹은 운영자 삭제 시 reject */
+    for (let i = 0; i < data.deletedRows.length; i++) {
+      if (data.deletedRows[i].authorities.some(authority => authority.authority.includes('ROLE_ADMIN') || authority.authority.includes('ROLE_SUPER'))) {
+       swal({
+         title: "관리자 혹은 운영자는 삭제할 수 없어요.",
+       });
+       let list = _this.read();
+       if (list) {
+         _this.grid.resetData(list);
+         _this.pagination.setTotalItems(_this.cnt);
+       }
+       return false;
+     }
+    }
 
-      if (data.updatedRows[i].authorities[i].authority === 'ROLE_ADMIN,ROLE_USER' || data.updatedRows[i].authorities[i].authority === 'ROLE_SUPER') {
-        swal({
-          title: "관리자는 삭제할 수 없어요.",
-          type: 'warning'
-        });
-        this.grid.enable();
-        return false;
-      }
-
+    /* 삭제된 데이터에 deleted flag 붙이기 */
+    for (let i = 0; i < data.deletedRows.length; i++) {
+      data.deletedRows[i].deleted = true;
     }
 
     /* 수정된 데이터에 updated flag 붙이기 */
@@ -354,15 +408,27 @@ let account = {
     }
 
     let arr = [];
-    arr = data.updatedRows;
+    if (data.updatedRows) arr.push(...data.updatedRows);
+    if (data.deletedRows) arr.push(...data.deletedRows);
+
+    /* 권한 변경 시 배열 값 수정 */
+    for (let i = 0; i < data.updatedRows.length; i++) {
+      if (data.updatedRows[i].authorities == 'ROLE_ADMIN') {
+        data.updatedRows[i].authorities = [];
+        data.updatedRows[i].authorities.push('ROLE_USER', 'ROLE_ADMIN');
+      } else {
+        data.updatedRows[i].authorities = [];
+        data.updatedRows[i].authorities.push('ROLE_USER');
+      }
+    }
 
     $.ajax({
-      type: "DELETE",
+      type: "PATCH",
       url: "/account",
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(arr),
-      success: function(response) {
+      success: function() {
         let list = _this.read();
         if (list) {
           _this.grid.resetData(list);
