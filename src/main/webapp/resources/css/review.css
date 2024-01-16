@@ -382,6 +382,19 @@
   margin: 0;
 }
 
+.tui-grid-cell-content {
+  height: 40px;
+}
+
+.tui-grid-cell-content img {
+  display: none;
+}
+
+.tui-grid-row-odd, .tui-grid-row-even {
+  position: relative;
+  top: 10px;
+}
+
 /*customCheckedRowClass*/
 .gridWrapper .customCheckedClass {
   background-color: rgba(209, 215, 241, 1);

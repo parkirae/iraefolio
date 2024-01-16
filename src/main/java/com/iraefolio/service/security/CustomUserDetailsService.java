@@ -28,6 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final MemberMapper memberMapper;
 
+    /* 회원 가입 */
     public boolean create(Member member) {
         try {
             /* 비밀번호 암호화 */
@@ -42,15 +43,15 @@ public class CustomUserDetailsService implements UserDetailsService {
             /* TB_MEMBER에 insert된 member 조회 */
             Optional<Member> result = memberMapper.findByUserName(member.getUsername());
 
-        /* TB_MEMBER_AUTHORITY에 insert
-           회원 가입 시 ROLE_USER로 authority 설정 */
+            /* TB_MEMBER_AUTHORITY에 insert
+            회원 가입 시 ROLE_USER로 authority 설정 */
             MemberAuthority authority = new MemberAuthority();
             authority.setMemberId(result.get().getMemberId());
             authority.setAuthority("ROLE_USER");
 
             memberMapper.grantInitialAuthority(authority);
 
-            return true; // Success
+            return true;
         } catch (Exception e) {
             log.error(e);
             return false;
@@ -58,33 +59,41 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     /* 회원 생성 */
-    public void createUser(MemberDTO memberDTO) {
-        /* 비밀번호 암호화 */
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public boolean createUser(MemberDTO memberDTO) {
 
-        /* TB_MEMBER에 insert */
-        memberDTO.setUsername(memberDTO.getUsername());
-        memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
-        memberDTO.setName(memberDTO.getName());
-        memberMapper.createUser(memberDTO);
+        try {
+            /* 비밀번호 암호화 */
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        /* TB_MEMBER에 insert된 member 조회 */
-        Optional<MemberDTO> result = memberMapper.findUserName(memberDTO.getUsername());
+            /* TB_MEMBER에 insert */
+            memberDTO.setUsername(memberDTO.getUsername());
+            memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
+            memberDTO.setName(memberDTO.getName());
+            memberMapper.createUser(memberDTO);
 
-        /* TB_MEMBER_AUTHORITY에 insert
-           회원 가입 시 ROLE_USER로 authority 설정 */
-        MemberAuthority authority = new MemberAuthority();
-        authority.setMemberId(result.get().getMemberId());
+            /* TB_MEMBER에 insert된 member 조회 */
+            Optional<MemberDTO> result = memberMapper.findUserName(memberDTO.getUsername());
 
-        /* 관리자인 경우 두 번 권한 부여 */
-        if (memberDTO.getAuthority().equals("ROLE_ADMIN")) {
-            authority.setAuthority(memberDTO.getAuthority());
+            /* TB_MEMBER_AUTHORITY에 insert
+            회원 가입 시 ROLE_USER로 authority 설정 */
+            MemberAuthority authority = new MemberAuthority();
+            authority.setMemberId(result.get().getMemberId());
+
+            /* 관리자인 경우 두 번 권한 부여 */
+            if (memberDTO.getAuthority().equals("ROLE_ADMIN")) {
+                authority.setAuthority(memberDTO.getAuthority());
+                memberMapper.grantAuthority(authority);
+                authority.setAuthority("ROLE_USER");
+            } else {
+                authority.setAuthority(memberDTO.getAuthority());
+            }
             memberMapper.grantAuthority(authority);
-            authority.setAuthority("ROLE_USER");
-        } else {
-            authority.setAuthority(memberDTO.getAuthority());
+
+            return true;
+        } catch (Exception e) {
+            log.error(e);
+            return false;
         }
-        memberMapper.grantAuthority(authority);
     }
 
     /* 로그인 */

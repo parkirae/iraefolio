@@ -3,7 +3,7 @@
 <html>
 <head>
 
-    <title>iraefolio - 방명록</title>
+    <title>iraefolio - 게시글 관리</title>
 
     <!-- Icon -->
     <link rel="icon" href="../../resources/images/logo.png">
@@ -12,10 +12,10 @@
     <%@include file="common/library.jsp"%>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../resources/css/review.css">
+    <link rel="stylesheet" href="../../resources/css/post.css">
 
     <!-- JS -->
-    <script type="text/javascript" src="../../resources/js/review.js"></script>
+    <script type="text/javascript" src="../../resources/js/post.js"></script>
 
 </head>
 <body>
@@ -26,7 +26,7 @@
 
     <div class="inner">
         <div class="text-box">
-            <span>review 😀😂</span>
+            <span>post 🧑‍💼✍️</span>
 
             <c:choose>
                 <c:when test="${user != null}">
@@ -60,6 +60,20 @@
                     <tr>
                         <td><div id="titleBox">제목</div></td>
                         <td><input type="text" id="title" maxlength="100"></td>
+                    </tr>
+                    <tr>
+                        <td><div id="categoryBox">카테고리</div></td>
+                        <td>
+                            <select id="category">
+                                <option value="JAVA">JAVA</option>
+                                <option value="SpringBoot">SpringBoot</option>
+                                <option value="SpringSecurity">SpringSecurity</option>
+                                <option value="MyBatis">MyBatis</option>
+                                <option value="MariaDB">MariaDB</option>
+                                <option value="jQuery">jQuery</option>
+                                <option value="JSP">JSP</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2"><div id="content"></div></td>

@@ -7,10 +7,7 @@ let login = {
     let _this = this;
 
     $("#id").focus();
-
-    if ($("#loginFailMsg").val() != "") {
-        $("#signUp").attr('style', 'display: none');
-    }
+    $("#signUp").attr('style', 'display: show');
 
     /* 크롬 비밀번호 자동 완성 관련 */
     if ($("#id").val() != "") {

@@ -1,0 +1,63 @@
+/* POST DETAIL */
+
+/* main */
+.main {
+  margin-top: 40px;
+  background-color: #fff;
+  position: relative;
+}
+
+.main .inner {
+  position: relative;
+  top: 10px;
+  display: flex;
+  width: 1200px;
+}
+
+.main .inner .byline-box {
+  height: 80px;
+  width: 100%;
+  position: relative;
+  font-size: 23px;
+  top: 20px;
+  left: 250px;
+}
+
+.main .inner .byline-box #title {
+  position: relative;
+  top: 15px;
+  font-size: 35px;
+  font-weight: 700;
+  width: 600px;
+  display: block;
+}
+
+.main .inner .byline-box #writer {
+  position: relative;
+  font-size: 17px;
+  top: 10px;
+}
+
+.main .inner .byline-box #create_dt {
+  position: relative;
+  font-size: 16px;
+  top: 20px;
+}
+
+.main .inner .byline-box #hr {
+  position: relative;
+  background-color: #5a6268;
+  width: 50%;
+  height: 1px;
+  top: 30px;
+}
+
+.main .inner .byline-box #content {
+  position: relative;
+  top: 30px;
+  font-size: 20px;
+}
+
+.main .inner .byline-box #content img {
+  width: 600px;
+}

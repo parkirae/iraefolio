@@ -40,10 +40,12 @@
             <ul class="inner">
               <li>
                 <h4>가장 완벽한 객체지향 언어</h4>
-                <ul>
-                  <li><a href="java_post">자바</a></li>
-                  <li>JAVA 17</li>
-                  <li>JAVA 17</li>
+                <ul id="JAVA">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'JAVA'}">
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -58,10 +60,12 @@
             <ul class="inner">
               <li>
                 <h4>더 쉽고, 안전하게</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="SpringBoot">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'SpringBoot'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -76,10 +80,12 @@
             <ul class="inner">
               <li>
                 <h4>강력한 보안</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="SpringSecurity">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'SpringSecurity'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -94,10 +100,12 @@
             <ul class="inner">
               <li>
                 <h4>가뿐하게, 강력하게</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="MyBatis">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'MyBatis'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -112,10 +120,12 @@
             <ul class="inner">
               <li>
                 <h4>영속; 영원히 계속하다</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="MariaDB">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'MariaDB'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -130,10 +140,12 @@
             <ul class="inner">
               <li>
                 <h4>적은 것이 많은 것</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="jQuery">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'jQuery'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>
@@ -148,10 +160,12 @@
             <ul class="inner">
               <li>
                 <h4>펼치다</h4>
-                <ul>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
-                  <li>Spring 3.0</li>
+                <ul id="JSP">
+                  <c:forEach var="item" items="${data}">
+                    <c:if test="${item.CATEGORY eq 'JSP'}">
+                      <li><a href="/">${item.TITLE}</a></li>
+                    </c:if>
+                  </c:forEach>
                 </ul>
               </li>
             </ul>

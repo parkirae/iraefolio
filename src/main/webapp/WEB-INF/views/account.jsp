@@ -41,7 +41,7 @@
             </div>
         </div>
         <dialog style="display: none">
-            <form action="/create" method="patch" id="signInForm">
+            <form action="/create-user" method="post" id="signInForm">
                 <table>
                     <tbody>
                     <tr style="height: 30px">
@@ -60,7 +60,7 @@
                     <tr>
                         <td><div id="nameBox">이름</div></td>
                         <td><input type="text" id="name" maxlength="20" placeholder="이름을 입력하세요." disabled></td>
-                        <td><p id="nameInform" style="display: none">멋진 이름이네요!</p></td>
+                        <td><p id="nameInform" style="display: none">아이디를 입력하고 엔터를 쳐보세요!</p></td>
                     </tr>
                     <tr>
                         <td><div id="authorityBox">권한</div></td>

@@ -8,12 +8,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,8 +67,8 @@ public class MemberController {
     /* 회원 생성 */
     @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PatchMapping("/create")
-    public void createUser(@RequestBody MemberDTO memberDTO) throws Exception {
+    @PostMapping("/create-user")
+    public void createUser(MemberDTO memberDTO) throws Exception {
         /* 회원 생성 */
         customUserDetailsService.createUser(memberDTO);
     }

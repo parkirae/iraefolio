@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iraefolio.mapper.PostMapper">
+
+    <!-- READ -->
+    <select id="read" resultType="com.iraefolio.domain.PostEntity">
+        SELECT * FROM TB_POST
+        <if test="CONTENT != null and !CONTENT.equals('')">
+            WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
+        </if>
+        ORDER BY POST_ID DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- CREATE -->
+    <insert id="create">
+        INSERT INTO TB_POST(USERNAME, WRITER, TITLE, CATEGORY, CONTENT, CREATE_DT)
+        VALUES (#{USERNAME}, #{WRITER}, #{TITLE}, #{CATEGORY}, #{CONTENT}, current_timestamp)
+    </insert>
+
+    <!-- UPDATE -->
+    <update id="update">
+        UPDATE TB_POST SET
+        UPDATE_DT = current_timestamp
+        <if test="isUpdated">
+            , TITLE = #{TITLE}
+            , CONTENT = #{CONTENT}
+            , CATEGORY = #{CATEGORY}
+        </if>
+        WHERE POST_ID = #{POST_ID}
+    </update>
+
+    <!-- DELETE -->
+    <delete id="delete">
+        DELETE FROM TB_POST
+        WHERE POST_ID = #{POST_ID}
+    </delete>
+
+    <!-- ReadCnt -->
+    <select id="readCnt" resultType="Integer">
+        SELECT COUNT(*)
+        FROM TB_POST
+        <if test="CONTENT != null and !CONTENT.equals('')">
+            WHERE CONTENT LIKE CONCAT('%', #{CONTENT}, '%')
+        </if>
+    </select>
+
+</mapper>

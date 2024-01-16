@@ -2,10 +2,12 @@ package com.iraefolio.controller;
 
 import com.iraefolio.domain.Member;
 import com.iraefolio.domain.MemberAuthority;
+import com.iraefolio.domain.PostEntity;
 import com.iraefolio.domain.ReviewEntity;
 import com.iraefolio.domain.dto.MemberAuthorityDTO;
 import com.iraefolio.domain.dto.MemberDTO;
 import com.iraefolio.service.AccountService;
+import com.iraefolio.service.HeaderService;
 import com.iraefolio.service.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,12 +32,15 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService service;
+    private final HeaderService headerService;
 
     /* PAGING */
     @Operation(summary = "account paging", description = "/account로 이동합니다.")
     @GetMapping
-    public ModelAndView review() {
+    public ModelAndView review() throws Exception {
         ModelAndView mav = new ModelAndView("account");
+        List<PostEntity> post = headerService.read();
+        mav.addObject("data", post);
         return mav;
     }
 
