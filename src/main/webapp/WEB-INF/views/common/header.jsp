@@ -22,7 +22,15 @@
   user.name = '${user.getName()}';
 
   let userAuthority = '${user.getAuthorities()}';
-  user.role = userAuthority.includes("ROLE_ADMIN") || userAuthority.includes("ROLE_SUPER") ? "ROLE_ADMIN" : "ROLE_USER";
+  if (userAuthority.includes('ROLE_SUPER')) {
+    user.role = "ROLE_SUPER";
+  } else if (userAuthority.includes('ROLE_ADMIN')) {
+    user.role = "ROLE_ADMIN";
+  } else if (userAuthority.includes('ROLE_USER')) {
+    user.role = 'ROLE_USER';
+  } else {
+    user.role = 'ROLE_ANONYMOUS'
+  }
 </script>
 
 <!-- HEADER -->
@@ -63,7 +71,7 @@
                 <ul id="SpringBoot">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'SpringBoot'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -83,7 +91,7 @@
                 <ul id="SpringSecurity">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'SpringSecurity'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -103,7 +111,7 @@
                 <ul id="MyBatis">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'MyBatis'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -123,7 +131,7 @@
                 <ul id="MariaDB">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'MariaDB'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -143,7 +151,7 @@
                 <ul id="jQuery">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'jQuery'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -163,7 +171,7 @@
                 <ul id="JSP">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'JSP'}">
-                      <li><a href="/">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -188,7 +196,6 @@
                   </c:otherwise>
                 </c:choose>
                 <ul id="isAdmin">
-                  <li><a href="/review">방명록</a></li>
                 </ul>
               </li>
             </ul>

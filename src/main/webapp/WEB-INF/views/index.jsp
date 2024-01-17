@@ -15,6 +15,13 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
 
 </head>
+<script>
+    $(document).ready(function () {
+        $(".main-header").animate(700, function () {
+            $(this).slideDown(700);
+        });
+    });
+</script>
 <body>
 <!-- Header -->
 <%@include file="common/header.jsp"%>
