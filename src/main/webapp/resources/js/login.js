@@ -96,7 +96,7 @@ let login = {
         if (e.keyCode === 13 && $("#password").val().length > 0) {
 
             $("#submitBtn").prop('disabled', false);
-
+            
         }
     })
    },

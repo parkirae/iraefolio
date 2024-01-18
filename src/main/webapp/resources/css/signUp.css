@@ -42,6 +42,7 @@
 
 .main .boxWrapper .input-box input[type="text"][name="username"],
 .main .boxWrapper .input-box input[type="password"][name="password"],
+.main .boxWrapper .input-box input[type="password"][name="secondPassword"],
 .main .boxWrapper .input-box input[type="text"][name="name"] {
   width: 350px;
   height: 50px;
@@ -52,6 +53,7 @@
 
 .main .boxWrapper .input-box input[type="text"][name="username"]:focus,
 .main .boxWrapper .input-box input[type="password"][name="password"]:focus,
+.main .boxWrapper .input-box input[type="password"][name="secondPassword"]:focus,
 .main .boxWrapper .input-box input[type="text"][name="name"]:focus {
   border: 1px solid #000;
   outline: none;

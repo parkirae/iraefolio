@@ -25,7 +25,7 @@
   if (userAuthority.includes('ROLE_SUPER')) {
     user.role = "ROLE_SUPER";
   } else if (userAuthority.includes('ROLE_ADMIN')) {
-    user.role = "ROLE_ADMIN";
+     user.role = "ROLE_ADMIN";
   } else if (userAuthority.includes('ROLE_USER')) {
     user.role = 'ROLE_USER';
   } else {

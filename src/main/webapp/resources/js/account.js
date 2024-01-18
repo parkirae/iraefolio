@@ -298,8 +298,8 @@ let account = {
       success: function (response) {
         alert(response)
       },
-      error: function (xhr, status, error) {
-        console.error("에러:", xhr.responseText);
+      error: function (response) {
+        alert("에러:", response);
       }
     });
   },

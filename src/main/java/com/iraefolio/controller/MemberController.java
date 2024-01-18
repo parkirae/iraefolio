@@ -1,6 +1,7 @@
 package com.iraefolio.controller;
 
 import com.iraefolio.domain.Member;
+import com.iraefolio.domain.MemberAuthority;
 import com.iraefolio.domain.dto.MemberDTO;
 import com.iraefolio.service.MemberService;
 import com.iraefolio.service.security.CustomUserDetailsService;
@@ -12,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,10 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Tag(name = "member Controller", description = "member Controller")
 @Log4j2
@@ -65,11 +72,47 @@ public class MemberController {
     }
 
     /* 회원 생성 */
+//    @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PostMapping("/create-user")
+//    public void createUser(@RequestBody MemberDTO memberDTO, HttpServletResponse response) throws Exception {
+//        /* 회원 생성 */
+//        boolean result = customUserDetailsService.createUser(memberDTO);
+//
+//        if (result) {
+//            log.error("성공");
+//            response.sendRedirect("/");
+//        } else {
+//            log.error("실패");
+//        }
+//    }
+
     @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create-user")
-    public void createUser(MemberDTO memberDTO) throws Exception {
+    public void createUser(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String authority, HttpServletResponse response) throws Exception {
+        // 회원 생성에 필요한 객체 생성
+
+        // 객체 Service로 전달
+
+        List<Object> authority2 = new ArrayList();
+        authority2.add(authority);
+
+        MemberDTO memberDTO = MemberDTO.builder()
+                .username(username)
+                .password(password)
+                .name(name)
+                .authorities(authority2)
+                .build();
+
         /* 회원 생성 */
-        customUserDetailsService.createUser(memberDTO);
+        boolean result = customUserDetailsService.createUser(memberDTO);
+
+        if (result) {
+            log.error("성공");
+            response.sendRedirect("/");
+        } else {
+            log.error("실패");
+        }
     }
 }
