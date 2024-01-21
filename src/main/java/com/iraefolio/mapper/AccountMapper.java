@@ -27,6 +27,9 @@ public interface AccountMapper {
     /* DELETE */
     boolean delete(Long memberId);
 
+    /* DELETE AUTHORTIY */
+    boolean deleteAuthority(Long memberId);
+
     /* ReadCNT */
     Integer readCnt(Member member);
 }

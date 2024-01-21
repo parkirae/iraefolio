@@ -41,7 +41,7 @@
             </div>
         </div>
         <dialog style="display: none">
-            <form action="/create-user" method="post" id="signInForm">
+            <form method="post" id="signInForm">
                 <table>
                     <tbody>
                     <tr style="height: 30px">
@@ -60,7 +60,7 @@
                     <tr>
                         <td><div id="nameBox">이름</div></td>
                         <td><input type="text" id="name" maxlength="20" placeholder="이름을 입력하세요." disabled></td>
-                        <td><p id="nameInform" style="display: none">아이디를 입력하고 엔터를 쳐보세요!</p></td>
+                        <td><p id="nameInform" style="display: none">이름을 입력하고 엔터를 쳐보세요!</p></td>
                     </tr>
                     <tr>
                         <td><div id="authorityBox">권한</div></td>
@@ -72,13 +72,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <button type="submit" id="create" disabled>등록</button>
+                        <button type="button" id="create" disabled>등록</button>
                         <button type="button" id="close">닫기</button>
                     </tr>
                     </tbody>
-
                 </table>
-
             </form>
         </dialog>
     </div>

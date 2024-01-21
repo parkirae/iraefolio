@@ -43,6 +43,7 @@ public class AccountService {
                 }
             } else if (e.isDeleted()) {
                 mapper.delete(e.getMemberId());
+                mapper.deleteAuthority(e.getMemberId());
             }
         }
     }

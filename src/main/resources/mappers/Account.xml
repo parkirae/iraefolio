@@ -62,6 +62,12 @@
         WHERE memberId = #{memberId}
     </delete>
 
+    <!-- DELETE AUTHORITY -->
+    <delete id="deleteAuthority">
+        DELETE FROM TB_MEMBER_AUTHORITY
+        WHERE memberId = #{memberId}
+    </delete>
+
     <!-- ReadCnt -->
     <select id="readCnt" resultType="Integer">
         SELECT COUNT(*)

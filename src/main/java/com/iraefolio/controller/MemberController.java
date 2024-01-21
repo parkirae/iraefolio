@@ -72,47 +72,11 @@ public class MemberController {
     }
 
     /* 회원 생성 */
-//    @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    @PostMapping("/create-user")
-//    public void createUser(@RequestBody MemberDTO memberDTO, HttpServletResponse response) throws Exception {
-//        /* 회원 생성 */
-//        boolean result = customUserDetailsService.createUser(memberDTO);
-//
-//        if (result) {
-//            log.error("성공");
-//            response.sendRedirect("/");
-//        } else {
-//            log.error("실패");
-//        }
-//    }
-
     @Operation(summary = "회원 생성", description = "회원을 생성합니다.")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create-user")
-    public void createUser(@RequestParam String username, @RequestParam String password, @RequestParam String name, @RequestParam String authority, HttpServletResponse response) throws Exception {
-        // 회원 생성에 필요한 객체 생성
-
-        // 객체 Service로 전달
-
-        List<Object> authority2 = new ArrayList();
-        authority2.add(authority);
-
-        MemberDTO memberDTO = MemberDTO.builder()
-                .username(username)
-                .password(password)
-                .name(name)
-                .authorities(authority2)
-                .build();
-
+    public void createUser(@RequestBody MemberDTO memberDTO) throws Exception {
         /* 회원 생성 */
-        boolean result = customUserDetailsService.createUser(memberDTO);
-
-        if (result) {
-            log.error("성공");
-            response.sendRedirect("/");
-        } else {
-            log.error("실패");
-        }
+        customUserDetailsService.createUser(memberDTO);
     }
 }

@@ -48,7 +48,6 @@ let account = {
           header: "이름",
           name: "name",
           align: "center",
-          editor: 'text'
         },
         {
           header: "권한",
@@ -158,8 +157,18 @@ let account = {
     $(".btn-create").click(function () {
       $("dialog").show();
       $("dialog").attr('style', 'display: block');
-      $("#username").val('');
       $("#username").focus();
+
+      $("#username").val('');
+      $("#password").val('');
+      $("#name").val('');
+      $("#authority").val('ROLE_USER');
+
+      $("#usernameInform").text('아이디를 입력하고 엔터를 쳐보세요!');
+      $("#passwordInform").text('');
+      $("#nameInform").text('');
+
+      $("#authority").attr('disabled', true);
       $("#create").text('등록');
       $("#update").css('display', 'none');
     });
@@ -208,6 +217,7 @@ let account = {
           setTimeout(function () {
             $("#password").focus();
             $("#passwordInform").attr('style', 'display: show');
+            $("#passwordInform").text('비밀번호를 입력하고 엔터를 쳐보세요!');
           }, 0);
         }
       }
@@ -242,6 +252,7 @@ let account = {
           setTimeout(function () {
             $("#name").focus();
             $("#nameInform").attr('style', 'display: show');
+            $("#nameInform").text('이름을 입력하고 엔터를 쳐보세요!');
           }, 0);
         }
       });
@@ -293,13 +304,12 @@ let account = {
         name: $("#name").val(),
         authority: $("#authority").val()
       }),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
+      contentType:"application/json; charset=utf-8",
       success: function (response) {
-        alert(response)
+        $("dialog").hide();
+        _this.read();
       },
       error: function (response) {
-        alert("에러:", response);
       }
     });
   },
