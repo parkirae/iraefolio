@@ -30,7 +30,7 @@
 
             <c:choose>
                 <c:when test="${user != null}">
-                    <div class="text">팁: 제목 또는 내용을 더블 클릭 해보세요!<br />
+                    <div class="text">팁: 게시글은 운영자만 관리할 수 있어요.<br />
                         <p class="plain">번호를 누르면 상세 수정할 수 있어요!</p>
                     </div>
                 </c:when>

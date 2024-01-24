@@ -1,7 +1,7 @@
 /* FOOTER */
 footer {
   margin-top: 10px;
-  background-color: #f9f9fc;
+  background-color: var(--background-color);
   position: fixed;
   bottom: 0;
   width: 100%;

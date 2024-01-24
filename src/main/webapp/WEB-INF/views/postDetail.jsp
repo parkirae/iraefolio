@@ -32,15 +32,30 @@
 
             <span id="writer">${detail.WRITER}</span><br />
 
-            <span id="create_dt">업데이트 ${detail.CREATE_DT}</span><br />
+            <span id="create_dt">입력 ${detail.CREATE_DT}</span><br />
+
+            <c:if test="${detail.UPDATE_DT != null}">
+                <button id="showUpdate">
+                    <img src="../../resources/images/common/arrow.png" />
+                </button>
+
+                <div id="update_dt" style="display: none;">
+                    <p>업데이트 ${detail.UPDATE_DT}</p>
+                </div>
+            </c:if>
 
             <div id="hr" />
 
-            <span id="content">${detail.CONTENT}</span>
         </div>
+
+        <div class="content-box">
+            <span id="content">${detail.CONTENT}</span><br />
+
+            <div id="divBox" />
+        </div>
+
     </div>
 </section>
-
 <!-- Footer -->
 <%@include file="common/footer.jsp"%>
 </body>

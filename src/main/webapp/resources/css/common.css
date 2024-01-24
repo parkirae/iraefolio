@@ -4,6 +4,13 @@
     src: url("./fonts/SF-Pro-Display-Regular.woff") format("woff");
 }
 
+:root {
+    --background-color: #f9f9fc;
+    --accent-color: #0066CC;
+    --hyperlink-color: #00a9ff;
+    --inform-color: #ccccd1;
+}
+
 body {
     font-family: "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
     font-size: 16px;

@@ -44,20 +44,60 @@
   top: 20px;
 }
 
+.main .inner .byline-box #showUpdate {
+  position: relative;
+  background-color: #fff;
+  border: 0px;
+  width: 20px;
+  height: 15px;
+  left: 130px;
+}
+
+.main .inner .byline-box #showUpdate img {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  right: 11px;
+  top: -8px;
+}
+
+.main .inner .byline-box #update_dt {
+  position: relative;
+  font-size: 16px;
+  top: 5px;
+}
+
 .main .inner .byline-box #hr {
   position: relative;
+  display: block;
+  margin-top: 20px;
   background-color: #5a6268;
+  padding: 0;
   width: 50%;
   height: 1px;
-  top: 30px;
+  top: 10px;
 }
 
-.main .inner .byline-box #content {
+.main .inner .content-box {
+  height: 80px;
+  width: 100%;
   position: relative;
-  top: 30px;
-  font-size: 20px;
 }
 
-.main .inner .byline-box #content img {
+.main .inner .content-box #content {
+  position: relative;
+  font-size: 20px;
+  top: 30px;
   width: 600px;
+  text-align: justify;
+  display: block;
+  line-height: 1.67;
+}
+
+.main .inner .content-box #content img {
+  width: 600px;
+}
+
+.main .inner .content-box #divBox {
+  height: 200px;
 }
