@@ -14,15 +14,4 @@ public interface HeaderMapper {
     /* READ DETAIL */
     PostEntity readDetail(String title);
 
-//    /* ReadCNT */
-//    Integer readCnt(PostEntity entity);
-//
-//    /* CREATE */
-//    boolean create(PostEntity entity);
-//
-//    /* UPDATE */
-//    boolean update(PostEntity entity);
-//
-//    /* DELETE */
-//    boolean delete(PostEntity entity);
 }

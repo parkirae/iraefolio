@@ -1,5 +1,40 @@
 /* POST DETAIL */
 
+html {
+  height : auto;
+  min-height: 100%;
+}
+
+/* COMMON */
+.divBox {
+  height: 100px;
+}
+
+textarea {
+  all: unset;
+  border: 1px solid var(--inform-color);
+  border-radius: 7px;
+  width: 100%;
+}
+
+textarea::placeholder {
+  font-size: 20px;
+  width: 500px;
+  height: 20px;
+  padding: 10px;
+}
+
+.hr {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+  background-color: #5a6268;
+  padding: 0;
+  width: 50%;
+  height: 1px;
+  top: 10px;
+}
+
 /* main */
 .main {
   margin-top: 40px;
@@ -25,7 +60,7 @@
 
 .main .inner .byline-box #title {
   position: relative;
-  top: 15px;
+  top: 10px;
   font-size: 35px;
   font-weight: 700;
   width: 600px;
@@ -35,25 +70,26 @@
 .main .inner .byline-box #writer {
   position: relative;
   font-size: 17px;
-  top: 10px;
+  top: 20px;
 }
 
 .main .inner .byline-box #create_dt {
   position: relative;
   font-size: 16px;
-  top: 20px;
+  top: 15px;
 }
 
-.main .inner .byline-box #showUpdate {
+.main .inner .byline-box #create_dt #showUpdate {
   position: relative;
   background-color: #fff;
   border: 0px;
   width: 20px;
   height: 15px;
-  left: 130px;
+  top: 17px;
+  cursor: pointer;
 }
 
-.main .inner .byline-box #showUpdate img {
+.main .inner .byline-box #create_dt #showUpdate img {
   position: relative;
   width: 30px;
   height: 30px;
@@ -61,25 +97,15 @@
   top: -8px;
 }
 
-.main .inner .byline-box #update_dt {
+.main .inner .byline-box #create_dt #update_dt {
   position: relative;
   font-size: 16px;
   top: 5px;
-}
-
-.main .inner .byline-box #hr {
-  position: relative;
-  display: block;
-  margin-top: 20px;
-  background-color: #5a6268;
-  padding: 0;
-  width: 50%;
-  height: 1px;
-  top: 10px;
+  display: none;
 }
 
 .main .inner .content-box {
-  height: 80px;
+  height: auto;
   width: 100%;
   position: relative;
 }
@@ -98,6 +124,94 @@
   width: 600px;
 }
 
-.main .inner .content-box #divBox {
-  height: 200px;
+.main .inner .comment-box {
+  position: relative;
+  width: 50%;
+}
+
+.main .inner .comment-box .comment-box-title {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.main .inner .comment-box-submit {
+  border-radius: 7px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main .inner .comment-box-submit #commentSubmit {
+  position: relative;
+  top: 5px;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 7px;
+  color: white;
+  width: 120px;
+  height: 30px;
+}
+
+.main .inner .comment-box .hr {
+  width: 100%;
+  height: 2px;
+}
+
+.main .inner .comment-box-comment {
+  position: relative;
+  top: 10px;
+  background-color: var(--background-color);
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.main .inner .comment-box-comment #commentWriter {
+  position: relative;
+  display: flex;
+  left: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  align-items: center;
+}
+
+.main .inner .comment-box-comment #commentUsername {
+  font-size: 17px;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.main .inner .comment-box-comment .commentMenu {
+  position: relative;
+  background: none;
+  display: block;
+  margin-left: auto;
+  border: 0px;
+  cursor: pointer;
+}
+
+.main .inner .comment-box-comment .commentMenu img {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  opacity: 70%;
+}
+
+.main .inner .comment-box-comment #commentCreateDT {
+  position: relative;
+  font-size: 15px;
+  margin-top: 3px;
+  left: 5px;
+  font-weight: 400;
+  opacity: 70%;
+}
+
+.main .inner .comment-box-comment #commentContent {
+  position: relative;
+  left: 5px;
+  top: 10px;
+  font-size: 17px;
+  text-align: justify;
+  margin-right: 10px;
 }

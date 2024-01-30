@@ -24,7 +24,7 @@ header .logo img {
 header .main-menu {
   display: flex;
   position: absolute;
-  left: 190px;
+  left: 180px;
   z-index: 1;
 }
 

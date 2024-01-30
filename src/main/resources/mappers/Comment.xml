@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iraefolio.mapper.CommentMapper">
+
+    <!-- READ -->
+    <select id="read" resultType="com.iraefolio.domain.CommentEntity">
+        SELECT *
+        FROM TB_COMMENT
+        WHERE post_Id = #{postId}
+    </select>
+
+    <insert id="create">
+        INSERT INTO TB_COMMENT(USERNAME, MEMBER_ID, WRITER, CONTENT, POST_ID, CREATE_DT)
+        VALUES (#{USERNAME}, #{MEMBER_ID}, #{WRITER}, #{CONTENT}, #{POST_ID}, current_timestamp)
+    </insert>
+
+</mapper>

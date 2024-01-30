@@ -1,8 +1,9 @@
 package com.iraefolio.service;
 
+import com.iraefolio.domain.CommentEntity;
 import com.iraefolio.domain.PostEntity;
+import com.iraefolio.mapper.CommentMapper;
 import com.iraefolio.mapper.HeaderMapper;
-import com.iraefolio.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -14,19 +15,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class HeaderService {
+public class CommentService {
 
-    private final HeaderMapper mapper;
+    private final CommentMapper mapper;
 
     /* READ */
-    public List<PostEntity> read() throws Exception {
-        List<PostEntity> list = mapper.read();
+    public List<CommentEntity> read(int postId) throws Exception {
+        List<CommentEntity> list = mapper.read(postId);
         return list;
     }
 
-    /* READ DETAIL */
-    public PostEntity readDetail(String title) throws Exception {
-        PostEntity detail = mapper.readDetail(title);
-        return detail;
+    /* CREATE */
+    public void create(CommentEntity entity) throws Exception {
+        mapper.create(entity);
     }
+
 }

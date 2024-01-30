@@ -35,9 +35,11 @@ public class IndexController {
     @Operation(summary = "login", description = "/login로 이동하거나 login 실패 시 안내 문구를 출력합니다.")
     @GetMapping("/login")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView login(@RequestParam(required = false) boolean error, @RequestParam(required = false) String exception) {
+    public ModelAndView login(@RequestParam(required = false) boolean error, @RequestParam(required = false) String exception) throws Exception {
 
         ModelAndView mav = new ModelAndView("login");
+        List<PostEntity> post = service.read();
+        mav.addObject("data", post);
 
         /* 로그인 실패 */
         if (error) {

@@ -4,10 +4,10 @@
 <!-- Common CSS -->
 <link rel="stylesheet" href="../../resources/css/common.css" />
 
-<!-- Header CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="../../resources/css/header.css" />
 
-<!-- Header JS -->
+<!-- JS -->
 <script src="../../resources/js/header.js"></script>
 
 <!-- 사용자 정보 -->
@@ -20,6 +20,7 @@
   let user = {};
   user.username = '${user.getUsername()}';
   user.name = '${user.getName()}';
+  user.memberId = '${user.getMemberId()}';
 
   let userAuthority = '${user.getAuthorities()}';
   if (userAuthority.includes('ROLE_SUPER')) {
@@ -192,7 +193,7 @@
                     <h4>${user.getName()} 님의 상상력을 여기서!</h4>
                   </c:when>
                   <c:otherwise>
-                    <h4>더 많은 기능을 이용하시려면 <a href="login">로그인</a>하세요!</h4>
+                    <h4>더 많은 기능을 이용하시려면 <a href="/login">로그인</a>하세요!</h4>
                   </c:otherwise>
                 </c:choose>
                 <ul id="isAdmin">

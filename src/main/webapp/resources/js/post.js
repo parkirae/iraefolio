@@ -180,8 +180,6 @@ let post = {
             $("#create").css('display', 'block');
         });
 
-        /* 등록 버튼 눌렀을 경우
-      * 이게 지금 수정에도 콜 되니까 잘못된 거잖아. */
         $("#create").click(function () {
 
             /* 제목 입력 안 했을 경우 */
