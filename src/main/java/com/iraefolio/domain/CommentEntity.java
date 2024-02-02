@@ -23,6 +23,8 @@ public class CommentEntity extends BaseEntity implements Serializable  {
 
     private int MEMBER_ID;
 
+    private String CATEGORY;
+
     private String USERNAME;
 
     private String WRITER;

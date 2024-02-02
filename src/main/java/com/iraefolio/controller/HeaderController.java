@@ -32,18 +32,18 @@ public class HeaderController {
     private final CommentService commentService;
 
     /* DETAIL */
-    @GetMapping("/{title}")
-    public String getPostByTitle(@PathVariable String title, Model model) throws Exception {
+    @GetMapping("/{category}/{post_id}")
+    public String getPostByTitle(@PathVariable String category, @PathVariable String post_id, Model model) throws Exception {
         List<PostEntity> post = service.read();
         model.addAttribute("data", post);
 
-        // {title}을 가지고 게시글 정보 불러오는 로직 수행
-        PostEntity detail = service.readDetail(title);
+        // 게시글 정보 불러오는 로직 수행
+        PostEntity detail = service.readDetail(category, post_id);
         // 불러온 데이터를 JSP에 전달하는 로직 수행
         model.addAttribute("detail", detail);
 
-        // {title}을 가지고 댓글 정보 불러오는 로직 수행
-        List<CommentEntity> comment = commentService.read(detail.getPOST_ID());
+        // 댓글 정보 불러오는 로직 수행
+        List<CommentEntity> comment = commentService.read(category, post_id);
         // 불러온 데이터를 JSP에 전달하는 로직 수행
         model.addAttribute("comment", comment);
 
@@ -52,16 +52,16 @@ public class HeaderController {
     }
 
     /* READ */
-    @Operation(summary = "READ comment data", description = "comment의 데이터를 읽어옵니다.")
-    @PutMapping
-    public ResponseEntity read(@RequestBody CommentEntity entity, BindingResult bindingResult) throws Exception {
-
-        if (bindingResult.hasErrors()) throw new BindException(bindingResult);
-
-        List<CommentEntity> list = commentService.read(entity.getPOST_ID());
-
-        return ResponseEntity.ok(list);
-    }
+//    @Operation(summary = "READ comment data", description = "comment의 데이터를 읽어옵니다.")
+//    @PutMapping
+//    public ResponseEntity read(@RequestBody CommentEntity entity, BindingResult bindingResult) throws Exception {
+//
+//        if (bindingResult.hasErrors()) throw new BindException(bindingResult);
+//
+//        List<CommentEntity> list = commentService.read(entity.getPOST_ID());
+//
+//        return ResponseEntity.ok(list);
+//    }
 
     /* CREATE */
     @Operation(summary = "CREATE comment", description = "새로운 comment를 작성합니다.")

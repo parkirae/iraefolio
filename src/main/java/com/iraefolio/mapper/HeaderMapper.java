@@ -12,6 +12,6 @@ public interface HeaderMapper {
     List<PostEntity> read();
 
     /* READ DETAIL */
-    PostEntity readDetail(String title);
+    PostEntity readDetail(String category, String post_id);
 
 }

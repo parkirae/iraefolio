@@ -6,14 +6,17 @@
 
     <!-- READ -->
     <select id="read" resultType="com.iraefolio.domain.PostEntity">
-        SELECT TITLE, CATEGORY
+        SELECT TITLE, CATEGORY, POST_ID
         FROM TB_POST
     </select>
 
     <!-- READ DETAIL -->
     <select id="readDetail" resultType="com.iraefolio.domain.PostEntity">
         SELECT * FROM TB_POST
-        WHERE TITLE = #{title}
+        WHERE
+        1=1
+        AND CATEGORY = #{category}
+        AND POST_ID = #{post_id}
     </select>
 
 </mapper>

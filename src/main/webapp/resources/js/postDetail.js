@@ -6,6 +6,9 @@ let postDetail = {
     init: function () {
         let _this = this;
 
+        // let savedScrollPosition = localStorage.getItem('scrollPosition') || 0;
+        // window.scrollTo(0, savedScrollPosition);
+
         /* 업데이트 일자 보기 */
         $("#showUpdate").on("click", function(){
             $("#update_dt").toggle();
@@ -14,7 +17,7 @@ let postDetail = {
         /* 로그인 상태가 아니라면 */
         $("#isNotLoggedIn").on('click', function() {
             if (confirm("로그인 후 이용해주세요,.")) {
-                window.location.href = '/login';
+                location.href = '/login';
             }
         })
 
@@ -37,8 +40,6 @@ let postDetail = {
                 // 수정, 삭제 노출하기
 
 
-                // 수정 선택 시 input으로 변경
-
             } else {
                 alert("자신의 댓글만 수정할 수 있습니다.");
             }
@@ -53,14 +54,21 @@ let postDetail = {
             data.content = $("#isLoggedIn").val();
             data.post_id = $("#postID").val();
             data.writer = $("#writer").text();
+            data.category = $("#postCategory").val();
             _this.create(data);
         })
+
     },
 
     /* CRUD 함수들 */
     /* CREATE */
     create: function (data) {
         let _this = this;
+        let currentPage = $("#postCategory").val() + "/" +$("#postID").val();
+
+        // 현재 스크롤 위치를 저장
+        // let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+        // localStorage.setItem('scrollPosition', scrollPosition);
 
         $.ajax({
             type: "POST",
@@ -72,16 +80,18 @@ let postDetail = {
                 member_id: data.member_id,
                 content: data.content,
                 post_id: data.post_id,
-                writer: data.writer
+                writer: data.writer,
+                category: data.category
             }),
             success: function() {
-                _this.read();
+                location.href = `/header/` + currentPage;
             },
             error: function (xhr, status, error) {
             }
         })
     },
 
+    /* READ */
     read: function () {
         let _this = this;
 
@@ -91,14 +101,13 @@ let postDetail = {
             async: false,
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify({
-                postId: $("#postID").val()
+                post_id: $("#postID").val()
             }),
-            success: function() {
-
+            success: function(response) {
+                console.log(response);
             },
             error: function (xhr, status, error) {
             }
         })
-    }
-
+    },
 }

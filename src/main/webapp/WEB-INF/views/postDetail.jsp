@@ -63,6 +63,8 @@
                     <div class="comment-box-submit">
                         <button type="button" id="commentSubmit">등록</button>
                         <input type="hidden" id="postID" value="${detail.POST_ID}">
+                        <input type="hidden" id="postTitle" value="${detail.TITLE}">
+                        <input type="hidden" id="postCategory" value="${detail.CATEGORY}">
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -70,8 +72,8 @@
                 </c:otherwise>
             </c:choose>
 
+            <c:if test="${comment.size() != 0}">
             <div class="hr" />
-
             <div class="comment-box-comment">
                 <c:forEach items="${comment}" var="comment">
                     <div id="commentWriter">
@@ -85,13 +87,14 @@
 
                         </button>
                     </div>
-                    <div id="commentCreateDT">${comment.CREATE_DT.year}년${comment.CREATE_DT.monthValue}월${comment.CREATE_DT.dayOfMonth}일 ${comment.CREATE_DT.hour}:${comment.CREATE_DT.minute}</div>
+                        <div id="commentCreateDT">${comment.CREATE_DT}</div>
+<%--                    <div id="commentCreateDT">${comment.CREATE_DT.year}년${comment.CREATE_DT.monthValue}월${comment.CREATE_DT.dayOfMonth}일 ${comment.CREATE_DT.hour}:${comment.CREATE_DT.minute}</div>--%>
                     <div id="commentContent">${comment.CONTENT}</div>
 
                     <br/>
                 </c:forEach>
             </div>
-
+            </c:if>
             <div class="divBox"></div>
             <div class="divBox"></div>
             <div class="divBox"></div>

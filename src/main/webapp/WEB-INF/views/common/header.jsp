@@ -33,7 +33,6 @@
     user.role = 'ROLE_ANONYMOUS'
   }
 </script>
-
 <!-- HEADER -->
 <header>
   <div class="inner">
@@ -52,7 +51,7 @@
                 <ul id="JAVA">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'JAVA'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -72,7 +71,7 @@
                 <ul id="SpringBoot">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'SpringBoot'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -92,7 +91,7 @@
                 <ul id="SpringSecurity">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'SpringSecurity'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -112,7 +111,7 @@
                 <ul id="MyBatis">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'MyBatis'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -132,7 +131,7 @@
                 <ul id="MariaDB">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'MariaDB'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -152,7 +151,7 @@
                 <ul id="jQuery">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'jQuery'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>
@@ -172,7 +171,7 @@
                 <ul id="JSP">
                   <c:forEach var="item" items="${data}">
                     <c:if test="${item.CATEGORY eq 'JSP'}">
-                      <li><a href="/header/${item.TITLE}">${item.TITLE}</a></li>
+                      <li><a href="/header/${item.CATEGORY}/${item.POST_ID}">${item.TITLE}</a></li>
                     </c:if>
                   </c:forEach>
                 </ul>

@@ -8,12 +8,15 @@
     <select id="read" resultType="com.iraefolio.domain.CommentEntity">
         SELECT *
         FROM TB_COMMENT
-        WHERE post_Id = #{postId}
+        WHERE
+        1=1
+        AND CATEGORY = #{category}
+        AND POST_ID = #{post_id}
     </select>
 
     <insert id="create">
-        INSERT INTO TB_COMMENT(USERNAME, MEMBER_ID, WRITER, CONTENT, POST_ID, CREATE_DT)
-        VALUES (#{USERNAME}, #{MEMBER_ID}, #{WRITER}, #{CONTENT}, #{POST_ID}, current_timestamp)
+        INSERT INTO TB_COMMENT(USERNAME, MEMBER_ID, WRITER, CONTENT, POST_ID, CATEGORY, CREATE_DT)
+        VALUES (#{USERNAME}, #{MEMBER_ID}, #{WRITER}, #{CONTENT}, #{POST_ID}, #{CATEGORY}, current_timestamp)
     </insert>
 
 </mapper>

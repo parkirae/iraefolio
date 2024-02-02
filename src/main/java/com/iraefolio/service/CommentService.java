@@ -20,8 +20,8 @@ public class CommentService {
     private final CommentMapper mapper;
 
     /* READ */
-    public List<CommentEntity> read(int postId) throws Exception {
-        List<CommentEntity> list = mapper.read(postId);
+    public List<CommentEntity> read(String category, String post_id) throws Exception {
+        List<CommentEntity> list = mapper.read(category, post_id);
         return list;
     }
 

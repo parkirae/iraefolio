@@ -10,7 +10,7 @@ import java.util.List;
 public interface CommentMapper {
 
     /* READ */
-    List<CommentEntity> read(int postId);
+    List<CommentEntity> read(String category, String post_id);
 
     /* CREATE */
     boolean create(CommentEntity entity);

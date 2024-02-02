@@ -25,8 +25,8 @@ public class HeaderService {
     }
 
     /* READ DETAIL */
-    public PostEntity readDetail(String title) throws Exception {
-        PostEntity detail = mapper.readDetail(title);
+    public PostEntity readDetail(String category, String post_id) throws Exception {
+        PostEntity detail = mapper.readDetail(category, post_id);
         return detail;
     }
 }
