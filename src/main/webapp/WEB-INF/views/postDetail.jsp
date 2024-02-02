@@ -26,7 +26,21 @@
 
     <div class="inner">
         <div class="byline-box">
-            <div id="category">${detail.CATEGORY} > 가장 완벽한 객체지향 언어</div><br />
+            <div id="category">${detail.CATEGORY} >
+                <c:set var="categoryMessages" value="${{
+                    'JAVA': '가장 완벽한 객체지향 언어',
+                    'SpringBoot': '더 쉽고, 안전하게',
+                    'SpringSecurity': '강력한 보안',
+                    'MyBatis': '가뿐하게, 강력하게',
+                    'MariaDB': '영속; 영원히 계속하다',
+                    'jQuery': '적은 것이 많은 것',
+                    'JSP': '펼치다'
+                    }}"
+                />
+
+            <c:out value="${categoryMessages[detail.CATEGORY]}" default=""/>
+
+            </div><br />
 
             <div id="title">${detail.TITLE}</div><br />
 
