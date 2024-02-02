@@ -110,17 +110,16 @@
             </div>
             </c:if>
             <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-            <div class="divBox"></div>
-
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
+<%--            <div class="divBox"></div>--%>
         </div>
     </div>
 </section>
