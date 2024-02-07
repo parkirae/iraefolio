@@ -24,6 +24,10 @@
 
 <section class="main">
 
+    <input type="hidden" id="postID" value="${detail.POST_ID}">
+    <input type="hidden" id="postTitle" value="${detail.TITLE}">
+    <input type="hidden" id="postCategory" value="${detail.CATEGORY}">
+
     <div class="inner">
         <div class="byline-box">
             <div id="category">${detail.CATEGORY} >
@@ -76,9 +80,6 @@
                     <textarea id="isLoggedIn" placeholder="댓글을 입력하세요."></textarea>
                     <div class="comment-box-submit">
                         <button type="button" id="commentSubmit">등록</button>
-                        <input type="hidden" id="postID" value="${detail.POST_ID}">
-                        <input type="hidden" id="postTitle" value="${detail.TITLE}">
-                        <input type="hidden" id="postCategory" value="${detail.CATEGORY}">
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -88,26 +89,7 @@
 
             <c:if test="${comment.size() != 0}">
             <div class="hr" />
-            <div class="comment-box-comment">
-                <c:forEach items="${comment}" var="comment">
-                    <div id="commentWriter">
-                        <p>${comment.WRITER} </p>
-                        <p id="commentUsername">(${comment.USERNAME})</p>
-                        <button class="commentMenu">
-                            <img src="../../resources/images/common/kebab.png" />
-
-                            <input type="hidden" class="commentId" value="${comment.COMMENT_ID}">
-                            <input type="hidden" class="commentUsername" value="${comment.USERNAME}">
-
-                        </button>
-                    </div>
-                        <div id="commentCreateDT">${comment.CREATE_DT}</div>
-<%--                    <div id="commentCreateDT">${comment.CREATE_DT.year}년${comment.CREATE_DT.monthValue}월${comment.CREATE_DT.dayOfMonth}일 ${comment.CREATE_DT.hour}:${comment.CREATE_DT.minute}</div>--%>
-                    <div id="commentContent">${comment.CONTENT}</div>
-
-                    <br/>
-                </c:forEach>
-            </div>
+            <div class="comment-box-comment"></div>
             </c:if>
             <div class="divBox"></div>
 <%--            <div class="divBox"></div>--%>

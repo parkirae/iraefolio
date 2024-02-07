@@ -22,3 +22,6 @@
 <%-- Sweet Alert2 --%>
 <link rel="stylesheet" href="../../resources/library/sweetAlert2.css">
 <script src="../../resources/library/sweetAlert2.js"></script>
+
+<%-- Moment JS --%>
+<script src="../../resources/library/moment.js"></script>

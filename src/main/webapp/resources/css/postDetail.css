@@ -189,6 +189,7 @@ textarea::placeholder {
   margin-left: auto;
   border: 0px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .main .inner .comment-box-comment .commentMenu img {
@@ -196,16 +197,31 @@ textarea::placeholder {
   width: 20px;
   height: 20px;
   opacity: 70%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.main .inner .comment-box-comment .commentMenu .delete {
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  border: 1px solid var(--inform-color);
+  border-radius: 5px;
+  background-color: #fff;
+  display: none;
+  height: 20px;
+  width: 40px;
+  cursor: pointer;
 }
 
 .main .inner .comment-box-comment #commentCreateDT {
   position: relative;
   font-size: 15px;
-  margin-top: 3px;
   left: 5px;
   font-weight: 400;
   opacity: 70%;
 }
+
 
 .main .inner .comment-box-comment #commentContent {
   position: relative;

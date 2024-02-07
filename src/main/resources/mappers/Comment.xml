@@ -19,4 +19,10 @@
         VALUES (#{USERNAME}, #{MEMBER_ID}, #{WRITER}, #{CONTENT}, #{POST_ID}, #{CATEGORY}, current_timestamp)
     </insert>
 
+    <delete id="delete">
+        DELETE FROM TB_COMMENT
+        WHERE
+        1=1
+        AND COMMENT_ID = #{COMMENT_ID}
+    </delete>
 </mapper>

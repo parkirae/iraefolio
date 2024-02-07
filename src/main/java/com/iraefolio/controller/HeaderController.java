@@ -3,12 +3,14 @@ package com.iraefolio.controller;
 import com.iraefolio.domain.CommentEntity;
 import com.iraefolio.domain.PostEntity;
 import com.iraefolio.domain.ReviewEntity;
+import com.iraefolio.domain.dto.DetailDTO;
 import com.iraefolio.service.CommentService;
 import com.iraefolio.service.HeaderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -52,22 +54,29 @@ public class HeaderController {
     }
 
     /* READ */
-//    @Operation(summary = "READ comment data", description = "comment의 데이터를 읽어옵니다.")
-//    @PutMapping
-//    public ResponseEntity read(@RequestBody CommentEntity entity, BindingResult bindingResult) throws Exception {
-//
+    @Operation(summary = "READ comment data", description = "comment의 데이터를 읽어옵니다.")
+    @PutMapping
+    public ResponseEntity read(@RequestBody DetailDTO detailDTO) throws Exception {
+
 //        if (bindingResult.hasErrors()) throw new BindException(bindingResult);
-//
-//        List<CommentEntity> list = commentService.read(entity.getPOST_ID());
-//
-//        return ResponseEntity.ok(list);
-//    }
+
+        List<CommentEntity> list = commentService.read(detailDTO.getCATEGORY(), detailDTO.getPOST_ID());
+
+        return ResponseEntity.ok(list);
+    }
 
     /* CREATE */
     @Operation(summary = "CREATE comment", description = "새로운 comment를 작성합니다.")
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void create(@Valid @RequestBody CommentEntity entity) throws Exception {
+    public ResponseEntity<Void> create(@Valid @RequestBody CommentEntity entity) throws Exception {
         commentService.create(entity);
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "DELETE comment", description = "comment를 삭제합니다.")
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@RequestBody CommentEntity entity) throws Exception {
+        commentService.delete(entity);
+        return ResponseEntity.ok().build();
     }
 }

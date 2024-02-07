@@ -15,4 +15,7 @@ public interface CommentMapper {
     /* CREATE */
     boolean create(CommentEntity entity);
 
+    /* DELETE */
+    boolean delete(CommentEntity entity);
+
 }
