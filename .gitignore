@@ -11,6 +11,8 @@
 .gradle/
 .idea/
 
+.application.yml
+
 ### Java ###
 # Compiled class file
 *.class
