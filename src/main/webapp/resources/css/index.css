@@ -45,14 +45,11 @@ html {
     background-color: #2997FF;
     border-radius: 7px;
     font-size: 12px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .main-header .inner #btn-signIn {
-    font-size: 12px;
-    color: #fff;
-}
-
-.main-header .inner #btn-logout {
     font-size: 12px;
     color: #fff;
 }

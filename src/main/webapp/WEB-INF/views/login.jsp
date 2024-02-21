@@ -41,6 +41,7 @@
                 <input type="password" name="password" id="password" placeholder=" 비밀번호를 입력해주세요." autocomplete="new-password" style="display: none"/>
                 <img src="../../resources/images/common/return.png" alt="return icon" id="passwordIcon" class="icon" style="display: none"/>
                 <p id="pwInformation" style="display: none">비밀번호를 입력하고 엔터를 쳐보세요!</p>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <button type="submit" id="submitBtn" style="display: none" disabled></button>
                 <c:if test="${error != null}">
                     <p id="loginFailMsg">${exception}</p>

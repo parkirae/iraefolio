@@ -14,14 +14,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../../resources/css/index.css">
 
+    <!-- JS -->
+    <script type="text/javascript" src="../../resources/js/index.js"></script>
+
+    <!-- CSRF -->
+    <meta name="_csrf" content="${_csrf.token}"/>
 </head>
-<script>
-    $(document).ready(function () {
-        $(".main-header").animate(700, function () {
-            $(this).slideDown(700);
-        });
-    });
-</script>
 <body>
 <!-- Header -->
 <%@include file="common/header.jsp"%>
@@ -41,7 +39,9 @@
         </div>
             <c:choose>
                 <c:when test="${user != null}">
-                    <div class="logout"><a href="/logout" id="btn-logout">logout</a></div>
+                    <div class="logout">logout
+                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <div class="logout"><a href="/signUp" id="btn-signIn">Sign Up</a></div>

@@ -58,6 +58,7 @@ public class SecurityConfig {
                 .failureHandler(new LoginFailHandler())
                 .and()
                 .logout()
+                .logoutUrl("/logout")
                 /* 로그아웃 페이지 지정 */
                 .logoutSuccessUrl("/")
                 .and()
@@ -65,8 +66,10 @@ public class SecurityConfig {
                 /* 접근 권한 에러 페이지 지정 */
                 .accessDeniedPage("/access-denied")
                 .and()
-                /* CSRF 비활성화 */
-                .csrf().disable();
+                /* 다중 로그인 설정 */
+                .sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(false)
+                /* 세션 고정 보호 */
+                .and().sessionFixation().changeSessionId();
 
         return http.build();
     }
