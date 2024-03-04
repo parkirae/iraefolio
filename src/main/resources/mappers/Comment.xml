@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iraefolio.mapper.CommentMapper">
 
     <!-- READ -->
-    <select id="read" resultType="com.iraefolio.domain.CommentEntity">
-        SELECT *
+    <select id="read" resultType="com.iraefolio.domain.dto.CommentDTO">
+        SELECT 'comment' AS type, recomment_id, comment_id, post_id, member_id, writer, create_dt, update_dt, content, username, CATEGORY
         FROM TB_COMMENT
-        WHERE
-        1=1
-        AND CATEGORY = #{category}
-        AND POST_ID = #{post_id}
+        WHERE 1 = 1
+          AND CATEGORY = #{category}
+          AND post_id = #{post_id}
+
+        UNION ALL
+
+        SELECT 'reComment' AS type, recomment_id, comment_id, post_id, member_id, writer, create_dt, update_dt, content, username, CATEGORY
+        FROM TB_RECOMMENT
+        WHERE 1 = 1
+          AND CATEGORY = #{category}
+          AND post_id = #{post_id}
     </select>
 
     <insert id="create">
@@ -25,4 +31,16 @@
         1=1
         AND COMMENT_ID = #{COMMENT_ID}
     </delete>
+
+    <delete id="deleteReComment">
+        DELETE FROM TB_RECOMMENT
+        WHERE
+        1=1
+        AND RECOMMENT_ID = #{RECOMMENT_ID}
+    </delete>
+
+    <insert id="createReComment">
+        INSERT INTO TB_RECOMMENT(POST_ID, COMMENT_ID, MEMBER_ID, WRITER, USERNAME, CATEGORY, CONTENT, CREATE_DT)
+        VALUES (#{POST_ID}, #{COMMENT_ID}, #{MEMBER_ID}, #{WRITER}, #{USERNAME}, #{CATEGORY}, #{CONTENT}, current_timestamp)
+    </insert>
 </mapper>

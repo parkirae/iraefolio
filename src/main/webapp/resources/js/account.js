@@ -305,6 +305,9 @@ let account = {
         authority: $("#authority").val()
       }),
       contentType:"application/json; charset=utf-8",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function (response) {
         $("dialog").hide();
         _this.read();
@@ -329,6 +332,9 @@ let account = {
         limit: this.limit, // 한번에 몇 개의 데이터를 보여줄 것인지
         name: $(".search_input").val(),
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response){
         data = response;
         _this.grid.resetData(data);
@@ -355,6 +361,9 @@ let account = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(data),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response) {
         let list = _this.read();
         if (list) {
@@ -438,6 +447,9 @@ let account = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(arr),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function() {
         let list = _this.read();
         if (list) {
@@ -464,6 +476,9 @@ let account = {
       data: JSON.stringify({
         content: $(".search_input").val(),
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response){
         cnt = response;
       },
@@ -484,6 +499,9 @@ let account = {
       data: JSON.stringify({
         username: newUsername
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response){
         result = response;
       },

@@ -28,6 +28,8 @@ public class PostEntity extends BaseEntity implements Serializable  {
 //    @Schema(description = "review 내용", nullable = false)
     private String CONTENT;
 
+    private int VIEW;
+
 //    @Schema(description = "생성일자", nullable = false)
     private LocalDate CREATE_DT;
 

@@ -2,6 +2,8 @@ package com.iraefolio.service;
 
 import com.iraefolio.domain.CommentEntity;
 import com.iraefolio.domain.PostEntity;
+import com.iraefolio.domain.ReCommentEntity;
+import com.iraefolio.domain.dto.CommentDTO;
 import com.iraefolio.mapper.CommentMapper;
 import com.iraefolio.mapper.HeaderMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +22,8 @@ public class CommentService {
     private final CommentMapper mapper;
 
     /* READ */
-    public List<CommentEntity> read(String category, String post_id) throws Exception {
-        List<CommentEntity> list = mapper.read(category, post_id);
+    public List<CommentDTO> read(String category, String post_id) throws Exception {
+        List<CommentDTO> list = mapper.read(category, post_id);
         return list;
     }
 
@@ -33,5 +35,15 @@ public class CommentService {
     /* DELETE */
     public void delete(CommentEntity entity) throws Exception {
         mapper.delete(entity);
+    }
+
+    /* CREATE RECOMMENT */
+    public void createReComment(ReCommentEntity entity) throws Exception {
+        mapper.createReComment(entity);
+    }
+
+    /* DELETE RECOMMENT */
+    public void deleteReComment(ReCommentEntity entity) throws Exception {
+        mapper.deleteReComment(entity);
     }
 }

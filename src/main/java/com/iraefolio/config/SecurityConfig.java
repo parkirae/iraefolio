@@ -20,7 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.*;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -32,7 +33,6 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class SecurityConfig {
-
 
     /* 권한 계층 부여 */
     @Bean
@@ -70,6 +70,8 @@ public class SecurityConfig {
                 .sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(false)
                 /* 세션 고정 보호 */
                 .and().sessionFixation().changeSessionId();
+//                .and().csrf().csrfTokenRepository(csrfTokenRepository);
+//                .and().csrf().disable();
 
         return http.build();
     }

@@ -15,12 +15,18 @@
   <sec:authentication property="principal" var="user"/>
 </sec:authorize>
 
+<!-- CSRF -->
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- 로그인 정보 JS 전달 -->
 <script type="text/javascript">
   let user = {};
   user.username = '${user.getUsername()}';
   user.name = '${user.getName()}';
   user.memberId = '${user.getMemberId()}';
+  user.csrfToken = '${_csrf.token}';
+  user.csrfHeader = '${_csrf.headerName}'
 
   let userAuthority = '${user.getAuthorities()}';
   if (userAuthority.includes('ROLE_SUPER')) {

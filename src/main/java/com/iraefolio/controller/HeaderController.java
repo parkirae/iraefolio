@@ -2,7 +2,9 @@ package com.iraefolio.controller;
 
 import com.iraefolio.domain.CommentEntity;
 import com.iraefolio.domain.PostEntity;
+import com.iraefolio.domain.ReCommentEntity;
 import com.iraefolio.domain.ReviewEntity;
+import com.iraefolio.domain.dto.CommentDTO;
 import com.iraefolio.domain.dto.DetailDTO;
 import com.iraefolio.service.CommentService;
 import com.iraefolio.service.HeaderService;
@@ -45,7 +47,7 @@ public class HeaderController {
         model.addAttribute("detail", detail);
 
         // 댓글 정보 불러오는 로직 수행
-        List<CommentEntity> comment = commentService.read(category, post_id);
+        List<CommentDTO> comment = commentService.read(category, post_id);
         // 불러온 데이터를 JSP에 전달하는 로직 수행
         model.addAttribute("comment", comment);
 
@@ -60,9 +62,9 @@ public class HeaderController {
 
 //        if (bindingResult.hasErrors()) throw new BindException(bindingResult);
 
-        List<CommentEntity> list = commentService.read(detailDTO.getCATEGORY(), detailDTO.getPOST_ID());
+        List<CommentDTO> commentList = commentService.read(detailDTO.getCATEGORY(), detailDTO.getPOST_ID());
 
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(commentList);
     }
 
     /* CREATE */
@@ -73,10 +75,28 @@ public class HeaderController {
         return ResponseEntity.ok().build();
     }
 
+    /* DELETE */
     @Operation(summary = "DELETE comment", description = "comment를 삭제합니다.")
     @DeleteMapping
     public ResponseEntity<Void> delete(@RequestBody CommentEntity entity) throws Exception {
         commentService.delete(entity);
         return ResponseEntity.ok().build();
     }
+
+    /* CREATE RECOMMENT */
+    @Operation(summary = "CREATE reComment", description = "새로운 reComment를 작성합니다.")
+    @PostMapping("/create")
+    public ResponseEntity<Void> create(@Valid @RequestBody ReCommentEntity entity) throws Exception {
+        commentService.createReComment(entity);
+        return ResponseEntity.ok().build();
+    }
+
+    /* DELETE RECOMMENT */
+    @Operation(summary = "DELETE reComment", description = "reComment를 삭제합니다.")
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> delete(@RequestBody ReCommentEntity entity) throws Exception {
+        commentService.deleteReComment(entity);
+        return ResponseEntity.ok().build();
+    }
+
 }

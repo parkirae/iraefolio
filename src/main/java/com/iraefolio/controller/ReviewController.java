@@ -4,11 +4,8 @@ import com.iraefolio.domain.PostEntity;
 import com.iraefolio.domain.ReviewEntity;
 import com.iraefolio.service.HeaderService;
 import com.iraefolio.service.ReviewService;
-import javax.validation.Valid;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.models.headers.Header;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Tag(name = "review Controller", description = "review Controller")

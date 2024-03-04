@@ -303,6 +303,9 @@ let post = {
                 content: data.content,
                 category: data.category
             }),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+            },
             success: function(response) {
                 $("dialog").hide();
                 _this.read();
@@ -328,6 +331,9 @@ let post = {
                 limit: this.limit, // 한번에 몇 개의 데이터를 보여줄 것인지
                 content: $(".search_input").val(),
             }),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+            },
             success: function(response){
                 data = response;
                 _this.grid.resetData(data);
@@ -354,6 +360,9 @@ let post = {
             async: false,
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify(data),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+            },
             success: function(response) {
                 let list = _this.read();
                 if (list) {
@@ -419,6 +428,9 @@ let post = {
             async: false,
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify(arr),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+            },
             success: function(response) {
                 let list = _this.read();
                 if (list) {
@@ -445,6 +457,9 @@ let post = {
             data: JSON.stringify({
                 content: $(".search_input").val(),
             }),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+            },
             success: function(response){
                 cnt = response;
             },

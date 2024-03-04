@@ -62,6 +62,8 @@
                 </c:if>
             </div>
 
+            <div id="view">조회수: ${detail.VIEW}</div>
+
             <div class="hr" />
 
         </div>
@@ -87,21 +89,10 @@
                 </c:otherwise>
             </c:choose>
 
-            <c:if test="${comment.size() != 0}">
             <div class="hr" />
             <div class="comment-box-comment"></div>
-            </c:if>
+
             <div class="divBox"></div>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
-<%--            <div class="divBox"></div>--%>
         </div>
     </div>
 </section>

@@ -282,6 +282,9 @@ let review = {
         title: data.title,
         content: data.content
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response) {
         $("dialog").hide();
         _this.read();
@@ -307,6 +310,9 @@ let review = {
         limit: this.limit, // 한번에 몇 개의 데이터를 보여줄 것인지
         content: $(".search_input").val(),
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response){
         data = response;
         _this.grid.resetData(data);
@@ -333,6 +339,9 @@ let review = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(data),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response) {
         let list = _this.read();
         if (list) {
@@ -398,6 +407,9 @@ let review = {
       async: false,
       contentType:"application/json; charset=utf-8",
       data: JSON.stringify(arr),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response) {
         let list = _this.read();
         if (list) {
@@ -424,6 +436,9 @@ let review = {
       data: JSON.stringify({
         content: $(".search_input").val(),
       }),
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader(user.csrfHeader, user.csrfToken);
+      },
       success: function(response){
         cnt = response;
       },
