@@ -69,9 +69,14 @@ public class SecurityConfig {
                 /* 다중 로그인 설정 */
                 .sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(false)
                 /* 세션 고정 보호 */
-                .and().sessionFixation().changeSessionId();
-//                .and().csrf().csrfTokenRepository(csrfTokenRepository);
-//                .and().csrf().disable();
+                .and()
+                .sessionFixation().changeSessionId()
+                /* SSL */
+                .and()
+                .requiresChannel(channel ->
+                        channel.anyRequest().requiresSecure())
+                .authorizeRequests(authorize ->
+                        authorize.anyRequest().permitAll());
 
         return http.build();
     }
