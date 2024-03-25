@@ -44,6 +44,9 @@ iraefolio는 정보 공유를 위한 도구입니다. iraefolio를 사용하는 
 
 ![계정 관리](https://github.com/parkirae/readme/assets/76719977/9923f25d-acfd-47c9-9752-d3f758965e9e)
 
+- **댓글** : 댓글 등록, 댓글 삭제, 답글 등록, 답글 삭제
+
+![comment](https://github.com/parkirae/iraefolio/assets/76719977/9367d17e-03f3-4cde-a985-027c3a47aef4)
 
 
 <br>
