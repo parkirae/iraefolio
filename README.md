@@ -48,6 +48,10 @@ iraefolio는 정보 공유를 위한 도구입니다. iraefolio를 사용하는 
 
 ![comment](https://github.com/parkirae/iraefolio/assets/76719977/9367d17e-03f3-4cde-a985-027c3a47aef4)
 
+- **게시글** : 게시글 등록, 게시글 수정, 게시글 삭제
+
+![ㅁㄴㅇㅁㄴㅇㅁㄴㅇ](https://github.com/parkirae/iraefolio/assets/76719977/e44fb103-2e9a-4aa5-84d8-04aeccca6e52)
+
 
 <br>
 
