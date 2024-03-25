@@ -36,8 +36,8 @@ iraefolio는 정보 공유를 위한 도구입니다. iraefolio를 사용하는 
 ## ⭐ 주요 기능
 
 - **메인 화면** : 로그인, 로그아웃, 회원가입
-  
-![main](https://github.com/parkirae/readme/assets/76719977/3b9aa489-07ff-4e34-8249-1ac0c9bad195)
+
+![login](https://github.com/parkirae/iraefolio/assets/76719977/983fb80f-5847-4fd6-9a16-a494ee3d54fb)
 
 
 - **계정 관리** : 계정 생성, 계정 권한 변경, 계정 삭제, 계정 검색
